@@ -7,24 +7,24 @@ class BorderButton extends StatelessWidget {
   final double circular;
   final double fontSize;
 
-  BorderButton(
-      this.btnName, this.btnHeight, this.btnBorderColor, this.fontSize,this.circular);
+  BorderButton(this.btnName, this.btnHeight, this.btnBorderColor, this.fontSize,
+      this.circular);
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       alignment: Alignment.center,
       height: btnHeight,
-      decoration: new BoxDecoration(
-        border: new Border.all(
+      decoration: BoxDecoration(
+        border: Border.all(
           width: 1.0,
           color: Colors.blue,
         ),
-        borderRadius: new BorderRadius.all(new Radius.circular(circular)),
+        borderRadius: BorderRadius.all(Radius.circular(circular)),
       ),
-      child: new Text(
+      child: Text(
         btnName,
-        style: new TextStyle(fontSize: fontSize),
+        style: TextStyle(fontSize: fontSize),
       ),
     );
   }

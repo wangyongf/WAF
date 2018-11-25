@@ -24,7 +24,7 @@ class CommentRepositoryImpl implements CommentRepository {
 Future<BaseModel<List<CommentModel>>> _getLongComments(String id) async {
   Dio dio = DioFactory.getInstance().getDio();
 
-  String url = (Constant.baseUrl + Apis.long_comment).replaceAll('id', id);
+  String url = (Constant.baseUrl + Apis.LONG_COMMENT).replaceAll('id', id);
 
   print(url);
 

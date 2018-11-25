@@ -1,18 +1,18 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:daily_purify/Utils/route_util.dart';
 import 'package:daily_purify/common/constant.dart';
 import 'package:daily_purify/model/base_model.dart';
 import 'package:daily_purify/model/story_detail_model.dart';
 import 'package:daily_purify/model/story_extra_model.dart';
 import 'package:daily_purify/mvp/presenter/story_detail_presenter.dart';
 import 'package:daily_purify/mvp/presenter/story_detail_presenter_impl.dart';
+import 'package:daily_purify/util/route_util.dart';
 import 'package:daily_purify/widget/common_loading_dialog.dart';
-import 'package:daily_purify/widget/common_snakeBar.dart';
+import 'package:daily_purify/widget/common_share.dart';
+import 'package:daily_purify/widget/snackbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:daily_purify/widget/common_share.dart';
 
 class StoryDetailAppPage extends StatefulWidget {
   final String id;
@@ -211,7 +211,7 @@ class _StoryDetailAppPageState extends State<StoryDetailAppPage>
     if (!mounted) return; //异步处理，防止报错
 
     if (model.code != HttpStatus.OK) {
-      CommonSnakeBar.buildSnakeBar(context, model.errorMsg);
+      SnakeBarHelper.showSnackBar(context, model.errorMsg);
       return;
     }
 
@@ -237,7 +237,7 @@ class _StoryDetailAppPageState extends State<StoryDetailAppPage>
     if (!mounted) return; //异步处理，防止报错
 
     if (model.code != HttpStatus.OK) {
-      CommonSnakeBar.buildSnakeBar(context, model.errorMsg);
+      SnakeBarHelper.showSnackBar(context, model.errorMsg);
       return;
     }
 

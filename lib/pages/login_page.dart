@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:daily_purify/model/menu_model.dart';
-import 'package:daily_purify/widget/common_snakeBar.dart';
+import 'package:daily_purify/widget/snackbar_helper.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,12 +9,12 @@ import 'package:flutter/services.dart';
 class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new _LoginPageState();
+    return _LoginPageState();
   }
 }
 
 class _LoginPageState extends State<LoginPage> {
-  GlobalKey<ScaffoldState> registKey = new GlobalKey();
+  GlobalKey<ScaffoldState> registerKey = GlobalKey();
 
   String _phoneNum = '';
 
@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
   _startTimer() {
     _seconds = 10;
 
-    _timer = new Timer.periodic(new Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (_seconds == 0) {
         _cancelTimer();
         return;
@@ -59,14 +59,55 @@ class _LoginPageState extends State<LoginPage> {
     _timer?.cancel();
   }
 
+  showTips() {
+    showModalBottomSheet<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+              child: Padding(
+                  padding: const EdgeInsets.all(32.0),
+                  child: Text('没有相关接口，这是一个纯UI界面，提供部分交互体验',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                          fontSize: 24.0))));
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: Scaffold(
+        key: registerKey,
+        backgroundColor: Colors.white,
+        body: _buildBody(),
+      ),
+    );
+  }
+
+  Widget _buildBody() {
+    return ListView(
+      children: <Widget>[
+        _buildCustomBar(),
+        _buildLabel(),
+        _buildPhoneEdit(),
+        _buildVerifyCodeEdit(),
+        _buildRegisterButton(),
+        _buildTips(),
+        _buildThirdPartLogin(),
+        _buildProtocol(),
+      ],
+    );
+  }
+
   Widget _buildCustomBar() {
-    return new Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween, //子组件的排列方式为主轴两端对齐
       children: <Widget>[
-        new InkWell(
-          child: new Padding(
+        InkWell(
+          child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: new Icon(
+              child: Icon(
                 Icons.clear,
                 size: 26.0,
                 color: Colors.grey[700],
@@ -75,12 +116,12 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.pop(context);
           },
         ),
-        new InkWell(
-          child: new Padding(
+        InkWell(
+          child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: new Text(
+              child: Text(
                 "密码登录",
-                style: new TextStyle(fontSize: 16.0, color: Colors.grey[700]),
+                style: TextStyle(fontSize: 16.0, color: Colors.grey[700]),
               )),
           onTap: () {
             showTips();
@@ -90,16 +131,27 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Widget _buildLabel() {
+    return Container(
+      margin: const EdgeInsets.only(top: 40.0, bottom: 20.0),
+      alignment: Alignment.center,
+      child: Text(
+        "登录知乎日报，体验更多功能",
+        style: TextStyle(fontSize: 24.0),
+      ),
+    );
+  }
+
   Widget _buildPhoneEdit() {
-    var node = new FocusNode();
-    return new Padding(
+    var node = FocusNode();
+    return Padding(
       padding: const EdgeInsets.only(left: 40.0, right: 40.0),
-      child: new TextField(
+      child: TextField(
         onChanged: (str) {
           _phoneNum = str;
           setState(() {});
         },
-        decoration: new InputDecoration(
+        decoration: InputDecoration(
           hintText: '请输入手机号',
         ),
         maxLines: 1,
@@ -118,13 +170,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildVerifyCodeEdit() {
-    var node = new FocusNode();
-    Widget verifyCodeEdit = new TextField(
+    var node = FocusNode();
+    Widget verifyCodeEdit = TextField(
       onChanged: (str) {
         _verifyCode = str;
         setState(() {});
       },
-      decoration: new InputDecoration(
+      decoration: InputDecoration(
         hintText: '请输入短信验证码',
       ),
       maxLines: 1,
@@ -140,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
 
-    Widget verifyCodeBtn = new InkWell(
+    Widget verifyCodeBtn = InkWell(
       onTap: (_seconds == 0)
           ? () {
               setState(() {
@@ -148,29 +200,29 @@ class _LoginPageState extends State<LoginPage> {
               });
             }
           : null,
-      child: new Container(
+      child: Container(
         alignment: Alignment.center,
         width: 100.0,
         height: 36.0,
-        decoration: new BoxDecoration(
-          border: new Border.all(
+        decoration: BoxDecoration(
+          border: Border.all(
             width: 1.0,
             color: Colors.blue,
           ),
         ),
-        child: new Text(
+        child: Text(
           '$_verifyStr',
-          style: new TextStyle(fontSize: 14.0),
+          style: TextStyle(fontSize: 14.0),
         ),
       ),
     );
 
-    return new Padding(
+    return Padding(
       padding: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
-      child: new Stack(
+      child: Stack(
         children: <Widget>[
           verifyCodeEdit,
-          new Align(
+          Align(
             alignment: Alignment.topRight,
             child: verifyCodeBtn,
           ),
@@ -179,122 +231,119 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildLabel() {
-    return new Container(
-      margin: const EdgeInsets.only(top: 40.0, bottom: 20.0),
-      alignment: Alignment.center,
-      child: new Text(
-        "登录知乎日报，体验更多功能",
-        style: new TextStyle(fontSize: 24.0),
-      ),
-    );
-  }
-
-  Widget _buildRegist() {
-    return new Padding(
+  Widget _buildRegisterButton() {
+    return Padding(
       padding: const EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
-      child: new RaisedButton(
+      child: RaisedButton(
+        padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
         color: Colors.blue,
         textColor: Colors.white,
+        disabledTextColor: Colors.white,
         disabledColor: Colors.blue[100],
-        onPressed: (_phoneNum.isEmpty || _verifyCode.isEmpty) ? null : () {
-          showTips();
-        },
-        child: new Text(
-          "登  录",
-          style: new TextStyle(fontSize: 16.0),
+        onPressed: (_phoneNum.isEmpty || _verifyCode.isEmpty)
+            ? null
+            : () {
+                showTips();
+              },
+        child: Text(
+          "马上登录",
+          style: TextStyle(fontSize: 16.0),
         ),
       ),
     );
   }
 
   Widget _buildTips() {
-    return new Padding(
+    return Padding(
       padding: const EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0),
-      child: new Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween, //子组件的排列方式为主轴两端对齐
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //子组件的排列方式为主轴两端对齐
         children: <Widget>[
-          new Text(
+          Text(
             "未注册手机验证后自动登录",
-            style: new TextStyle(fontSize: 14.0, color: Colors.grey[500]),
+            style: TextStyle(fontSize: 14.0, color: Colors.grey[500]),
           ),
-          new Text(
+          Text(
             "需要帮助",
-            style: new TextStyle(fontSize: 14.0, color: Colors.blue),
+            style: TextStyle(fontSize: 14.0, color: Colors.blue),
           ),
         ],
       ),
     );
   }
 
+  // 三方登录
   Widget _buildThirdPartLogin() {
-    return new Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: menus_login.map((Menu m) {
-        return new GestureDetector(
+        return GestureDetector(
           onTap: () {
             switch (m.index) {
               case 0:
-                CommonSnakeBar.buildSnakeBarByKey(registKey, context, '点击了微信');
+                SnakeBarHelper.showSnackBarByKey(registerKey, context, '点击了微信');
                 break;
               case 1:
-                CommonSnakeBar.buildSnakeBarByKey(
-                    registKey, context, '点击了新浪微博');
+                SnakeBarHelper.showSnackBarByKey(
+                    registerKey, context, '点击了新浪微博');
                 break;
             }
           },
-          child: new Padding(
+          child: Padding(
               padding: const EdgeInsets.only(
                   left: 24.0, top: 60.0, bottom: 12.0, right: 24.0),
-              child: new Image.asset(
+              child: Image.asset(
                 m.icon,
-                width: 60.0,
-                height: 60.0,
+                width: 50.0,
+                height: 50.0,
               )),
         );
       }).toList(),
     );
   }
 
+  // 注册协议
   Widget _buildProtocol() {
-    return new Padding(
-      padding: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0,bottom: 20.0),
-      child: new Container(
-        child: new Text.rich(
-          new TextSpan(
+    return Padding(
+      padding: const EdgeInsets.only(
+          left: 40.0, right: 40.0, top: 10.0, bottom: 20.0),
+      child: Container(
+        child: Text.rich(
+          TextSpan(
               text: '注册知乎日报代表你已阅读并同意 ',
-              style: new TextStyle(
+              style: TextStyle(
                   fontSize: 14.0,
                   color: Colors.grey[500],
                   fontWeight: FontWeight.w400),
               children: [
-                new TextSpan(
-                    recognizer: new TapGestureRecognizer()
+                TextSpan(
+                    recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        CommonSnakeBar.buildSnakeBarByKey(
-                            registKey, context, '点击了知乎协议');
+                        SnakeBarHelper.showSnackBarByKey(
+                            registerKey, context, '点击了知乎协议');
                       },
                     text: '知乎协议',
-                    style: new TextStyle(
+                    style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.blue,
                       fontWeight: FontWeight.w400,
                     )),
-                new TextSpan(
+                TextSpan(
                     text: ' 和 ',
-                    style: new TextStyle(
+                    style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.grey[500],
                       fontWeight: FontWeight.w400,
                     )),
-                new TextSpan(
-                    recognizer: new TapGestureRecognizer()
+                TextSpan(
+                    recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        CommonSnakeBar.buildSnakeBarByKey(
-                            registKey, context, '点击了隐私政策');
+                        SnakeBarHelper.showSnackBarByKey(
+                            registerKey, context, '点击了隐私政策');
                       },
                     text: '隐私政策',
-                    style: new TextStyle(
+                    style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.blue,
                       fontWeight: FontWeight.w400,
@@ -304,47 +353,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-  Widget _buildBody(){
-    return new ListView(
-      children: <Widget>[
-        _buildCustomBar(),
-        _buildLabel(),
-        _buildPhoneEdit(),
-        _buildVerifyCodeEdit(),
-        _buildRegist(),
-        _buildTips(),
-        _buildThirdPartLogin(),
-        _buildProtocol(),
-      ],
-    );
-  }
-
-
-  showTips() {
-    showModalBottomSheet<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return new Container(
-              child: new Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: new Text('没有相关接口，这是一个纯UI界面，提供部分交互体验',
-                      textAlign: TextAlign.center,
-                      style: new TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontSize: 24.0))));
-        });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Material(
-      child: new Scaffold(
-        key: registKey,
-        backgroundColor: Colors.white,
-        body: _buildBody(),
-      ),
-    );
-  }
 }
-

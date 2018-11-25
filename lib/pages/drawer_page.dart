@@ -1,15 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:daily_purify/Utils/cache_util.dart';
-import 'package:daily_purify/Utils/route_util.dart';
 import 'package:daily_purify/model/base_model.dart';
 import 'package:daily_purify/model/theme_model.dart';
 import 'package:daily_purify/mvp/presenter/theme_presenter.dart';
 import 'package:daily_purify/mvp/presenter/theme_presenter_impl.dart';
+import 'package:daily_purify/util/cache_util.dart';
+import 'package:daily_purify/util/route_util.dart';
 import 'package:daily_purify/widget/common_loading_dialog.dart';
 import 'package:daily_purify/widget/common_retry.dart';
-import 'package:daily_purify/widget/common_snakeBar.dart';
 import 'package:flutter/material.dart';
 
 class DrawerBody extends StatefulWidget {
@@ -59,9 +58,7 @@ class _DrawerBodyState extends State<DrawerBody> implements ThemeView {
 
   Widget _buildDrawer() {
     return new UserAccountsDrawerHeader(
-      onDetailsPressed: (){
-
-      },
+      onDetailsPressed: () {},
       accountName: new Text('$_name'),
       accountEmail: new Text('370159662@qq.com'),
       currentAccountPicture: new CircleAvatar(
@@ -106,23 +103,23 @@ class _DrawerBodyState extends State<DrawerBody> implements ThemeView {
     );
   }
 
-  Widget _buildList(){
+  Widget _buildList() {
     return new MediaQuery.removePadding(
       context: context,
       // DrawerHeader consumes top MediaQuery padding.
       removeTop: true,
       child: new Expanded(
           child: new ListView(
-            children: <Widget>[
-              new Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: _themeList.map((ThemeModel model) {
-                  return _buildOtherItem(model);
-                }).toList(),
-              ),
-            ],
-          )),
+        children: <Widget>[
+          new Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: _themeList.map((ThemeModel model) {
+              return _buildOtherItem(model);
+            }).toList(),
+          ),
+        ],
+      )),
     );
   }
 
@@ -137,8 +134,7 @@ class _DrawerBodyState extends State<DrawerBody> implements ThemeView {
         ],
       );
     } else {
-
-      var content ;
+      var content;
 
       if (_isShowRetry) {
         _isShowRetry = false;

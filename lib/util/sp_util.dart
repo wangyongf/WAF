@@ -12,7 +12,7 @@ class SPUtil {
     if (_instance == null) {
       await synchronized(_lock, () async {
         if (_instance == null) {
-          _instance = new SPUtil._();
+          _instance = SPUtil._();
           await _instance._init();
         }
       });
@@ -22,7 +22,7 @@ class SPUtil {
 
   SPUtil._();
 
-  static Object _lock = new Object();
+  static Object _lock = Object();
 
   _init() async {
     _prefs = await SharedPreferences.getInstance();

@@ -1,4 +1,5 @@
-import 'package:daily_purify/Utils/date_util.dart';
+import 'package:daily_purify/util/date_util.dart';
+
 class HotNewsModel {
   final String date;
 

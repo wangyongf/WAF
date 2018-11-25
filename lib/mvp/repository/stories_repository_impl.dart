@@ -22,7 +22,7 @@ Future<BaseModel<HotNewsModel>> _getNews(String date) async {
   String url;
 
   if(null == date){
-     url = Constant.baseUrl + Apis.latest;
+     url = Constant.baseUrl + Apis.LATEST;
   }else{
      url = Constant.baseUrl + Apis.before + date;
   }

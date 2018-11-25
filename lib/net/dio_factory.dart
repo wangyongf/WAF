@@ -17,7 +17,7 @@ class DioFactory {
 
   DioFactory._();
 
-  _init(){
+  _init() {
     _dio = new Dio();
   }
 
@@ -28,5 +28,5 @@ class DioFactory {
 
 //测试是否是单例
 void main() {
-  print(DioFactory.getInstance().getDio()  == DioFactory.getInstance().getDio());
+  print(DioFactory.getInstance().getDio() == DioFactory.getInstance().getDio());
 }

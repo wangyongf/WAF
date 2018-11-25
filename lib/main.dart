@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:daily_purify/pages/home_page.dart';
 import 'package:daily_purify/common/routes_name.dart';
-import 'package:daily_purify/pages/Login_page.dart';
+import 'package:daily_purify/pages/home_page.dart';
+import 'package:daily_purify/pages/login_page.dart';
+import 'package:flutter/material.dart';
 
 void main() {
-  runApp(new MaterialApp(
-      routes: <String, WidgetBuilder>{
-        RoutesName.routesHomePage: (BuildContext context) => new HomePage(),
-        RoutesName.routesRegistPage: (BuildContext context) => new LoginPage(),
-      },
-      home: new HomePage()));
+  runApp(MaterialApp(routes: <String, WidgetBuilder>{
+    RoutesName.routesHomePage: (BuildContext context) => HomePage(),
+    RoutesName.routesRegistPage: (BuildContext context) => LoginPage(),
+  }, home: LoginPage()));
 }

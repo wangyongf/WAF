@@ -1,7 +1,7 @@
 class Apis {
 
   //首页数据
-  static const String latest = "news/latest";
+  static const String LATEST = "news/latest";
 
   //首页数据 跟日期 example：news/before/20131119
   static const String before ="news/before/" ;
@@ -13,7 +13,7 @@ class Apis {
   static const String story_extra = "story-extra/";
 
   //长评论详情 跟id example:story/8997528/long-comments
-  static const String long_comment = "story/id/long-comments";
+  static const String LONG_COMMENT = "story/id/long-comments";
 
   //短评论详情 跟id
   static const String short_comment = "story/id/short-comments";

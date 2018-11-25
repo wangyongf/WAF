@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:daily_purify/Utils/date_util.dart';
-import 'package:daily_purify/Utils/route_util.dart';
 import 'package:daily_purify/common/constant.dart';
 import 'package:daily_purify/model/base_model.dart';
 import 'package:daily_purify/model/hot_news_model.dart';
 import 'package:daily_purify/mvp/presenter/stories_presenter.dart';
 import 'package:daily_purify/mvp/presenter/stories_presenter_impl.dart';
 import 'package:daily_purify/pages/drawer_page.dart';
+import 'package:daily_purify/util/date_util.dart';
+import 'package:daily_purify/util/route_util.dart';
 import 'package:daily_purify/widget/common_divider.dart';
 import 'package:daily_purify/widget/common_loading_dialog.dart';
 import 'package:daily_purify/widget/common_retry.dart';
@@ -201,7 +201,6 @@ class _HomePageState extends State<HomePage> implements StoriesView {
       ),
     );
   }
-
 
   Widget _buildNormalItem(HotNewsStoriesModel item) {
     final String imgUrl = item.images[0];

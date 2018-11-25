@@ -1,7 +1,6 @@
 class DateUtil {
-
   static formatDateSimple(DateTime dt) {
-    StringBuffer sb = new StringBuffer();
+    StringBuffer sb = StringBuffer();
     sb.write(dt.year.toString());
     sb.write(dt.month.toString().padLeft(2, '0'));
     sb.write(dt.day.toString().padLeft(2, '0'));
@@ -9,9 +8,9 @@ class DateUtil {
   }
 
   static formatDate(int time) {
-    var dt = new DateTime.fromMillisecondsSinceEpoch(time);
+    var dt = DateTime.fromMillisecondsSinceEpoch(time);
 
-    StringBuffer sb = new StringBuffer();
+    StringBuffer sb = StringBuffer();
     sb.write(dt.year);
     sb.write('-');
     sb.write(dt.month.toString().padLeft(2, '0'));
@@ -27,7 +26,7 @@ class DateUtil {
   }
 
   static formatDateWithWeek(DateTime dt) {
-    StringBuffer sb = new StringBuffer();
+    StringBuffer sb = StringBuffer();
     sb.write(dt.year.toString());
     sb.write('年');
     sb.write(dt.month.toString());

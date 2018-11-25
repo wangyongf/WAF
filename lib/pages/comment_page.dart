@@ -1,16 +1,16 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:daily_purify/Utils/date_util.dart';
-import 'package:daily_purify/Utils/route_util.dart';
 import 'package:daily_purify/common/constant.dart';
 import 'package:daily_purify/model/base_model.dart';
 import 'package:daily_purify/model/comment_model.dart';
 import 'package:daily_purify/mvp/presenter/comment_presenter.dart';
 import 'package:daily_purify/mvp/presenter/comment_presenter_impl.dart';
+import 'package:daily_purify/util/date_util.dart';
+import 'package:daily_purify/util/route_util.dart';
 import 'package:daily_purify/widget/common_loading_dialog.dart';
 import 'package:daily_purify/widget/common_retry.dart';
-import 'package:daily_purify/widget/common_snakeBar.dart';
+import 'package:daily_purify/widget/snackbar_helper.dart';
 import 'package:flutter/material.dart';
 
 class Choice {
@@ -410,7 +410,7 @@ class _CommentPageState extends State<CommentPage> implements CommentView {
     if (!mounted) return; //异步处理，防止报错
 
     if (model.code != HttpStatus.OK) {
-      CommonSnakeBar.buildSnakeBarByKey(
+      SnakeBarHelper.showSnackBarByKey(
           _scaffoldStateKey, context, model.errorMsg);
       return;
     }
@@ -438,7 +438,7 @@ class _CommentPageState extends State<CommentPage> implements CommentView {
 
     if (model.code != HttpStatus.OK) {
       _isShowRetry = true;
-      CommonSnakeBar.buildSnakeBarByKey(
+      SnakeBarHelper.showSnackBarByKey(
           _scaffoldStateKey, context, model.errorMsg);
       return;
     }
