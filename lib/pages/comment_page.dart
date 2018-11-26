@@ -410,7 +410,7 @@ class _CommentPageState extends State<CommentPage> implements CommentView {
     if (!mounted) return; //异步处理，防止报错
 
     if (model.code != HttpStatus.OK) {
-      SnakeBarHelper.showSnackBarByKey(
+      SnackBarHelper.showSnackBarByKey(
           _scaffoldStateKey, context, model.errorMsg);
       return;
     }
@@ -438,7 +438,7 @@ class _CommentPageState extends State<CommentPage> implements CommentView {
 
     if (model.code != HttpStatus.OK) {
       _isShowRetry = true;
-      SnakeBarHelper.showSnackBarByKey(
+      SnackBarHelper.showSnackBarByKey(
           _scaffoldStateKey, context, model.errorMsg);
       return;
     }

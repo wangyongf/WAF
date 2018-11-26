@@ -211,7 +211,7 @@ class _StoryDetailAppPageState extends State<StoryDetailAppPage>
     if (!mounted) return; //异步处理，防止报错
 
     if (model.code != HttpStatus.OK) {
-      SnakeBarHelper.showSnackBar(context, model.errorMsg);
+      SnackBarHelper.showSnackBar(context, model.errorMsg);
       return;
     }
 
@@ -237,7 +237,7 @@ class _StoryDetailAppPageState extends State<StoryDetailAppPage>
     if (!mounted) return; //异步处理，防止报错
 
     if (model.code != HttpStatus.OK) {
-      SnakeBarHelper.showSnackBar(context, model.errorMsg);
+      SnackBarHelper.showSnackBar(context, model.errorMsg);
       return;
     }
 

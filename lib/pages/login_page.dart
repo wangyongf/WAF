@@ -282,10 +282,10 @@ class _LoginPageState extends State<LoginPage> {
           onTap: () {
             switch (m.index) {
               case 0:
-                SnakeBarHelper.showSnackBarByKey(registerKey, context, '点击了微信');
+                SnackBarHelper.showSnackBarByKey(registerKey, context, '点击了微信');
                 break;
               case 1:
-                SnakeBarHelper.showSnackBarByKey(
+                SnackBarHelper.showSnackBarByKey(
                     registerKey, context, '点击了新浪微博');
                 break;
             }
@@ -320,7 +320,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextSpan(
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        SnakeBarHelper.showSnackBarByKey(
+                        SnackBarHelper.showSnackBarByKey(
                             registerKey, context, '点击了知乎协议');
                       },
                     text: '知乎协议',
@@ -339,7 +339,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextSpan(
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        SnakeBarHelper.showSnackBarByKey(
+                        SnackBarHelper.showSnackBarByKey(
                             registerKey, context, '点击了隐私政策');
                       },
                     text: '隐私政策',
