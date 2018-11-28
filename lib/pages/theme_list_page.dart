@@ -329,7 +329,7 @@ class _ThemeListPageState extends State<ThemeListPage>
   void onLoadThemeListSuc(BaseModel<ThemeListModel> model) {
     if (!mounted) return; //异步处理，防止报错
 
-    if (model.code != HttpStatus.OK) {
+    if (model.code != HttpStatus.ok) {
       SnackBarHelper.showSnackBar(context, model.errorMsg);
       return;
     }

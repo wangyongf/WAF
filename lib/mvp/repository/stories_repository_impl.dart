@@ -42,7 +42,7 @@ Future<BaseModel<HotNewsModel>> _getNews(String date) async {
 
     code = 200;
 
-    if (response.statusCode == HttpStatus.OK) {
+    if (response.statusCode == HttpStatus.ok) {
 
       String date = response.data['date'];
 

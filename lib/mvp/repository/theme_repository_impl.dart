@@ -36,7 +36,7 @@ Future<BaseModel<List<ThemeModel>>> _getThemes() async {
 
     code = response.statusCode;
 
-    if (response.statusCode == HttpStatus.OK) {
+    if (response.statusCode == HttpStatus.ok) {
       List themes = response.data['others'];
 
       themesList = themes.map((model) {

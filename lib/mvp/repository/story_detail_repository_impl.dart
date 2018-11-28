@@ -43,7 +43,7 @@ Future<BaseModel<StoryExtraModel>> _getStoryExtra(String id) async {
 
     code = response.statusCode;
 
-    if (response.statusCode == HttpStatus.OK) {
+    if (response.statusCode == HttpStatus.ok) {
       storyExtraModel = StoryExtraModel.fromJson(response.data);
     } else {
       errorMsg = '服务器异常';
@@ -79,7 +79,7 @@ Future<BaseModel<StoryDetailModel>> _getStoryDetail(String id) async {
 
     code = response.statusCode;
 
-    if (response.statusCode == HttpStatus.OK) {
+    if (response.statusCode == HttpStatus.ok) {
       storyDetailModel = StoryDetailModel.fromJson(response.data);
     } else {
       errorMsg = '服务器异常';

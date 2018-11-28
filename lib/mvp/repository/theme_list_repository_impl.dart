@@ -50,7 +50,7 @@ Future<BaseModel<ThemeListModel>> _getThemeList(
 
     code = response.statusCode;
 
-    if (response.statusCode == HttpStatus.OK) {
+    if (response.statusCode == HttpStatus.ok) {
 
       String description = response.data['description'];
 

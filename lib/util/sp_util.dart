@@ -10,6 +10,7 @@ class SPUtil {
 
   static Future<SPUtil> getInstance() async {
     if (_instance == null) {
+      // TODO: synchronized is deprecated.
       await synchronized(_lock, () async {
         if (_instance == null) {
           _instance = SPUtil._();
@@ -31,9 +32,7 @@ class SPUtil {
   getSP() {
     return _prefs;
   }
-
 }
-
 
 //SPUtil.getInstance().then((spUtil){
 //SharedPreferences sp =  spUtil.getSP();

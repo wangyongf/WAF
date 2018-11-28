@@ -29,9 +29,11 @@ class _AccountSettingPageState extends State<AccountSettingPage> {
             case SettingItemType.Title:
               return _buildTitleBar();
             case SettingItemType.Divider:
-              return _buildDivider();
+              return _buildDivider(false);
             case SettingItemType.Space:
               return _buildSpace();
+            case SettingItemType.ShortDivider:
+              return _buildDivider(true);
           }
         });
   }
@@ -57,7 +59,7 @@ class _AccountSettingPageState extends State<AccountSettingPage> {
               },
             ),
             Text(
-              '登录',
+              '账户设置',
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Colors.black,
@@ -124,11 +126,19 @@ class _AccountSettingPageState extends State<AccountSettingPage> {
   }
 
   // 分割线
-  Widget _buildDivider() {
-    return Divider(
-      height: 1,
-      color: const Color(0xFFDCDCDC),
-    );
+  Widget _buildDivider(bool isShort) {
+    if (isShort) {
+      return Divider(
+        height: 1,
+        indent: 20,
+        color: const Color(0xFFDCDCDC),
+      );
+    } else {
+      return Divider(
+        height: 1,
+        color: const Color(0xFFDCDCDC),
+      );
+    }
   }
 
   Widget _buildSpace() {

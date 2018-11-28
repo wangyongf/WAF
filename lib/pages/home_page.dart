@@ -328,7 +328,7 @@ class _HomePageState extends State<HomePage> implements StoriesView {
   void onLoadNewsSuc(BaseModel<HotNewsModel> model) {
     if (!mounted) return; //异步处理，防止报错
 
-    if (model.code != HttpStatus.OK) {
+    if (model.code != HttpStatus.ok) {
       if (!_isSlideUp) {
         _isShowRetry = true;
         setState(() {});

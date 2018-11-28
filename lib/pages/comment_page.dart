@@ -409,7 +409,7 @@ class _CommentPageState extends State<CommentPage> implements CommentView {
   void onLoadLongCommentsSuc(BaseModel<List<CommentModel>> model) {
     if (!mounted) return; //异步处理，防止报错
 
-    if (model.code != HttpStatus.OK) {
+    if (model.code != HttpStatus.ok) {
       SnackBarHelper.showSnackBarByKey(
           _scaffoldStateKey, context, model.errorMsg);
       return;
@@ -436,7 +436,7 @@ class _CommentPageState extends State<CommentPage> implements CommentView {
   void onLoadShortCommentsSuc(BaseModel<List<CommentModel>> model) {
     if (!mounted) return; //异步处理，防止报错
 
-    if (model.code != HttpStatus.OK) {
+    if (model.code != HttpStatus.ok) {
       _isShowRetry = true;
       SnackBarHelper.showSnackBarByKey(
           _scaffoldStateKey, context, model.errorMsg);
