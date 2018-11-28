@@ -69,6 +69,27 @@ class _GuidePageState extends State<GuidePage> {
               )),
             ],
           ),
+          Row(
+            children: <Widget>[
+              Expanded(
+                  child: Container(
+                      margin: const EdgeInsets.only(top: 8),
+                      child: RaisedButton(
+                        onPressed: _gotoWancaibaoMorePage,
+                        padding: EdgeInsets.only(top: 15, bottom: 15),
+                        child: Text('更多页面'),
+                      ))),
+              Expanded(
+                  child: Container(
+                margin: const EdgeInsets.only(left: 8, top: 8),
+                child: RaisedButton(
+                  onPressed: () {},
+                  padding: EdgeInsets.only(top: 15, bottom: 15),
+                  child: Text('something'),
+                ),
+              ))
+            ],
+          ),
         ],
       ),
     );
@@ -92,5 +113,10 @@ class _GuidePageState extends State<GuidePage> {
   /// 帮助与反馈页面
   void _gotoWancaibaoFeedbackPage() {
     Navigator.pushNamed(context, '/wancaibao/feedback');
+  }
+
+  /// 更多页面
+  void _gotoWancaibaoMorePage() {
+    Navigator.pushNamed(context, '/wancaibao/more');
   }
 }

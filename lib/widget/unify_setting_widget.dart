@@ -1,7 +1,14 @@
+import 'package:daily_purify/util/divider_helper.dart';
 import 'package:flutter/material.dart';
 
 /// 统一设置项
 class UnifySettingWidget extends StatelessWidget {
+  /// header
+  final Widget header;
+
+  /// 背景颜色
+  final Color color;
+
   // 左侧的图标
   final Icon leading;
 
@@ -17,14 +24,24 @@ class UnifySettingWidget extends StatelessWidget {
   // 右侧副文案
   final Text subContent;
 
-  // 右侧图标
-  final Icon trailing;
+  // trailing，比如 Icon
+  final Widget trailing;
 
-  // 底部是否显示短分割线
+  // 底部是否显示短分割线，TODO: 换成 footer
   final bool shortDivider;
+
+  /// margin
+  final EdgeInsets margin;
+
+  /// padding
+  final EdgeInsets padding;
 
   UnifySettingWidget(
       {Key key,
+      EdgeInsets margin,
+      EdgeInsets padding,
+      this.header,
+      Color color,
       this.leading,
       String title,
       String subTitle,
@@ -32,7 +49,10 @@ class UnifySettingWidget extends StatelessWidget {
       String subContent,
       this.trailing,
       shortDivider})
-      : title = (title != null && title.isNotEmpty)
+      : margin = margin ?? const EdgeInsets.all(0),
+        padding = padding ?? const EdgeInsets.all(0),
+        color = color ?? Colors.white,
+        title = (title != null && title.isNotEmpty)
             ? Text(
                 title,
                 style: TextStyle(fontSize: 15.5),
@@ -64,30 +84,36 @@ class UnifySettingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16),
-          child: Container(
-            height: 52,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                _buildLeading(),
-                _buildTitle(),
-                _buildSpace(),
-                _buildContent(),
-              ],
+    return Container(
+      margin: margin,
+      padding: padding,
+      color: color,
+      child: Column(
+        children: <Widget>[
+          header ?? Container(),
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16),
+            child: Container(
+              height: 52,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  _buildLeading(),
+                  _buildTitle(),
+                  _buildSpace(),
+                  _buildContent(),
+                ],
+              ),
             ),
           ),
-        ),
-        Divider(
-          height: 0.2,
-          indent: this.shortDivider ? 20 : 0,
-          color: const Color(0xFFDCDCDC),
-        )
-      ],
+          DividerHelper.getD(0.2, _getIndent(), const Color(0xFFDCDCDC)),
+        ],
+      ),
     );
+  }
+
+  double _getIndent() {
+    return this.shortDivider ? 20 : 0;
   }
 
   Widget _buildLeading() {

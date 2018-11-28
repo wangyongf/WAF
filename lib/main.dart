@@ -5,6 +5,7 @@ import 'package:daily_purify/pages/feedback_page.dart';
 import 'package:daily_purify/pages/guide_page.dart';
 import 'package:daily_purify/pages/home_page.dart';
 import 'package:daily_purify/pages/login_page.dart';
+import 'package:daily_purify/pages/more_page.dart';
 import 'package:daily_purify/pages/wancai_login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ void main() {
     '/wancaibao/settings': (BuildContext context) => AccountSettingPage(),
     '/wancaibao/about': (BuildContext context) => AboutWancaibaoPage(),
     '/wancaibao/feedback': (BuildContext context) => FeedbackPage(),
+    '/wancaibao/more': (BuildContext context) => MorePage(),
     '/guide': (BuildContext context) => GuidePage(),
   }, home: GuidePage()));
 }
