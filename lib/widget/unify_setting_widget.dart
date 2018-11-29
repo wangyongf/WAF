@@ -61,7 +61,7 @@ class UnifySettingWidget extends StatelessWidget {
         subTitle = (subTitle != null && subTitle.isNotEmpty)
             ? Text(
                 subTitle,
-                style: TextStyle(fontSize: 13),
+                style: TextStyle(fontSize: 12),
               )
             : null,
         content = (content != null && content.isNotEmpty)
@@ -91,19 +91,18 @@ class UnifySettingWidget extends StatelessWidget {
       child: Column(
         children: <Widget>[
           header ?? Container(),
-          Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16),
-            child: Container(
-              height: 52,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  _buildLeading(),
-                  _buildTitle(),
-                  _buildSpace(),
-                  _buildContent(),
-                ],
-              ),
+          Container(
+            padding: const EdgeInsets.only(left: 16, top: 0, right: 16),
+            margin: const EdgeInsets.all(0),
+            height: 52,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                _buildLeading(),
+                _buildTitle(),
+                _buildSpace(),
+                _buildContent(),
+              ],
             ),
           ),
           DividerHelper.getD(0.2, _getIndent(), const Color(0xFFDCDCDC)),
