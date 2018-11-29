@@ -24,6 +24,9 @@ class UnifySettingWidget extends StatelessWidget {
   // 右侧副文案
   final Text subContent;
 
+  // 放在 trailing 之前的，表状态，比如一个头像，或者是状态的文字描述
+  final Widget trailingStatus;
+
   // trailing，比如 Icon
   final Widget trailing;
 
@@ -43,10 +46,11 @@ class UnifySettingWidget extends StatelessWidget {
       this.header,
       Color color,
       this.leading,
-      String title,
+      @required String title,
       String subTitle,
       String content,
       String subContent,
+      this.trailingStatus,
       this.trailing,
       shortDivider})
       : margin = margin ?? const EdgeInsets.all(0),
@@ -139,8 +143,15 @@ class UnifySettingWidget extends StatelessWidget {
   }
 
   Widget _buildContent() {
-    if (this.trailing != null) {
-      return trailing;
+    if (trailing != null || trailingStatus != null) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          trailingStatus ?? Container(),
+          trailing ?? Container(),
+        ],
+      );
     } else {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.end,

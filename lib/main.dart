@@ -24,5 +24,5 @@ void main() {
         PasswordManagePage(),
     '/wancaibao/account-info': (BuildContext context) => AccountInfoPage(),
     '/guide': (BuildContext context) => GuidePage(),
-  }, home: PasswordManagePage()));
+  }, home: AccountInfoPage()));
 }
