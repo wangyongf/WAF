@@ -1,8 +1,11 @@
 import 'package:daily_purify/util/divider_helper.dart';
 import 'package:daily_purify/widget/unify_setting_widget.dart';
+import 'package:daily_purify/widget/universal_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+/// TODO: 实现一个挖财宝标题栏式的布局
+/// TODO: 实现选择本地相册更新头像的功能
 class AccountInfoPage extends StatefulWidget {
   @override
   _AccountInfoPageState createState() => _AccountInfoPageState();
@@ -73,35 +76,72 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return SimpleDialog(
-            title: Text(
-              '选择头像',
-              style: TextStyle(fontSize: 15, color: Colors.black),
+          List<String> items = [
+            "从头像库选一张",
+            "拍一张照片",
+            "从相册选一张",
+            "随机选择？！！",
+            "我的世界"
+          ];
+          return UniversalAlertDialog<String>(
+            title: Container(
+              color: Colors.black12,
+              child: Row(
+                children: <Widget>[
+                  SizedBox(
+                    width: 47,
+                    height: 47,
+                    child: Container(),
+                  ),
+                  Expanded(
+                      child: Center(
+                          child: Text(
+                    '选择头像',
+                    style: TextStyle(color: Colors.black, fontSize: 18),
+                  ))),
+                  SizedBox(
+                    width: 47,
+                    height: 47,
+                    child: InkWell(
+                      child: Icon(Icons.close),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
-            children: <Widget>[
-              SimpleDialogOption(
-                onPressed: () {
-                  Fluttertoast.showToast(msg: 'Option One');
+            titlePadding: const EdgeInsets.all(0),
+            initialValue: "我的世界",
+            items: items,
+            itemBuilder: (context, item) {
+              return InkWell(
+                onTap: () {
+                  /// TODO: 实现跳转的逻辑
+                  /// TODO: 传入 position
+                  Fluttertoast.showToast(msg: item);
                 },
-                child: Text('从头像库选一张'),
-              ),
-              SimpleDialogOption(
-                onPressed: () {
-                  Fluttertoast.showToast(msg: 'Option Two');
-                },
-                child: Text('拍一张照片'),
-              ),
-              SimpleDialogOption(
-                onPressed: () {
-                  Fluttertoast.showToast(msg: 'Option Three');
-                },
-                child: Text('从相册选一张'),
-              ),
-            ],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    DividerHelper.get(),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 15, top: 12, bottom: 12),
+                      child: Text(
+                        item,
+                        style: TextStyle(color: Colors.black, fontSize: 18),
+                      ),
+                    ),
+                    DividerHelper.get()
+                  ],
+                ),
+              );
+            },
+            actions: <Widget>[],
           );
         });
-
-    /// TODO: 实现挖财宝的对话框~
   }
 
   /// 点击了「昵称」
