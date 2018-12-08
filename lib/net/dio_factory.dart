@@ -1,23 +1,14 @@
 import 'package:dio/dio.dart';
 
-//总觉得怪怪的，但是打印出来确实是只有一个dio对象。。
-
 class DioFactory {
   static Dio _dio;
+  static final DioFactory _singleton = _init();
 
-  static DioFactory _instance;
-
-  static DioFactory getInstance() {
-    if (_instance == null) {
-      _instance = new DioFactory._();
-      _instance._init();
-    }
-    return _instance;
+  factory DioFactory() {
+    return _singleton;
   }
 
-  DioFactory._();
-
-  _init() {
+  static _init() {
     _dio = new Dio();
   }
 
@@ -28,5 +19,5 @@ class DioFactory {
 
 //测试是否是单例
 void main() {
-  print(DioFactory.getInstance().getDio() == DioFactory.getInstance().getDio());
+  print(DioFactory().getDio() == DioFactory().getDio());
 }

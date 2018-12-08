@@ -17,7 +17,7 @@ class StoriesRepositoryImpl implements StoriesRepository {
 }
 
 Future<BaseModel<HotNewsModel>> _getNews(String date) async {
-  Dio dio =DioFactory.getInstance().getDio();
+  Dio dio =DioFactory().getDio();
 
   String url;
 

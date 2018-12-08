@@ -19,7 +19,7 @@ class ThemeListRepositoryImpl implements ThemeListRepository {
 
 Future<BaseModel<ThemeListModel>> _getThemeList(
     String themeId, String lastId) async {
-  Dio dio =DioFactory.getInstance().getDio();
+  Dio dio =DioFactory().getDio();
 
   String url;
 

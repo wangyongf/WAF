@@ -113,13 +113,12 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
               ),
             ),
             titlePadding: const EdgeInsets.all(0),
+            divider: DividerHelper.get(),
             initialValue: "我的世界",
             items: items,
             itemBuilder: (context, item) {
               return InkWell(
                 onTap: () {
-                  /// TODO: 实现跳转的逻辑
-                  /// TODO: 传入 position
                   Fluttertoast.showToast(msg: item);
                 },
                 child: Column(

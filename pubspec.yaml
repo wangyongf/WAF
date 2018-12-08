@@ -41,6 +41,12 @@ flutter:
     - images/icon_wx.png
     - images/icon_arrow_right.png
     - images/icon_mine_fill.png
+    - images/blue.jpeg
+    - images/purple.jpeg
+    - images/yellow.jpeg
+    - images/hello_spider_man.png
+    - images/spider_man.jpeg
+    - images/text.jpeg
 
   #  - images/a_dot_ham.jpeg
 

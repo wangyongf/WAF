@@ -1,8 +1,7 @@
-
 abstract class IView<T> {
   setPresenter(T presenter);
 }
 
-abstract class IPresenter{
+abstract class IPresenter {
   init();
 }
