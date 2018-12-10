@@ -1,43 +1,44 @@
 import 'dart:io';
 
-import 'package:daily_purify/model/base_model.dart';
-import 'package:daily_purify/model/wanandroid_article_list_model.dart';
+import 'package:daily_purify/data/net/url_host.dart';
+import 'package:daily_purify/data/net/url_path.dart';
+import 'package:daily_purify/model/article_list_model.dart';
 import 'package:daily_purify/net/dio_factory.dart';
 import 'package:daily_purify/util/log_util.dart';
 import 'package:dio/dio.dart';
 
 class WanAndroidApi {
-  static final WanAndroidApi _singleton = _init();
+  factory WanAndroidApi() => _getInstance();
+  static WanAndroidApi _instance;
 
-  factory WanAndroidApi() {
-    return _singleton;
-  }
-
-  static _init() {
+  WanAndroidApi._internal() {
     /// TODO: setup the WanAndroidApi.
   }
 
-  static final String _baseUrl = "http://www.wanandroid.com";
-  static final String _articleList = "";
+  static WanAndroidApi _getInstance() {
+    if (_instance == null) {
+      _instance = WanAndroidApi._internal();
+    }
+    return _instance;
+  }
 
   /// 获取首页文章列表
   /// page, 当前页数，默认为0
-  Future<BaseModel<WanAndroidArticleListModel>> getArticles(int page) async {
-    String url = _baseUrl + "/article/list/${page}/json";
+  Future<ArticleListModel> getArticles(int page) async {
+    String url = UrlHost.WANANDROID_BASE_URL + UrlPath.HOME_ARTICLES;
     Dio dio = DioFactory().getDio();
 
     LogUtil.log('getArticles: ' + url);
 
     int code = -1;
     String errorMsg = "";
-    WanAndroidArticleListModel articleListModel;
-    BaseModel<WanAndroidArticleListModel> model;
+    ArticleListModel model;
 
     try {
       Response response = await dio.get(url);
       code = 200;
       if (response.statusCode == HttpStatus.ok) {
-        /// TODO: 解析的逻辑
+        model = ArticleListModel.fromJson(response.data);
       } else {
         code = response.statusCode;
         errorMsg = '服务器异常';
@@ -45,10 +46,10 @@ class WanAndroidApi {
     } catch (exception) {
       code = -1;
       errorMsg = '您的网络似乎出了点问题';
-    } finally {
-      model = BaseModel(code: code, errorMsg: errorMsg, data: articleListModel);
+      model = ArticleListModel(null, code, errorMsg);
     }
 
+    print(model.toString());
     return model;
   }
 }

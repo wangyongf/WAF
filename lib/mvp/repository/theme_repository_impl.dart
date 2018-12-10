@@ -48,7 +48,7 @@ Future<BaseModel<List<ThemeModel>>> _getThemes() async {
   } catch (exception) {
     errorMsg = '您的网络似乎出了什么问题';
   } finally {
-    model = new BaseModel(code: code, errorMsg: errorMsg, data: themesList);
+    model = new BaseModel(code, errorMsg, themesList);
   }
 
   return model;

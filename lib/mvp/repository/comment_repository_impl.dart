@@ -61,7 +61,7 @@ Future<BaseModel<List<CommentModel>>> _getLongComments(String id) async {
   } catch (exception) {
     errorMsg = '您的网络似乎出了什么问题';
   } finally {
-    model = new BaseModel(code: code, errorMsg: errorMsg, data: commentList);
+    model = new BaseModel(code, errorMsg, commentList);
   }
 
   return model;
@@ -107,7 +107,7 @@ Future<BaseModel<List<CommentModel>>> _getShortComments(String id) async {
   } catch (exception) {
     errorMsg = '您的网络似乎出了什么问题';
   } finally {
-    model = new BaseModel(code: code, errorMsg: errorMsg, data: commentList);
+    model = new BaseModel(code, errorMsg, commentList);
   }
 
   return model;

@@ -1,15 +1,19 @@
 import 'package:dio/dio.dart';
 
 class DioFactory {
+  factory DioFactory() => _getInstance();
+  static DioFactory _instance;
   static Dio _dio;
-  static final DioFactory _singleton = _init();
 
-  factory DioFactory() {
-    return _singleton;
+  DioFactory._internal() {
+    _dio = Dio();
   }
 
-  static _init() {
-    _dio = new Dio();
+  static DioFactory _getInstance() {
+    if (_instance == null) {
+      _instance = DioFactory._internal();
+    }
+    return _instance;
   }
 
   getDio() {

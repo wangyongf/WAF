@@ -18,13 +18,12 @@ class StoryDetailRepositoryImpl implements StoryDetailRepository {
 
   @override
   Future<BaseModel<StoryExtraModel>> loadStoryExtra(String id) {
-
     return _getStoryExtra(id);
   }
 }
 
 Future<BaseModel<StoryExtraModel>> _getStoryExtra(String id) async {
-  Dio dio =DioFactory().getDio();
+  Dio dio = DioFactory().getDio();
 
   String url = Constant.baseUrl + Apis.story_extra + id;
 
@@ -51,16 +50,14 @@ Future<BaseModel<StoryExtraModel>> _getStoryExtra(String id) async {
   } catch (exception) {
     errorMsg = '您的网络似乎出了什么问题';
   } finally {
-    model =
-    new BaseModel(code: code, errorMsg: errorMsg, data: storyExtraModel);
+    model = new BaseModel(code, errorMsg, storyExtraModel);
   }
 
   return model;
 }
 
-
 Future<BaseModel<StoryDetailModel>> _getStoryDetail(String id) async {
-  Dio dio =DioFactory().getDio();
+  Dio dio = DioFactory().getDio();
 
   String url = Constant.baseUrl + Apis.detail + id;
 
@@ -87,8 +84,7 @@ Future<BaseModel<StoryDetailModel>> _getStoryDetail(String id) async {
   } catch (exception) {
     errorMsg = '您的网络似乎出了什么问题';
   } finally {
-    model =
-        new BaseModel(code: code, errorMsg: errorMsg, data: storyDetailModel);
+    model = new BaseModel(code, errorMsg, storyDetailModel);
   }
 
   return model;

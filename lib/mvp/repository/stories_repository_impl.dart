@@ -17,14 +17,14 @@ class StoriesRepositoryImpl implements StoriesRepository {
 }
 
 Future<BaseModel<HotNewsModel>> _getNews(String date) async {
-  Dio dio =DioFactory().getDio();
+  Dio dio = DioFactory().getDio();
 
   String url;
 
-  if(null == date){
-     url = Constant.baseUrl + Apis.LATEST;
-  }else{
-     url = Constant.baseUrl + Apis.before + date;
+  if (null == date) {
+    url = Constant.baseUrl + Apis.LATEST;
+  } else {
+    url = Constant.baseUrl + Apis.before + date;
   }
 
   print(url);
@@ -43,7 +43,6 @@ Future<BaseModel<HotNewsModel>> _getNews(String date) async {
     code = 200;
 
     if (response.statusCode == HttpStatus.ok) {
-
       String date = response.data['date'];
 
       List stories = response.data['stories'];
@@ -71,8 +70,7 @@ Future<BaseModel<HotNewsModel>> _getNews(String date) async {
   } catch (exception) {
     errorMsg = '您的网络似乎出了什么问题';
   } finally {
-    model = new BaseModel(
-        code: code, errorMsg: errorMsg, data: hotNewsStoriesModel);
+    model = new BaseModel(code, errorMsg, hotNewsStoriesModel);
   }
 
   return model;

@@ -19,10 +19,9 @@ class ThemeListRepositoryImpl implements ThemeListRepository {
 
 Future<BaseModel<ThemeListModel>> _getThemeList(
     String themeId, String lastId) async {
-  Dio dio =DioFactory().getDio();
+  Dio dio = DioFactory().getDio();
 
   String url;
-
 
   if (null == lastId) {
     url = Constant.baseUrl + Apis.themes_list + themeId;
@@ -35,7 +34,6 @@ Future<BaseModel<ThemeListModel>> _getThemeList(
   }
 
   print(url);
-
 
   int code;
 
@@ -51,7 +49,6 @@ Future<BaseModel<ThemeListModel>> _getThemeList(
     code = response.statusCode;
 
     if (response.statusCode == HttpStatus.ok) {
-
       String description = response.data['description'];
 
       String name = response.data['name'];
@@ -90,7 +87,7 @@ Future<BaseModel<ThemeListModel>> _getThemeList(
   } catch (exception) {
     errorMsg = '您的网络似乎出了什么问题';
   } finally {
-    model = new BaseModel(code: code, errorMsg: errorMsg, data: themeListModel);
+    model = new BaseModel(code, errorMsg, themeListModel);
   }
 
   return model;

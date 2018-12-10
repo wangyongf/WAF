@@ -162,7 +162,7 @@ class _DrawerBodyState extends State<DrawerBody> implements ThemeView {
 
   @override
   void onLoadThemesSuc(BaseModel<List<ThemeModel>> model) {
-    if (model.code != HttpStatus.ok) {
+    if (model.errorCode != HttpStatus.ok) {
       _isShowRetry = true;
       return;
     }

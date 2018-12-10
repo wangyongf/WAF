@@ -1,14 +1,41 @@
+import 'package:daily_purify/data/net/wanandroid_api.dart';
+import 'package:daily_purify/model/article_list_model.dart';
+import 'package:daily_purify/util/toast_util.dart';
 import 'package:daily_purify/widget/carousel.dart';
 import 'package:daily_purify/widget/wanandroid_article_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+/// TODO: 首页字体再对比掘金认真整整
 class WanAndroidHomePage extends StatefulWidget {
   @override
   _WanAndroidHomePageState createState() => _WanAndroidHomePageState();
 }
 
 class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
+  ArticleListModel _articlesList;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _request();
+  }
+
+  _request() {
+    WanAndroidApi().getArticles(0).then((ArticleListModel value) {
+      setState(() {
+        _articlesList = value;
+      });
+      ToastUtil.showToast(context, '加载成功');
+    }).catchError((Object error) {
+      ToastUtil.showToast(context, '加载出错！');
+      return true;
+    }).whenComplete(() {
+      print('加载完毕');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,18 +60,18 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
 
   _buildArticles() {
     return ListView.builder(
-        itemCount: 7,
+        itemCount: _articlesList?.data?.datas?.length ?? 0 + 1,
         itemBuilder: (BuildContext context, int position) {
           if (position == 0) {
             return _buildBanners();
           }
-          return _buildArticleItem();
+          return _buildArticleItem(position - 1);
         });
   }
 
   _buildBanners() {
     return Container(
-      padding: EdgeInsets.all(5),
+        padding: EdgeInsets.all(5),
         height: 200,
         child: Carousel(
           children: [
@@ -62,14 +89,21 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
         ));
   }
 
-  _buildArticleItem() {
+  _buildArticleItem(int position) {
+    String avatarUrl = "https://www.baidu.com.png";
+    String chapterName = _articlesList.data.datas[position].chapterName;
+    String superChapterName =
+        _articlesList.data.datas[position].superChapterName;
+    String title = _articlesList.data.datas[position].title;
+    String author = _articlesList.data.datas[position].author;
+    String publishTime = _articlesList.data.datas[position].niceDate;
     return WanAndroidArticleListItem(
-      avatarUrl: "https://www.baidu.com.png",
-      chapterName: "移动开发小黑屋",
-      superChapterName: "Android 开发",
-      title: "基于 Vue-Cli 打包自动生成/抽离相关配置文件",
-      author: "老码",
-      publishTime: "1天前",
+      avatarUrl: avatarUrl,
+      chapterName: chapterName,
+      superChapterName: superChapterName,
+      title: title,
+      author: author,
+      publishTime: publishTime,
     );
   }
 
@@ -77,7 +111,7 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
     return <Widget>[
       InkWell(
         onTap: () {
-          Fluttertoast.showToast(msg: 'you clicked search');
+          _request();
         },
         child: IconButton(
           icon: Icon(
