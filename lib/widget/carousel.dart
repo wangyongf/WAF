@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+/// TODO: 支持轮播属性
 class Carousel extends StatefulWidget {
   ///All the [Widget] on this Carousel.
   final List<Widget> children;
