@@ -113,9 +113,9 @@ class _WancaiLoginPageState extends State<WancaiLoginPage> {
   // 挖财账号登录
   Widget _buildWacaiLoginButton() {
     return Container(
-      margin: const EdgeInsets.only(top: 55, left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 85, left: 20, right: 20),
       child: RaisedButton(
-        padding: const EdgeInsets.only(top: 12, bottom: 12),
+        padding: const EdgeInsets.only(top: 15, bottom: 15),
         onPressed: () {},
         child: Text(
           '挖财账号登录',

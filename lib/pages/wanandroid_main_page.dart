@@ -3,7 +3,7 @@ import 'package:daily_purify/pages/wanandroid_knowledge_page.dart';
 import 'package:daily_purify/pages/wanandroid_mine_page.dart';
 import 'package:daily_purify/pages/wanandroid_project_page.dart';
 import 'package:daily_purify/pages/wanandroid_wechat_page.dart';
-import 'package:daily_purify/util/toast_util.dart';
+import 'package:daily_purify/pages/wancai_login_page.dart';
 import 'package:flutter/material.dart';
 
 /// TODO: 页面之间的切换还有很多可以优化的地方，比如切换动画
@@ -49,7 +49,8 @@ class _WanAndroidMainPageState extends State<WanAndroidMainPage>
           WanAndroidProjectPage(),
           WanAndroidWechatPage(),
           WanAndroidKnowledgePage(),
-          WanAndroidMinePage()
+//          WanAndroidMinePage()
+          WancaiLoginPage(),
         ],
       ),
       bottomNavigationBar: _buildBottomNavigation(),
