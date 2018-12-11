@@ -5,7 +5,6 @@ import 'package:daily_purify/util/toast_util.dart';
 import 'package:daily_purify/widget/carousel.dart';
 import 'package:daily_purify/widget/wanandroid_article_list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 /// TODO: 首页字体再对比掘金认真整整
 class WanAndroidHomePage extends StatefulWidget {
@@ -67,8 +66,12 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
         actions: _buildActions(),
       ),
       body: _buildBody(),
-      bottomNavigationBar: _buildBottomNavigation(),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   _buildBody() {
@@ -153,61 +156,5 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
         ),
       )
     ];
-  }
-
-  _buildBottomNavigation() {
-    return BottomNavigationBar(
-        currentIndex: 1,
-        type: BottomNavigationBarType.fixed,
-        onTap: (int position) {
-          Fluttertoast.showToast(msg: 'you clicked ${position}');
-        },
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: Colors.redAccent,
-              ),
-              title: Text(
-                '首页',
-                style: TextStyle(color: Colors.redAccent),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.folder_special,
-                color: Colors.grey,
-              ),
-              title: Text(
-                '项目',
-                style: TextStyle(color: Colors.grey),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.chat,
-                color: Colors.grey,
-              ),
-              title: Text(
-                '公众号',
-                style: TextStyle(color: Colors.grey),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.dashboard,
-                color: Colors.grey,
-              ),
-              title: Text(
-                '体系',
-                style: TextStyle(color: Colors.grey),
-              )),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-                color: Colors.grey,
-              ),
-              title: Text(
-                '我的',
-                style: TextStyle(color: Colors.grey),
-              ))
-        ]);
   }
 }
