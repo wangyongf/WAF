@@ -87,8 +87,8 @@ class WanAndroidApi {
   }
 
   /// 获取项目分类
-  Future<ProjectListModel> getProjectList() async {
-    String url = UrlHost.WANANDROID_BASE_URL + UrlPath.PROJECT_CATEGORY;
+  Future<ProjectListModel> getProjectList(String url) async {
+    url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.PROJECT_CATEGORY;
     Dio dio = DioFactory().getDio();
 
     LogUtil.log('getProjectList: ' + url);
@@ -117,8 +117,8 @@ class WanAndroidApi {
   }
 
   /// 获取项目详情数据
-  Future<ProjectDetailModel> getProjectDetail() async {
-    String url = UrlHost.WANANDROID_BASE_URL + UrlPath.PROJECT_DETAILS;
+  Future<ProjectDetailModel> getProjectDetail(String url) async {
+    url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.PROJECT_DETAILS;
     Dio dio = DioFactory().getDio();
 
     LogUtil.log('getProjectDetail: ' + url);
