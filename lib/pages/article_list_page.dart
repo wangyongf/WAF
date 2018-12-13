@@ -45,18 +45,14 @@ class _ArticleListPageState extends State<ArticleListPage> {
       return EmptyHolder(msg: "数据错误...");
     }
     String avatarUrl = "https://www.baidu.com.png";
-    String chapterName = item.chapterName;
-    String superChapterName = item.superChapterName;
-    String title = item.title;
-    String author = item.author;
-    String publishTime = item.niceDate;
     return WanAndroidArticleListItem(
+      target: item.link,
       avatarUrl: avatarUrl,
-      chapterName: chapterName,
-      superChapterName: superChapterName,
-      title: title,
-      author: author,
-      publishTime: publishTime,
+      chapterName: item.chapterName,
+      superChapterName: item.superChapterName,
+      title: item.title,
+      author: item.author,
+      publishTime: item.niceDate,
     );
   }
 

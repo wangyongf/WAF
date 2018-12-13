@@ -34,7 +34,6 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
       setState(() {
         _articlesList = value;
       });
-      ToastUtil.showToast(context, '文章列表加载成功');
     }).catchError((Object error) {
       ToastUtil.showToast(context, '文章列表加载出错！');
       return true;
@@ -48,7 +47,6 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
       setState(() {
         _bannerModel = model;
       });
-      ToastUtil.showToast(context, 'Banner 加载成功');
     }).catchError((Object error) {
       ToastUtil.showToast(context, 'Banner 加载失败');
     }).whenComplete(() {});
@@ -124,20 +122,16 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
   }
 
   _buildArticleItem(int position) {
+    var item = _articlesList.data.datas[position];
     String avatarUrl = "https://www.baidu.com.png";
-    String chapterName = _articlesList.data.datas[position].chapterName;
-    String superChapterName =
-        _articlesList.data.datas[position].superChapterName;
-    String title = _articlesList.data.datas[position].title;
-    String author = _articlesList.data.datas[position].author;
-    String publishTime = _articlesList.data.datas[position].niceDate;
     return WanAndroidArticleListItem(
+      target: item.link,
       avatarUrl: avatarUrl,
-      chapterName: chapterName,
-      superChapterName: superChapterName,
-      title: title,
-      author: author,
-      publishTime: publishTime,
+      chapterName: item.chapterName,
+      superChapterName: item.superChapterName,
+      title: item.title,
+      author: item.author,
+      publishTime: item.niceDate,
     );
   }
 

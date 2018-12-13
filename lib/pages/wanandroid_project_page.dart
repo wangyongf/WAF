@@ -94,7 +94,6 @@ class _WanAndroidProjectPageState extends State<WanAndroidProjectPage>
 
   _fetchProjectList() {
     WanAndroidApi().getProjectList(null).then((list.ProjectListModel value) {
-      ToastUtil.showToast(context, 'Tab 数据加载成功');
       setState(() {
         this._projectListModel = value;
         int tabSize = _projectListModel?.data?.length ?? 0;

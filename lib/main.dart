@@ -11,6 +11,7 @@ import 'package:daily_purify/pages/wanandroid_knowledge_page.dart';
 import 'package:daily_purify/pages/wanandroid_main_page.dart';
 import 'package:daily_purify/pages/wanandroid_mine_page.dart';
 import 'package:daily_purify/pages/wanandroid_project_page.dart';
+import 'package:daily_purify/pages/wanandroid_webview_page.dart';
 import 'package:daily_purify/pages/wanandroid_wechat_page.dart';
 import 'package:daily_purify/pages/wancai_login_page.dart';
 import 'package:flutter/material.dart';
@@ -37,5 +38,7 @@ void main() {
         WanAndroidKnowledgePage(),
     Routes.WAN_ANDROID_MINE_PAGE: (BuildContext context) =>
         WanAndroidMinePage(),
+    Routes.WAN_ANDROID_WEBVIEW_PAGE: (BuildContext context) =>
+        WanAndroidWebViewPage(),
   }, home: WanAndroidMainPage()));
 }

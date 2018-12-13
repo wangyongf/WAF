@@ -18,4 +18,5 @@ class Routes {
   static const String WAN_ANDROID_WECHAT_PAGE = '/wanandroid/wechat';
   static const String WAN_ANDROID_KNOWLEDGE_PAGE = '/wanandroid/knowledge';
   static const String WAN_ANDROID_MINE_PAGE = '/wanandroid/mine';
+  static const String WAN_ANDROID_WEBVIEW_PAGE = '/wanandroid/h5';
 }
