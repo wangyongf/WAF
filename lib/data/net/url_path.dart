@@ -35,4 +35,9 @@ class UrlPath {
 
   /// 搜索
   static const String SEARCH = "/article/query/0/json";                             // 搜索
+
+  /// 微信公众号
+  static const String WECHAT_SUBSCRIPTIONS = "/wxarticle/chapters/json";                          // 获取公众号列表
+  static const String WECHAT_ARTICLES = "/wxarticle/list/405/1/json";                                 // 查看某个公众号历史数据
+  static const String WECHAT_SEARCH = "/wxarticle/list/405/1/json?k=Java";                        // 在某个公众号中搜索历史文章
 }

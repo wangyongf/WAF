@@ -72,7 +72,7 @@ class WanAndroidArticleListItem extends StatelessWidget {
                   title,
                   style: TextStyle(
                       fontSize: 15,
-                      color: Colors.black87,
+                      color: Color(0xA6000000),
                       fontWeight: FontWeight.bold),
                 ),
               ),

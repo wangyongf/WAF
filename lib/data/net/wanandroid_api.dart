@@ -4,8 +4,11 @@ import 'package:daily_purify/data/net/url_host.dart';
 import 'package:daily_purify/data/net/url_path.dart';
 import 'package:daily_purify/model/article_list_model.dart';
 import 'package:daily_purify/model/home_banner_model.dart';
+import 'package:daily_purify/model/knowledge_articles_model.dart';
+import 'package:daily_purify/model/knowledge_tree_list_model.dart';
 import 'package:daily_purify/model/project_detail_model.dart';
 import 'package:daily_purify/model/project_list_model.dart';
+import 'package:daily_purify/model/wechat_subscription_list_model.dart';
 import 'package:daily_purify/net/dio_factory.dart';
 import 'package:daily_purify/util/log_util.dart';
 import 'package:dio/dio.dart';
@@ -143,6 +146,96 @@ class WanAndroidApi {
     }
 
     print(model.toString());
+    return model;
+  }
+
+  /// 获取微信公众号列表
+  Future<WechatSubscriptionListModel> getWechatSubscriptions(String url) async {
+    url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.WECHAT_SUBSCRIPTIONS;
+    Dio dio = DioFactory().getDio();
+
+    LogUtil.log('getWechatSubscriptions: ' + url);
+
+    int code = -1;
+    String errorMsg = "";
+    WechatSubscriptionListModel model;
+
+    try {
+      Response response = await dio.get(url);
+      code = 200;
+      if (response.statusCode == HttpStatus.ok) {
+        model = WechatSubscriptionListModel.fromJson(response.data);
+      } else {
+        code = response.statusCode;
+        errorMsg = '服务器异常';
+      }
+    } catch (exception) {
+      code = -1;
+      errorMsg = '您的网络似乎出了点问题';
+      model = WechatSubscriptionListModel(null, code, errorMsg);
+    }
+
+    print(model.toString());
+    return model;
+  }
+
+  /// 获取知识体系列表
+  Future<KnowledgeTreeListModel> getKnowledgeTree(String url) async {
+    url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.KNOWLEDGE_TREE;
+    Dio dio = DioFactory().getDio();
+
+    LogUtil.log('getWechatSubscriptions: ' + url);
+
+    int code = -1;
+    String errorMsg = "";
+    KnowledgeTreeListModel model;
+
+    try {
+      Response response = await dio.get(url);
+      code = 200;
+      if (response.statusCode == HttpStatus.ok) {
+        model = KnowledgeTreeListModel.fromJson(response.data);
+      } else {
+        code = response.statusCode;
+        errorMsg = '服务器异常';
+      }
+    } catch (exception) {
+      code = -1;
+      errorMsg = '您的网络似乎出了点问题';
+      model = KnowledgeTreeListModel(null, code, errorMsg);
+    }
+
+    print(model.toString());
+    return model;
+  }
+
+  /// 获取知识体系详情数据
+  Future<KnowledgeArticlesModel> getKnowledgeArticles(String url) async {
+    url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.PROJECT_DETAILS;
+    Dio dio = DioFactory().getDio();
+
+    LogUtil.log('getKnowledgeArticles: ' + url);
+
+    int code = -1;
+    String errorMsg = "";
+    KnowledgeArticlesModel model;
+
+    try {
+      Response response = await dio.get(url);
+      code = 200;
+      if (response.statusCode == HttpStatus.ok) {
+        model = KnowledgeArticlesModel.fromJson(response.data);
+      } else {
+        code = response.statusCode;
+        errorMsg = '服务器异常';
+      }
+    } catch (exception) {
+      code = -1;
+      errorMsg = '您的网络似乎出了点问题';
+      model = KnowledgeArticlesModel(null, code, errorMsg);
+    }
+
+    print(model.data.datas[0].toJson());
     return model;
   }
 }
