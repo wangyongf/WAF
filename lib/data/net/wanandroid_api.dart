@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:daily_purify/data/net/url_host.dart';
 import 'package:daily_purify/data/net/url_path.dart';
 import 'package:daily_purify/model/article_list_model.dart';
@@ -12,6 +13,7 @@ import 'package:daily_purify/model/wechat_subscription_list_model.dart';
 import 'package:daily_purify/net/dio_factory.dart';
 import 'package:daily_purify/util/log_util.dart';
 import 'package:dio/dio.dart';
+import 'package:path_provider/path_provider.dart';
 
 class WanAndroidApi {
   factory WanAndroidApi() => _getInstance();
@@ -32,7 +34,7 @@ class WanAndroidApi {
   /// page, 当前页数，默认为0
   Future<ArticleListModel> getArticles(int page) async {
     String url = UrlHost.WANANDROID_BASE_URL + UrlPath.HOME_ARTICLES;
-    Dio dio = DioFactory().getDio();
+    Dio dio = await _getDio();
 
     LogUtil.log('getArticles: ' + url);
 
@@ -62,7 +64,7 @@ class WanAndroidApi {
   /// 获取首页 Banner 数据
   Future<HomeBannerModel> getHomeBanners() async {
     String url = UrlHost.WANANDROID_BASE_URL + UrlPath.HOME_BANNER;
-    Dio dio = DioFactory().getDio();
+    Dio dio = await _getDio();
 
     LogUtil.log('getHomeBanners: ' + url);
 
@@ -92,7 +94,7 @@ class WanAndroidApi {
   /// 获取项目分类
   Future<ProjectListModel> getProjectList(String url) async {
     url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.PROJECT_CATEGORY;
-    Dio dio = DioFactory().getDio();
+    Dio dio = await _getDio();
 
     LogUtil.log('getProjectList: ' + url);
 
@@ -122,7 +124,7 @@ class WanAndroidApi {
   /// 获取项目详情数据
   Future<ProjectDetailModel> getProjectDetail(String url) async {
     url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.PROJECT_DETAILS;
-    Dio dio = DioFactory().getDio();
+    Dio dio = await _getDio();
 
     LogUtil.log('getProjectDetail: ' + url);
 
@@ -152,7 +154,7 @@ class WanAndroidApi {
   /// 获取微信公众号列表
   Future<WechatSubscriptionListModel> getWechatSubscriptions(String url) async {
     url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.WECHAT_SUBSCRIPTIONS;
-    Dio dio = DioFactory().getDio();
+    Dio dio = await _getDio();
 
     LogUtil.log('getWechatSubscriptions: ' + url);
 
@@ -182,7 +184,7 @@ class WanAndroidApi {
   /// 获取知识体系列表
   Future<KnowledgeTreeListModel> getKnowledgeTree(String url) async {
     url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.KNOWLEDGE_TREE;
-    Dio dio = DioFactory().getDio();
+    Dio dio = await _getDio();
 
     LogUtil.log('getWechatSubscriptions: ' + url);
 
@@ -212,7 +214,7 @@ class WanAndroidApi {
   /// 获取知识体系详情数据
   Future<KnowledgeArticlesModel> getKnowledgeArticles(String url) async {
     url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.PROJECT_DETAILS;
-    Dio dio = DioFactory().getDio();
+    Dio dio = await _getDio();
 
     LogUtil.log('getKnowledgeArticles: ' + url);
 
@@ -237,5 +239,13 @@ class WanAndroidApi {
 
     print(model.data.datas[0].toJson());
     return model;
+  }
+
+  Future<Dio> _getDio() async {
+    Dio dio = DioFactory().getDio();
+    Directory tempDir = await getTemporaryDirectory();
+    String tempPath = tempDir.path;
+    dio.cookieJar = PersistCookieJar(tempPath);
+    return dio;
   }
 }

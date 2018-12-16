@@ -50,9 +50,11 @@
 
 ## 玩 Android - Flutter
 
-站在巨人的肩膀上23333
+站在巨人的肩膀上
+
 1. [daily_purify（知乎日报Flutter版）]()
 2. [hurshi/wanandroid]()
+3. [samarthagarwal/FlutterScreens](https://github.com/samarthagarwal/FlutterScreens)
 
 ### TODO
 

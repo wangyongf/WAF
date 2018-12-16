@@ -19,4 +19,11 @@ class Routes {
   static const String WAN_ANDROID_KNOWLEDGE_PAGE = '/wanandroid/knowledge';
   static const String WAN_ANDROID_MINE_PAGE = '/wanandroid/mine';
   static const String WAN_ANDROID_WEBVIEW_PAGE = '/wanandroid/h5';
+  static const String WAN_ANDROID_MESSAGE_CENTER_PAGE = '/wanandroid/message-center';
+  static const String WAN_ANDROID_COLLECTIONS_PAGE = '/wanandroid/collections';
+  static const String WAN_ANDROID_READLIST_PAGE = '/wanandroid/readlist';
+  static const String WAN_ANDROID_TAG_MANAGER_PAGE = '/wanandroid/tag-manager';
+  static const String WAN_ANDROID_FEEDBACK_PAGE = '/wanandroid/feedback';
+  static const String WAN_ANDROID_SETTINGS_PAGE = '/wanandroid/settings';
+  static const String WAN_ANDROID_LOGIN_PAGE = '/wanandroid/universal-login';
 }

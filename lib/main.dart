@@ -6,11 +6,18 @@ import 'package:daily_purify/pages/feedback_page.dart';
 import 'package:daily_purify/pages/guide_page.dart';
 import 'package:daily_purify/pages/more_page.dart';
 import 'package:daily_purify/pages/password_manage_page.dart';
+import 'package:daily_purify/pages/wanandroid_collections_page.dart';
+import 'package:daily_purify/pages/wanandroid_feedback_page.dart';
 import 'package:daily_purify/pages/wanandroid_home_page.dart';
 import 'package:daily_purify/pages/wanandroid_knowledge_page.dart';
 import 'package:daily_purify/pages/wanandroid_main_page.dart';
+import 'package:daily_purify/pages/wanandroid_message_center_page.dart';
 import 'package:daily_purify/pages/wanandroid_mine_page.dart';
 import 'package:daily_purify/pages/wanandroid_project_page.dart';
+import 'package:daily_purify/pages/wanandroid_read_list_page.dart';
+import 'package:daily_purify/pages/wanandroid_settings_page.dart';
+import 'package:daily_purify/pages/wanandroid_tag_manager_page.dart';
+import 'package:daily_purify/pages/wanandroid_universal_login_page.dart';
 import 'package:daily_purify/pages/wanandroid_webview_page.dart';
 import 'package:daily_purify/pages/wanandroid_wechat_page.dart';
 import 'package:daily_purify/pages/wancai_login_page.dart';
@@ -40,5 +47,19 @@ void main() {
         WanAndroidMinePage(),
     Routes.WAN_ANDROID_WEBVIEW_PAGE: (BuildContext context) =>
         WanAndroidWebViewPage(),
+    Routes.WAN_ANDROID_SETTINGS_PAGE: (BuildContext context) =>
+        WanAndroidSettingsPage(),
+    Routes.WAN_ANDROID_MESSAGE_CENTER_PAGE: (BuildContext context) =>
+        WanAndroidMessageCenterPage(),
+    Routes.WAN_ANDROID_COLLECTIONS_PAGE: (BuildContext context) =>
+        WanAndroidCollectionsPage(),
+    Routes.WAN_ANDROID_READLIST_PAGE: (BuildContext context) =>
+        WanAndroidReadListPage(),
+    Routes.WAN_ANDROID_TAG_MANAGER_PAGE: (BuildContext context) =>
+        WanAndroidTagManagerPage(),
+    Routes.WAN_ANDROID_FEEDBACK_PAGE: (BuildContext context) =>
+        WanAndroidFeedbackPage(),
+    Routes.WAN_ANDROID_LOGIN_PAGE: (BuildContext context) =>
+        WanAndroidUniversalLoginPage(),
   }, home: WanAndroidMainPage()));
 }

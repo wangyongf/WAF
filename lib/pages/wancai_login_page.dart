@@ -47,7 +47,7 @@ class _WancaiLoginPageState extends State<WancaiLoginPage> {
                 ),
               ),
               onTap: () {
-                SnackBarHelper.showSnackBarByKey(_key, context, '点击了返回');
+                Navigator.of(context).pop();
               },
             ),
             Text(
@@ -113,9 +113,9 @@ class _WancaiLoginPageState extends State<WancaiLoginPage> {
   // 挖财账号登录
   Widget _buildWacaiLoginButton() {
     return Container(
-      margin: const EdgeInsets.only(top: 85, left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 82, left: 20, right: 20),
       child: RaisedButton(
-        padding: const EdgeInsets.only(top: 15, bottom: 15),
+        padding: const EdgeInsets.only(top: 13, bottom: 13),
         onPressed: () {},
         child: Text(
           '挖财账号登录',
@@ -157,7 +157,7 @@ class _WancaiLoginPageState extends State<WancaiLoginPage> {
   // 三方登录部分
   Widget _buildThirdLogin() {
     return Container(
-      margin: const EdgeInsets.only(top: 150, left: 20, right: 20),
+      margin: const EdgeInsets.only(top: 132, left: 20, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[

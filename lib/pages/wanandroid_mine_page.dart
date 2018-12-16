@@ -1,3 +1,6 @@
+import 'package:daily_purify/common/routes_name.dart';
+import 'package:daily_purify/pages/wanandroid_feedback_page.dart';
+import 'package:daily_purify/util/toast_util.dart';
 import 'package:flutter/material.dart';
 
 class WanAndroidMinePage extends StatefulWidget {
@@ -47,24 +50,29 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
 
   /// 用户信息：头像、昵称
   _buildUserInfo() {
-    return Container(
-      color: Colors.white,
-      child: ListTile(
-        leading: CircleAvatar(
-          radius: 20,
-          backgroundImage: AssetImage('images/appbar_def_bg.jpeg'),
-        ),
-        title: Text(
-          '小拓先森',
-          style: TextStyle(fontSize: 19),
-        ),
-        subtitle: Text(
-          'Android 工程师 @挖财',
-          style: TextStyle(fontSize: 11, color: Colors.grey),
-        ),
-        trailing: Icon(
-          Icons.arrow_forward_ios,
-          color: Color(0x4D000000),
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushNamed(Routes.WAN_ANDROID_LOGIN_PAGE);
+      },
+      child: Container(
+        color: Colors.white,
+        child: ListTile(
+          leading: CircleAvatar(
+            radius: 20,
+            backgroundImage: AssetImage('images/appbar_def_bg.jpeg'),
+          ),
+          title: Text(
+            '小拓先森',
+            style: TextStyle(fontSize: 19),
+          ),
+          subtitle: Text(
+            'Android 工程师 @挖财',
+            style: TextStyle(fontSize: 11, color: Colors.grey),
+          ),
+          trailing: Icon(
+            Icons.arrow_forward_ios,
+            color: Color(0x4D000000),
+          ),
         ),
       ),
     );
@@ -78,16 +86,21 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
 
   /// 消息中心
   _buildMessageCenter() {
-    return Container(
-      color: Colors.white,
-      child: ListTile(
-        leading: Icon(
-          Icons.add_alert,
-          size: 20,
-        ),
-        title: Text(
-          '消息中心',
-          style: TextStyle(fontSize: 15),
+    return InkWell(
+      onTap: () {
+        ToastUtil.showToast(context, '功能开发中，敬请期待~');
+      },
+      child: Container(
+        color: Colors.white,
+        child: ListTile(
+          leading: Icon(
+            Icons.add_alert,
+            size: 20,
+          ),
+          title: Text(
+            '消息中心',
+            style: TextStyle(fontSize: 15),
+          ),
         ),
       ),
     );
@@ -95,16 +108,21 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
 
   /// 我的收藏
   _buildCollections() {
-    return Container(
-      color: Colors.white,
-      child: ListTile(
-        leading: Icon(
-          Icons.collections_bookmark,
-          size: 20,
-        ),
-        title: Text(
-          '我的收藏',
-          style: TextStyle(fontSize: 15),
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushNamed(Routes.WAN_ANDROID_COLLECTIONS_PAGE);
+      },
+      child: Container(
+        color: Colors.white,
+        child: ListTile(
+          leading: Icon(
+            Icons.collections_bookmark,
+            size: 20,
+          ),
+          title: Text(
+            '我的收藏',
+            style: TextStyle(fontSize: 15),
+          ),
         ),
       ),
     );
@@ -112,16 +130,21 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
 
   /// 阅读过的文章
   _buildReadList() {
-    return Container(
-      color: Colors.white,
-      child: ListTile(
-        leading: Icon(
-          Icons.remove_red_eye,
-          size: 20,
-        ),
-        title: Text(
-          '已读列表',
-          style: TextStyle(fontSize: 15),
+    return InkWell(
+      onTap: () {
+        ToastUtil.showToast(context, '功能开发中，敬请期待~');
+      },
+      child: Container(
+        color: Colors.white,
+        child: ListTile(
+          leading: Icon(
+            Icons.remove_red_eye,
+            size: 20,
+          ),
+          title: Text(
+            '已读列表',
+            style: TextStyle(fontSize: 15),
+          ),
         ),
       ),
     );
@@ -129,16 +152,21 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
 
   /// 标签管理
   _buildTagManager() {
-    return Container(
-      color: Colors.white,
-      child: ListTile(
-        leading: Icon(
-          Icons.assistant_photo,
-          size: 20,
-        ),
-        title: Text(
-          '标签管理',
-          style: TextStyle(fontSize: 15),
+    return InkWell(
+      onTap: () {
+        ToastUtil.showToast(context, '功能开发中，敬请期待~');
+      },
+      child: Container(
+        color: Colors.white,
+        child: ListTile(
+          leading: Icon(
+            Icons.assistant_photo,
+            size: 20,
+          ),
+          title: Text(
+            '标签管理',
+            style: TextStyle(fontSize: 15),
+          ),
         ),
       ),
     );
@@ -146,38 +174,48 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
 
   /// 夜间模式
   _buildDarkMode() {
-    return Container(
-      color: Colors.white,
-      child: ListTile(
-        leading: Icon(
-          Icons.lightbulb_outline,
-          size: 20,
+    return InkWell(
+      child: Container(
+        color: Colors.white,
+        child: ListTile(
+          leading: Icon(
+            Icons.lightbulb_outline,
+            size: 20,
+          ),
+          title: Text(
+            '夜间模式',
+            style: TextStyle(fontSize: 15),
+          ),
+          trailing: Switch(
+              value: isDarkMode,
+              onChanged: (bool value) {
+                setState(() {
+                  isDarkMode = value;
+                });
+              }),
         ),
-        title: Text(
-          '夜间模式',
-          style: TextStyle(fontSize: 15),
-        ),
-        trailing: Switch(value: isDarkMode, onChanged: (bool value) {
-          setState(() {
-            isDarkMode = value;
-          });
-        }),
       ),
     );
   }
 
   /// 意见反馈
   _buildFeedback() {
-    return Container(
-      color: Colors.white,
-      child: ListTile(
-        leading: Icon(
-          Icons.feedback,
-          size: 20,
-        ),
-        title: Text(
-          '意见反馈',
-          style: TextStyle(fontSize: 15),
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => WanAndroidFeedbackPage()));
+      },
+      child: Container(
+        color: Colors.white,
+        child: ListTile(
+          leading: Icon(
+            Icons.feedback,
+            size: 20,
+          ),
+          title: Text(
+            '意见反馈',
+            style: TextStyle(fontSize: 15),
+          ),
         ),
       ),
     );
@@ -185,16 +223,21 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
 
   /// 设置
   _buildSettings() {
-    return Container(
-      color: Colors.white,
-      child: ListTile(
-        leading: Icon(
-          Icons.settings,
-          size: 20,
-        ),
-        title: Text(
-          '设置',
-          style: TextStyle(fontSize: 15),
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushNamed(Routes.WAN_ANDROID_SETTINGS_PAGE);
+      },
+      child: Container(
+        color: Colors.white,
+        child: ListTile(
+          leading: Icon(
+            Icons.settings,
+            size: 20,
+          ),
+          title: Text(
+            '设置',
+            style: TextStyle(fontSize: 15),
+          ),
         ),
       ),
     );
