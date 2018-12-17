@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:daily_purify/data/net/url_host.dart';
 import 'package:daily_purify/data/net/url_path.dart';
+import 'package:daily_purify/manager/user_manager.dart';
+import 'package:daily_purify/model/article_collections_model.dart';
 import 'package:daily_purify/model/article_list_model.dart';
 import 'package:daily_purify/model/home_banner_model.dart';
 import 'package:daily_purify/model/knowledge_articles_model.dart';
@@ -133,7 +135,7 @@ class WanAndroidApi {
     ProjectDetailModel model;
 
     try {
-      Response response = await dio.get(url);
+      Response response = await dio.get(url, options: _getOptions());
       code = 200;
       if (response.statusCode == HttpStatus.ok) {
         model = ProjectDetailModel.fromJson(response.data);
@@ -241,6 +243,36 @@ class WanAndroidApi {
     return model;
   }
 
+  /// 获取收藏文章列表
+  Future<ArticleCollectionsModel> getArticleCollections(String url) async {
+    url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.COLLECTION_ARTICLES;
+    Dio dio = await _getDio();
+
+    LogUtil.log('getArticleCollections: ' + url);
+
+    int code = -1;
+    String errorMsg = "";
+    ArticleCollectionsModel model;
+
+    try {
+      Response response = await dio.get(url);
+      code = 200;
+      if (response.statusCode == HttpStatus.ok) {
+        model = ArticleCollectionsModel.fromJson(response.data);
+      } else {
+        code = response.statusCode;
+        errorMsg = '服务器异常';
+      }
+    } catch (exception) {
+      code = -1;
+      errorMsg = '您的网络似乎出了点问题';
+      model = ArticleCollectionsModel(null, code, errorMsg);
+    }
+
+    print(model.data.datas[0].toJson());
+    return model;
+  }
+
   Future<Response> login(String username, String password) async {
     FormData formData = new FormData.from({
       "username": "$username",
@@ -264,9 +296,24 @@ class WanAndroidApi {
 
   Future<Dio> _getDio() async {
     Dio dio = DioFactory().getDio();
+    bool isProxy = true;
+    String proxy = '192.168.2.163:8888';
+    dio.onHttpClientCreate = (client) {
+      client.badCertificateCallback =
+          (X509Certificate cert, String host, int port) {
+        return isProxy && Platform.isAndroid;
+      };
+      client.findProxy = (url) {
+        return isProxy ? 'PROXY $proxy' : 'DIRECT';
+      };
+    };
     Directory tempDir = await getTemporaryDirectory();
-    String tempPath = tempDir.path;
+    String tempPath = tempDir.path + "/cookie";
     dio.cookieJar = PersistCookieJar(tempPath);
     return dio;
+  }
+
+  Options _getOptions() {
+    return Options(headers: UserManager().getHeader());
   }
 }

@@ -54,7 +54,7 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
   _buildUserInfo() {
     return InkWell(
       onTap: () {
-        if (!UserManager().isLoggedin()) {
+        if (!UserManager().isLogin()) {
           Navigator.of(context).pushNamed(Routes.WAN_ANDROID_LOGIN_PAGE);
         } else {
           ToastUtils.showToast(context, '用户信息页开发中，敬请期待~');
@@ -69,7 +69,7 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
             backgroundImage: AssetImage('images/appbar_def_bg.jpeg'),
           ),
           title: Text(
-            UserManager().isLoggedin() ? UserManager().userName : '点击登录',
+            UserManager().isLogin() ? UserManager().userName : '点击登录',
             style: TextStyle(fontSize: 19),
           ),
           subTitle: Text(

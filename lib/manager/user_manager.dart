@@ -23,7 +23,7 @@ class UserManager {
   UserManager._internal();
 
   /// TODO: 通过 Cookie 的有效性来验证是否登录？
-  bool isLoggedin() {
+  bool isLogin() {
     return null != userName &&
         userName.length >= 6 &&
         null != password &&
@@ -102,17 +102,23 @@ class UserManager {
             }
           }
         });
+        this.cookie = cookie;
+        this.cookieExpiresTime = expires;
         SpUtils.putCookie(cookie);
         SpUtils.putCookieExpires(expires.toIso8601String());
-        if (null != callback) callback(true, null);
+        if (null != callback) {
+          callback(true, null);
+        }
       } else {
-        if (null != callback) callback(false, userModel.errorMsg);
+        if (null != callback) {
+          callback(false, userModel.errorMsg);
+        }
       }
     });
   }
 
   void autoLogin() {
-    if (isLoggedin()) {
+    if (isLogin()) {
       login();
     }
   }
@@ -120,8 +126,8 @@ class UserManager {
   Map<String, String> getHeader() {
     if (null == _headerMap) {
       _headerMap = Map();
-      _headerMap["Cookie"] = cookie;
     }
+    _headerMap["Cookie"] = cookie;
     return _headerMap;
   }
 }

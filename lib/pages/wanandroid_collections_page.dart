@@ -35,9 +35,9 @@ class _WanAndroidCollectionsPageState extends State<WanAndroidCollectionsPage> {
 
   _buildBody() {
     return ArticleListPage(
-      startPage: 1,
+      startPage: 0,
       urlBuilder: (currentPage) {
-        return "http://www.wanandroid.com/wxarticle/list/408/1/json";
+        return "http://www.wanandroid.com/lg/collect/list/$currentPage/json";
       },
     );
   }
