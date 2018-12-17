@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-/// Toast Utils
-class ToastUtil {
+class ToastUtils {
   /// 显示 Snackbar
   static void showSnack(BuildContext context, String msg) {
     Scaffold.of(context).showSnackBar(SnackBar(content: Text(msg)));

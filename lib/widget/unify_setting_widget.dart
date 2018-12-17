@@ -1,4 +1,3 @@
-import 'package:daily_purify/util/divider_helper.dart';
 import 'package:flutter/material.dart';
 
 /// 统一设置项
@@ -10,7 +9,7 @@ class UnifySettingWidget extends StatelessWidget {
   final Color color;
 
   // 左侧的图标
-  final Icon leading;
+  final Widget leading;
 
   // 标题
   final Text title;
@@ -30,9 +29,6 @@ class UnifySettingWidget extends StatelessWidget {
   // trailing，比如 Icon
   final Widget trailing;
 
-  // 底部是否显示短分割线，TODO: 换成 footer
-  final bool shortDivider;
-
   /// margin
   final EdgeInsets margin;
 
@@ -46,41 +42,16 @@ class UnifySettingWidget extends StatelessWidget {
       this.header,
       Color color,
       this.leading,
-      @required String title,
-      String subTitle,
-      String content,
-      String subContent,
+      @required this.title,
+      this.subTitle,
+      this.content,
+      this.subContent,
       this.trailingStatus,
       this.trailing,
       shortDivider})
       : margin = margin ?? const EdgeInsets.all(0),
         padding = padding ?? const EdgeInsets.all(0),
         color = color ?? Colors.white,
-        title = (title != null && title.isNotEmpty)
-            ? Text(
-                title,
-                style: TextStyle(fontSize: 15.5),
-              )
-            : null,
-        subTitle = (subTitle != null && subTitle.isNotEmpty)
-            ? Text(
-                subTitle,
-                style: TextStyle(fontSize: 12),
-              )
-            : null,
-        content = (content != null && content.isNotEmpty)
-            ? Text(
-                content,
-                style: TextStyle(fontSize: 15.5),
-              )
-            : null,
-        subContent = (subContent != null && subContent.isNotEmpty)
-            ? Text(
-                subContent,
-                style: TextStyle(fontSize: 13),
-              )
-            : null,
-        shortDivider = shortDivider ?? false,
         assert(title != null),
         assert((subContent != null && content != null) || subContent == null),
         assert((content == null && subContent == null) || content != null),
@@ -109,14 +80,9 @@ class UnifySettingWidget extends StatelessWidget {
               ],
             ),
           ),
-          DividerHelper.getD(0.2, _getIndent(), const Color(0xFFDCDCDC)),
         ],
       ),
     );
-  }
-
-  double _getIndent() {
-    return this.shortDivider ? 20 : 0;
   }
 
   Widget _buildLeading() {
@@ -131,10 +97,26 @@ class UnifySettingWidget extends StatelessWidget {
   }
 
   Widget _buildTitle() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[title ?? Container(), subTitle ?? Container()],
+    return Padding(
+      padding: EdgeInsets.only(left: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          title ?? Container(),
+          _buildSubTitle(),
+        ],
+      ),
+    );
+  }
+
+  _buildSubTitle() {
+    if (subTitle == null) {
+      return Container();
+    }
+    return Padding(
+      padding: EdgeInsets.only(top: 8),
+      child: subTitle,
     );
   }
 

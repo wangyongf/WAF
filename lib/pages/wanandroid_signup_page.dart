@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 
-class WanAndroidSignupPage extends StatelessWidget {
+typedef OnSignup(String username, String password);
+
+class WanAndroidSignupPage extends StatefulWidget {
+  final OnSignup signup;
+
+  const WanAndroidSignupPage({Key key, @required this.signup})
+      : super(key: key);
+
+  @override
+  _WanAndroidSignupPageState createState() => _WanAndroidSignupPageState();
+}
+
+class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -9,7 +21,7 @@ class WanAndroidSignupPage extends StatelessWidget {
         color: Colors.white,
         image: DecorationImage(
           colorFilter: new ColorFilter.mode(
-            Colors.black.withOpacity(0.05), BlendMode.dstATop),
+              Colors.black.withOpacity(0.05), BlendMode.dstATop),
           image: AssetImage('assets/images/mountains.jpg'),
           fit: BoxFit.cover,
         ),
@@ -50,9 +62,9 @@ class WanAndroidSignupPage extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: Colors.redAccent,
-                  width: 0.5,
-                  style: BorderStyle.solid),
+                    color: Colors.redAccent,
+                    width: 0.5,
+                    style: BorderStyle.solid),
               ),
             ),
             padding: const EdgeInsets.only(left: 0.0, right: 10.0),
@@ -101,9 +113,9 @@ class WanAndroidSignupPage extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: Colors.redAccent,
-                  width: 0.5,
-                  style: BorderStyle.solid),
+                    color: Colors.redAccent,
+                    width: 0.5,
+                    style: BorderStyle.solid),
               ),
             ),
             padding: const EdgeInsets.only(left: 0.0, right: 10.0),
@@ -152,9 +164,9 @@ class WanAndroidSignupPage extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: Colors.redAccent,
-                  width: 0.5,
-                  style: BorderStyle.solid),
+                    color: Colors.redAccent,
+                    width: 0.5,
+                    style: BorderStyle.solid),
               ),
             ),
             padding: const EdgeInsets.only(left: 0.0, right: 10.0),
@@ -211,7 +223,9 @@ class WanAndroidSignupPage extends StatelessWidget {
                       borderRadius: new BorderRadius.circular(30.0),
                     ),
                     color: Colors.redAccent,
-                    onPressed: () => {},
+                    onPressed: () {
+                      widget.signup('15221382253', '15221382253');
+                    },
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,
@@ -225,8 +239,8 @@ class WanAndroidSignupPage extends StatelessWidget {
                               "注  册",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ],

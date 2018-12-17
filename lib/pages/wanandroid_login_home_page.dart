@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
+/// TODO: dart - callback?
+typedef OnGoSignup();
+typedef OnGoLogin();
+
 class WanAndroidLoginHomePage extends StatelessWidget {
+  final OnGoSignup signup;
+  final OnGoLogin login;
+
+  const WanAndroidLoginHomePage(
+      {Key key, @required this.signup, @required this.login})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -60,7 +71,7 @@ class WanAndroidLoginHomePage extends StatelessWidget {
                         borderRadius: new BorderRadius.circular(30.0)),
                     color: Colors.redAccent,
                     highlightedBorderColor: Colors.white,
-                    onPressed: () => /*gotoSignup()*/ {},
+                    onPressed: signup,
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,
@@ -97,7 +108,7 @@ class WanAndroidLoginHomePage extends StatelessWidget {
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(30.0)),
                     color: Colors.white,
-                    onPressed: () => /*gotoLogin()*/ {},
+                    onPressed: login,
                     child: new Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 20.0,

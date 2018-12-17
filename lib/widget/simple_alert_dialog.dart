@@ -1,4 +1,4 @@
-import 'package:daily_purify/util/list_util.dart';
+import 'package:daily_purify/util/list_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 

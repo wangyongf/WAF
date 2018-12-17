@@ -1,4 +1,4 @@
-import 'package:daily_purify/util/date_util.dart';
+import 'package:daily_purify/util/date_utils.dart';
 
 class HotNewsModel {
   final String date;
@@ -31,7 +31,7 @@ class HotNewsStoriesModel {
   }
 
   setCurDate(DateTime dt) {
-    curDate = DateUtil.formatDateWithWeek(dt);
+    curDate = DateUtils.formatDateWithWeek(dt);
   }
 
   HotNewsStoriesModel.fromJson(Map<String, dynamic> json)

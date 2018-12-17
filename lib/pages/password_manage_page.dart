@@ -31,20 +31,35 @@ class _PasswordManagePageState extends State<PasswordManagePage> {
         children: <Widget>[
           UnifySettingWidget(
             header: DividerHelper.get(),
-            title: "挖财宝令",
-            subTitle: "挖财平台的交易核验密码",
+            title: Text(
+              "挖财宝令",
+              style: TextStyle(fontSize: 15),
+            ),
+            subTitle: Text(
+              "挖财平台的交易核验密码",
+              style: TextStyle(fontSize: 13),
+            ),
             trailing: Icon(Icons.chevron_right),
           ),
           UnifySettingWidget(
               margin: const EdgeInsets.only(top: 10),
               header: DividerHelper.get(),
-              title: "手势密码",
-              subTitle: "建议设置手势密码，确保手机使用安全",
+              title: Text(
+                "手势密码",
+                style: TextStyle(fontSize: 15),
+              ),
+              subTitle: Text(
+                "建议设置手势密码，确保手机使用安全",
+                style: TextStyle(fontSize: 13),
+              ),
               trailing: Switch(value: true, onChanged: (bool value) {})),
           UnifySettingWidget(
             margin: const EdgeInsets.only(top: 10),
             header: DividerHelper.get(),
-            title: "修改登录密码",
+            title: Text(
+              "修改登录密码",
+              style: TextStyle(fontSize: 15),
+            ),
             trailing: Icon(Icons.chevron_right),
           ),
         ],

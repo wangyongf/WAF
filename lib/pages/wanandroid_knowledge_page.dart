@@ -1,7 +1,7 @@
 import 'package:daily_purify/data/net/wanandroid_api.dart';
 import 'package:daily_purify/model/knowledge_tree_list_model.dart';
 import 'package:daily_purify/pages/wanandroid_knowledge_detail_page.dart';
-import 'package:daily_purify/util/toast_util.dart';
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:daily_purify/widget/empty_holder.dart';
 import 'package:flutter/material.dart';
 
@@ -53,8 +53,11 @@ class _WanAndroidKnowledgePageState extends State<WanAndroidKnowledgePage> {
       child: Card(
         child: ListTile(
           leading: CircleAvatar(
-//            backgroundColor: Colors.lightBlueAccent,
-            child: Text(knowledge.name[0]),
+            backgroundColor: Colors.redAccent,
+            child: Text(
+              knowledge.name[0],
+              style: TextStyle(color: Colors.white),
+            ),
             radius: 18,
           ),
           title: Text(
@@ -72,7 +75,7 @@ class _WanAndroidKnowledgePageState extends State<WanAndroidKnowledgePage> {
         this._knowledge = value;
       });
     }).catchError((Object error) {
-      ToastUtil.showToast(context, '知识体系数据加载失败');
+      ToastUtils.showToast(context, '知识体系数据加载失败');
     }).whenComplete(() {});
   }
 }

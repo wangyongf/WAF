@@ -2,7 +2,7 @@ import 'package:daily_purify/data/net/url_host.dart';
 import 'package:daily_purify/data/net/wanandroid_api.dart';
 import 'package:daily_purify/model/wechat_subscription_list_model.dart' as list;
 import 'package:daily_purify/pages/article_list_page.dart';
-import 'package:daily_purify/util/toast_util.dart';
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:daily_purify/widget/empty_holder.dart';
 import 'package:flutter/material.dart';
 
@@ -66,6 +66,7 @@ class _WanAndroidWechatPageState extends State<WanAndroidWechatPage>
       tabs: _buildTabs(),
       isScrollable: true,
       controller: _tabController,
+      indicatorColor: Colors.white,
     );
   }
 
@@ -97,7 +98,7 @@ class _WanAndroidWechatPageState extends State<WanAndroidWechatPage>
         _tabController = TabController(length: tabSize, vsync: this);
       });
     }).catchError((Object error) {
-      ToastUtil.showToast(context, 'Tab 数据加载失败');
+      ToastUtils.showToast(context, 'Tab 数据加载失败');
     }).whenComplete(() {});
   }
 

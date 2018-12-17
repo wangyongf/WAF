@@ -1,6 +1,8 @@
 import 'package:daily_purify/common/routes_name.dart';
+import 'package:daily_purify/manager/user_manager.dart';
 import 'package:daily_purify/pages/wanandroid_feedback_page.dart';
-import 'package:daily_purify/util/toast_util.dart';
+import 'package:daily_purify/util/toast_utils.dart';
+import 'package:daily_purify/widget/unify_setting_widget.dart';
 import 'package:flutter/material.dart';
 
 class WanAndroidMinePage extends StatefulWidget {
@@ -52,21 +54,26 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
   _buildUserInfo() {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(Routes.WAN_ANDROID_LOGIN_PAGE);
+        if (!UserManager().isLoggedin()) {
+          Navigator.of(context).pushNamed(Routes.WAN_ANDROID_LOGIN_PAGE);
+        } else {
+          ToastUtils.showToast(context, '用户信息页开发中，敬请期待~');
+        }
       },
       child: Container(
         color: Colors.white,
-        child: ListTile(
+        child: UnifySettingWidget(
+          padding: EdgeInsets.only(top: 10, bottom: 10),
           leading: CircleAvatar(
-            radius: 20,
+            radius: 22,
             backgroundImage: AssetImage('images/appbar_def_bg.jpeg'),
           ),
           title: Text(
-            '小拓先森',
+            UserManager().isLoggedin() ? UserManager().userName : '点击登录',
             style: TextStyle(fontSize: 19),
           ),
-          subtitle: Text(
-            'Android 工程师 @挖财',
+          subTitle: Text(
+            'Android 开发工程师 @AGreatCompany',
             style: TextStyle(fontSize: 11, color: Colors.grey),
           ),
           trailing: Icon(
@@ -88,18 +95,23 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
   _buildMessageCenter() {
     return InkWell(
       onTap: () {
-        ToastUtil.showToast(context, '功能开发中，敬请期待~');
+        ToastUtils.showToast(context, '功能开发中，敬请期待~');
       },
       child: Container(
         color: Colors.white,
-        child: ListTile(
+        child: UnifySettingWidget(
           leading: Icon(
             Icons.add_alert,
             size: 20,
+            color: Colors.black54,
           ),
           title: Text(
             '消息中心',
             style: TextStyle(fontSize: 15),
+          ),
+          trailing: Text(
+            '10w+',
+            style: TextStyle(color: Colors.grey),
           ),
         ),
       ),
@@ -114,14 +126,19 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
       },
       child: Container(
         color: Colors.white,
-        child: ListTile(
+        child: UnifySettingWidget(
           leading: Icon(
             Icons.collections_bookmark,
             size: 20,
+            color: Colors.black54,
           ),
           title: Text(
             '我的收藏',
             style: TextStyle(fontSize: 15),
+          ),
+          trailing: Text(
+            '346篇',
+            style: TextStyle(color: Colors.grey),
           ),
         ),
       ),
@@ -132,18 +149,23 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
   _buildReadList() {
     return InkWell(
       onTap: () {
-        ToastUtil.showToast(context, '功能开发中，敬请期待~');
+        ToastUtils.showToast(context, '功能开发中，敬请期待~');
       },
       child: Container(
         color: Colors.white,
-        child: ListTile(
+        child: UnifySettingWidget(
           leading: Icon(
             Icons.remove_red_eye,
             size: 20,
+            color: Colors.black54,
           ),
           title: Text(
             '已读列表',
             style: TextStyle(fontSize: 15),
+          ),
+          trailing: Text(
+            '3本',
+            style: TextStyle(color: Colors.grey),
           ),
         ),
       ),
@@ -154,18 +176,23 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
   _buildTagManager() {
     return InkWell(
       onTap: () {
-        ToastUtil.showToast(context, '功能开发中，敬请期待~');
+        ToastUtils.showToast(context, '功能开发中，敬请期待~');
       },
       child: Container(
         color: Colors.white,
-        child: ListTile(
+        child: UnifySettingWidget(
           leading: Icon(
             Icons.assistant_photo,
             size: 20,
+            color: Colors.black54,
           ),
           title: Text(
             '标签管理',
             style: TextStyle(fontSize: 15),
+          ),
+          trailing: Text(
+            '73个',
+            style: TextStyle(color: Colors.grey),
           ),
         ),
       ),
@@ -177,10 +204,11 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
     return InkWell(
       child: Container(
         color: Colors.white,
-        child: ListTile(
+        child: UnifySettingWidget(
           leading: Icon(
             Icons.lightbulb_outline,
             size: 20,
+            color: Colors.black54,
           ),
           title: Text(
             '夜间模式',
@@ -207,10 +235,11 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
       },
       child: Container(
         color: Colors.white,
-        child: ListTile(
+        child: UnifySettingWidget(
           leading: Icon(
             Icons.feedback,
             size: 20,
+            color: Colors.black54,
           ),
           title: Text(
             '意见反馈',
@@ -225,14 +254,15 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
   _buildSettings() {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(Routes.WAN_ANDROID_SETTINGS_PAGE);
+        Navigator.of(context).pushNamed(Routes.ACCOUNT_INFO_PAGE);
       },
       child: Container(
         color: Colors.white,
-        child: ListTile(
+        child: UnifySettingWidget(
           leading: Icon(
             Icons.settings,
             size: 20,
+            color: Colors.black54,
           ),
           title: Text(
             '设置',

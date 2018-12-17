@@ -11,7 +11,7 @@ import 'package:daily_purify/model/project_detail_model.dart';
 import 'package:daily_purify/model/project_list_model.dart';
 import 'package:daily_purify/model/wechat_subscription_list_model.dart';
 import 'package:daily_purify/net/dio_factory.dart';
-import 'package:daily_purify/util/log_util.dart';
+import 'package:daily_purify/util/log_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -239,6 +239,27 @@ class WanAndroidApi {
 
     print(model.data.datas[0].toJson());
     return model;
+  }
+
+  Future<Response> login(String username, String password) async {
+    FormData formData = new FormData.from({
+      "username": "$username",
+      "password": "$password",
+    });
+    Dio dio = await _getDio();
+    return dio.post(UrlHost.WANANDROID_BASE_URL + UrlPath.LOGIN,
+        data: formData);
+  }
+
+  Future<Response> register(String username, String password) async {
+    FormData formData = new FormData.from({
+      "username": "$username",
+      "password": "$password",
+      "repassword": "$password",
+    });
+    Dio dio = await _getDio();
+    return dio.post(UrlHost.WANANDROID_BASE_URL + UrlPath.REGISTER,
+        data: formData);
   }
 
   Future<Dio> _getDio() async {

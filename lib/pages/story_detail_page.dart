@@ -7,7 +7,7 @@ import 'package:daily_purify/model/story_detail_model.dart';
 import 'package:daily_purify/model/story_extra_model.dart';
 import 'package:daily_purify/mvp/presenter/story_detail_presenter.dart';
 import 'package:daily_purify/mvp/presenter/story_detail_presenter_impl.dart';
-import 'package:daily_purify/util/route_util.dart';
+import 'package:daily_purify/util/route_utils.dart';
 import 'package:daily_purify/widget/common_loading_dialog.dart';
 import 'package:daily_purify/widget/common_share.dart';
 import 'package:daily_purify/widget/snackbar_helper.dart';

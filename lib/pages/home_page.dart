@@ -7,8 +7,8 @@ import 'package:daily_purify/model/hot_news_model.dart';
 import 'package:daily_purify/mvp/presenter/stories_presenter.dart';
 import 'package:daily_purify/mvp/presenter/stories_presenter_impl.dart';
 import 'package:daily_purify/pages/drawer_page.dart';
-import 'package:daily_purify/util/date_util.dart';
-import 'package:daily_purify/util/route_util.dart';
+import 'package:daily_purify/util/date_utils.dart';
+import 'package:daily_purify/util/route_utils.dart';
 import 'package:daily_purify/widget/common_divider.dart';
 import 'package:daily_purify/widget/common_loading_dialog.dart';
 import 'package:daily_purify/widget/common_retry.dart';
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> implements StoriesView {
         if (i != _dateTimeOffsetList.length - 1) {
           if (offset.round() >= _dateTimeOffsetList[i].round() &&
               _dateTimeOffsetList[i + 1].round() >= offset.round()) {
-            String dateTime = DateUtil.formatDateWithWeek(
+            String dateTime = DateUtils.formatDateWithWeek(
                 _dateTimeList[i].subtract(new Duration(days: 1)));
 
             if (dateTime != _title) {
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> implements StoriesView {
         } else {
           if (offset.round() >= _dateTimeOffsetList[i].round() &&
               _dateTimeOffsetList[i].round() >= offset.round()) {
-            String dateTime = DateUtil.formatDateWithWeek(
+            String dateTime = DateUtils.formatDateWithWeek(
                 _dateTimeList[i].subtract(new Duration(days: 1)));
 
             if (dateTime != _title) {
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> implements StoriesView {
         if (i != _dateTimeOffsetList.length - 1) {
           if (offset.round() < _dateTimeOffsetList[i + 1].round() &&
               offset.round() > _dateTimeOffsetList[i].round()) {
-            String dateTime = DateUtil.formatDateWithWeek(_dateTimeList[i]);
+            String dateTime = DateUtils.formatDateWithWeek(_dateTimeList[i]);
 
             if (dateTime != _title) {
               setState(() {
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> implements StoriesView {
         } else {
           if (offset.round() < _dateTimeOffsetList[i].round() &&
               offset.round() > _dateTimeOffsetList[i].round()) {
-            String dateTime = DateUtil.formatDateWithWeek(_dateTimeList[i]);
+            String dateTime = DateUtils.formatDateWithWeek(_dateTimeList[i]);
 
             if (dateTime != _title) {
               setState(() {
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> implements StoriesView {
 
     _curDateTime = new DateTime.now();
 
-    _curDate = DateUtil.formatDateSimple(_curDateTime);
+    _curDate = DateUtils.formatDateSimple(_curDateTime);
 
     _storiesPresenter.loadNews(null);
 
@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> implements StoriesView {
 
     _curDateTime = _curDateTime.subtract(new Duration(days: 1));
 
-    _curDate = DateUtil.formatDateSimple(_curDateTime);
+    _curDate = DateUtils.formatDateSimple(_curDateTime);
 
     _storiesPresenter.loadNews(_curDate);
 

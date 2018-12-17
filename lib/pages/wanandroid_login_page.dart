@@ -1,7 +1,21 @@
-import 'package:daily_purify/util/toast_util.dart';
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:flutter/material.dart';
 
-class WanAndroidLoginPage extends StatelessWidget {
+typedef OnLogin(String username, String password);
+
+class WanAndroidLoginPage extends StatefulWidget {
+  final OnLogin login;
+
+  const WanAndroidLoginPage({Key key, @required this.login}) : super(key: key);
+
+  @override
+  _WanAndroidLoginPageState createState() => _WanAndroidLoginPageState();
+}
+
+class _WanAndroidLoginPageState extends State<WanAndroidLoginPage> {
+  TextEditingController _userController = TextEditingController();
+  TextEditingController _passController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -63,7 +77,7 @@ class WanAndroidLoginPage extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: TextField(
-                    obscureText: true,
+                    controller: _userController,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -114,6 +128,7 @@ class WanAndroidLoginPage extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: TextField(
+                    controller: _passController,
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -145,7 +160,7 @@ class WanAndroidLoginPage extends StatelessWidget {
                     textAlign: TextAlign.end,
                   ),
                   onPressed: () {
-                    ToastUtil.showToast(context, '找回密码功能开发中，敬请期待~');
+                    ToastUtils.showToast(context, '找回密码功能开发中，敬请期待~');
                   },
                 ),
               ),
@@ -163,7 +178,11 @@ class WanAndroidLoginPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30.0),
                     ),
                     color: Colors.redAccent,
-                    onPressed: () => {},
+                    onPressed: () {
+                      String username = _userController.text;
+                      String password = _passController.text;
+                      widget.login(username, password);
+                    },
                     child: Container(
                       padding: EdgeInsets.symmetric(
                         vertical: 20.0,
@@ -240,7 +259,7 @@ class WanAndroidLoginPage extends StatelessWidget {
       ),
       color: Color(0Xff3B5998),
       onPressed: () {
-        ToastUtil.showToast(context, '三方登录正在路上，敬请期待~');
+        ToastUtils.showToast(context, '三方登录正在路上，敬请期待~');
       },
       child: Container(
         width: 85,
@@ -266,7 +285,7 @@ class WanAndroidLoginPage extends StatelessWidget {
       ),
       color: Color(0Xffdb3236),
       onPressed: () {
-        ToastUtil.showToast(context, '三方登录正在路上，敬请期待~');
+        ToastUtils.showToast(context, '三方登录正在路上，敬请期待~');
       },
       child: Container(
         width: 85,

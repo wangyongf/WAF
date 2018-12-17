@@ -1,6 +1,6 @@
 import 'package:daily_purify/data/net/wanandroid_api.dart';
 import 'package:daily_purify/model/knowledge_articles_model.dart';
-import 'package:daily_purify/util/toast_util.dart';
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:daily_purify/widget/empty_holder.dart';
 import 'package:daily_purify/widget/wanandroid_article_list_item.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +65,7 @@ class _KnowledgeArticleListPageState extends State<KnowledgeArticleListPage> {
         _articlesModel = value;
       });
     }).catchError((Object error) {
-      ToastUtil.showToast(context, '项目列表数据加载失败');
+      ToastUtils.showToast(context, '项目列表数据加载失败');
     }).whenComplete(() {});
   }
 }

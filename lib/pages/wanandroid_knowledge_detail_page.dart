@@ -72,6 +72,7 @@ class _WanAndroidKnowledgeDetailPageState
       tabs: _buildTabs(),
       isScrollable: true,
       controller: _tabController,
+      indicatorColor: Colors.white,
     );
   }
 

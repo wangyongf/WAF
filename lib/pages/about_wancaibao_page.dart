@@ -72,10 +72,22 @@ class _AboutWancaibaoPageState extends State<AboutWancaibaoPage> {
   Widget _buildAboutItem(int index) {
     return UnifySettingWidget(
       leading: about[index].leading,
-      title: about[index].title,
-      subTitle: about[index].subTitle,
-      content: about[index].content,
-      subContent: about[index].subContent,
+      title: Text(
+        about[index].title,
+        style: TextStyle(fontSize: 15),
+      ),
+      subTitle: Text(
+        about[index].subTitle,
+        style: TextStyle(fontSize: 13),
+      ),
+      content: Text(
+        about[index].content,
+        style: TextStyle(fontSize: 14),
+      ),
+      subContent: Text(
+        about[index].subContent,
+        style: TextStyle(fontSize: 13),
+      ),
       trailing: about[index].trailing,
       shortDivider: about[index].shortDivider,
     );

@@ -3,7 +3,7 @@ import 'package:daily_purify/pages/comment_page.dart';
 import 'package:daily_purify/pages/home_page.dart';
 import 'package:daily_purify/pages/story_detail_page.dart';
 import 'package:daily_purify/pages/theme_list_page.dart';
-import 'package:daily_purify/util/fix_url_util.dart';
+import 'package:daily_purify/util/fix_url_utils.dart';
 import 'package:daily_purify/widget/common_webview.dart';
 import 'package:flutter/material.dart';
 

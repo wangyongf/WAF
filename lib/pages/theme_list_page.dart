@@ -7,7 +7,7 @@ import 'package:daily_purify/model/theme_list_model.dart';
 import 'package:daily_purify/mvp/presenter/theme_list_presenter.dart';
 import 'package:daily_purify/mvp/presenter/theme_list_presenter_impl.dart';
 import 'package:daily_purify/pages/drawer_page.dart';
-import 'package:daily_purify/util/route_util.dart';
+import 'package:daily_purify/util/route_utils.dart';
 import 'package:daily_purify/widget/common_divider.dart';
 import 'package:daily_purify/widget/snackbar_helper.dart';
 import 'package:flutter/material.dart';

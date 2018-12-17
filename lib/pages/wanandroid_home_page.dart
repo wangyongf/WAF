@@ -1,7 +1,7 @@
 import 'package:daily_purify/data/net/wanandroid_api.dart';
 import 'package:daily_purify/model/article_list_model.dart';
 import 'package:daily_purify/model/home_banner_model.dart';
-import 'package:daily_purify/util/toast_util.dart';
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:daily_purify/widget/carousel.dart';
 import 'package:daily_purify/widget/wanandroid_article_list_item.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +35,7 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
         _articlesList = value;
       });
     }).catchError((Object error) {
-      ToastUtil.showToast(context, '文章列表加载出错！');
+      ToastUtils.showToast(context, '文章列表加载出错！');
       return true;
     }).whenComplete(() {
       print('加载完毕');
@@ -48,7 +48,7 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
         _bannerModel = model;
       });
     }).catchError((Object error) {
-      ToastUtil.showToast(context, 'Banner 加载失败');
+      ToastUtils.showToast(context, 'Banner 加载失败');
     }).whenComplete(() {});
   }
 

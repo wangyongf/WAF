@@ -6,8 +6,8 @@ import 'package:daily_purify/model/base_model.dart';
 import 'package:daily_purify/model/comment_model.dart';
 import 'package:daily_purify/mvp/presenter/comment_presenter.dart';
 import 'package:daily_purify/mvp/presenter/comment_presenter_impl.dart';
-import 'package:daily_purify/util/date_util.dart';
-import 'package:daily_purify/util/route_util.dart';
+import 'package:daily_purify/util/date_utils.dart';
+import 'package:daily_purify/util/route_utils.dart';
 import 'package:daily_purify/widget/common_loading_dialog.dart';
 import 'package:daily_purify/widget/common_retry.dart';
 import 'package:daily_purify/widget/snackbar_helper.dart';
@@ -219,7 +219,7 @@ class _CommentPageState extends State<CommentPage> implements CommentView {
   }
 
   Widget _buildContentItem(CommentModel item) {
-    String time = DateUtil.formatDate(item.time * 1000);
+    String time = DateUtils.formatDate(item.time * 1000);
     return new InkWell(
       child: new Padding(
         padding: const EdgeInsets.only(left: 12.0, top: 12.0, right: 12.0),

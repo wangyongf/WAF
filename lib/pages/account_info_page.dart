@@ -37,7 +37,10 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
             onTap: _onClickAvatar,
             child: UnifySettingWidget(
               header: DividerHelper.get(),
-              title: "头像",
+              title: Text(
+                "头像",
+                style: TextStyle(fontSize: 15),
+              ),
               trailingStatus: CircleAvatar(
                 radius: 15,
                 backgroundImage: AssetImage('images/appbar_def_bg.jpeg'),
@@ -45,10 +48,14 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
               trailing: Icon(Icons.chevron_right),
             ),
           ),
+          DividerHelper.get(),
           GestureDetector(
             onTap: _onClickNickname,
             child: UnifySettingWidget(
-              title: "昵称",
+              title: Text(
+                "昵称",
+                style: TextStyle(fontSize: 15),
+              ),
               trailingStatus: Text(
                 '霸者赤魂',
                 style: TextStyle(fontSize: 15),
@@ -56,16 +63,21 @@ class _AccountInfoPageState extends State<AccountInfoPage> {
               trailing: Icon(Icons.chevron_right),
             ),
           ),
+          DividerHelper.get(),
           GestureDetector(
             onTap: _onClickAccount,
             child: UnifySettingWidget(
-              title: '挖财账号',
+              title: Text(
+                '挖财账号',
+                style: TextStyle(fontSize: 15),
+              ),
               trailingStatus: Text(
                 '霸者丿赤魂',
                 style: TextStyle(fontSize: 15),
               ),
             ),
-          )
+          ),
+          DividerHelper.get(),
         ],
       ),
     );

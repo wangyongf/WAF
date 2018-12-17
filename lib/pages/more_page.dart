@@ -30,7 +30,10 @@ class _MorePageState extends State<MorePage> {
         children: <Widget>[
           UnifySettingWidget(
             header: DividerHelper.get(),
-            title: "精选发现更新提醒",
+            title: Text(
+              "精选发现更新提醒",
+              style: TextStyle(fontSize: 15),
+            ),
             trailing: Checkbox(value: true, onChanged: (bool value) {}),
           ),
           Container(
@@ -49,19 +52,28 @@ class _MorePageState extends State<MorePage> {
           UnifySettingWidget(
             margin: const EdgeInsets.only(top: 20),
             header: DividerHelper.get(),
-            title: '法律协议',
+            title: Text(
+              '法律协议',
+              style: TextStyle(fontSize: 15),
+            ),
             trailing: Icon(Icons.chevron_right),
           ),
           UnifySettingWidget(
             margin: const EdgeInsets.only(top: 10),
             header: DividerHelper.get(),
-            title: "挖财隐私权政策",
+            title: Text(
+              "挖财隐私权政策",
+              style: TextStyle(fontSize: 15),
+            ),
             trailing: Icon(Icons.chevron_right),
           ),
           UnifySettingWidget(
             margin: const EdgeInsets.only(top: 10),
             header: DividerHelper.get(),
-            title: "更多挖财 App",
+            title: Text(
+              "更多挖财 App",
+              style: TextStyle(fontSize: 15),
+            ),
             trailing: Icon(Icons.chevron_right),
           ),
         ],

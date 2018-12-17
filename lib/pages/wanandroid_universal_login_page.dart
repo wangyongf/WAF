@@ -1,6 +1,8 @@
+import 'package:daily_purify/manager/user_manager.dart';
 import 'package:daily_purify/pages/wanandroid_login_home_page.dart';
 import 'package:daily_purify/pages/wanandroid_login_page.dart';
 import 'package:daily_purify/pages/wanandroid_signup_page.dart';
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:flutter/material.dart';
 
 class WanAndroidUniversalLoginPage extends StatefulWidget {
@@ -17,18 +19,25 @@ class _WanAndroidUniversalLoginPageState
   }
 
   Widget _homePage() {
-    return WanAndroidLoginHomePage();
+    return WanAndroidLoginHomePage(
+      signup: _gotoSignup,
+      login: _gotoLogin,
+    );
   }
 
   Widget _loginPage() {
-    return WanAndroidLoginPage();
+    return WanAndroidLoginPage(
+      login: _login,
+    );
   }
 
   Widget _signupPage() {
-    return WanAndroidSignupPage();
+    return WanAndroidSignupPage(
+      signup: _signup,
+    );
   }
 
-  gotoLogin() {
+  _gotoLogin() {
     //controller_0To1.forward(from: 0.0);
     _controller.animateToPage(
       0,
@@ -37,13 +46,42 @@ class _WanAndroidUniversalLoginPageState
     );
   }
 
-  gotoSignup() {
+  _gotoSignup() {
     //controller_minus1To0.reverse(from: 0.0);
     _controller.animateToPage(
       2,
       duration: Duration(milliseconds: 800),
       curve: Curves.bounceOut,
     );
+  }
+
+  /// 登录
+  _login(String username, String password) {
+    UserManager().login(
+        username: username,
+        password: password,
+        callback: (bool success, String msg) {
+          if (success) {
+            ToastUtils.showToast(context, '登录成功');
+          } else {
+            ToastUtils.showToast(context, msg);
+          }
+          Navigator.of(context).pop();
+        });
+  }
+
+  /// 注册
+  _signup(String username, String password) {
+    UserManager().register(
+        username: username,
+        password: password,
+        callback: (bool success, String msg) {
+          if (success) {
+            ToastUtils.showToast(context, '注册成功');
+          } else {
+            ToastUtils.showToast(context, msg);
+          }
+        });
   }
 
   PageController _controller =
