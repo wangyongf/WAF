@@ -20,7 +20,20 @@ class UserManager {
     return _singleton;
   }
 
-  UserManager._internal();
+  UserManager._internal() {
+    SpUtils.getUserName((String username) {
+      this.userName = username;
+    });
+    SpUtils.getPassword((String password) {
+      this.password = password;
+    });
+    SpUtils.getCookie((String cookie) {
+      this.cookie = cookie;
+    });
+    SpUtils.getCookieExpires((String cookieExpires) {
+      this.cookieExpiresTime = DateTime.parse(cookieExpires);
+    });
+  }
 
   /// TODO: 通过 Cookie 的有效性来验证是否登录？
   bool isLogin() {
