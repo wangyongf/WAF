@@ -69,7 +69,7 @@ class UnifySettingWidget extends StatelessWidget {
           Container(
             padding: const EdgeInsets.only(left: 16, top: 0, right: 16),
             margin: const EdgeInsets.all(0),
-            height: 52,
+            height: 50,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[

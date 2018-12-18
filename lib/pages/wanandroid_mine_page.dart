@@ -254,7 +254,7 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
   _buildSettings() {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(Routes.ACCOUNT_INFO_PAGE);
+        Navigator.of(context).pushNamed(Routes.WAN_ANDROID_SETTINGS_PAGE);
       },
       child: Container(
         color: Colors.white,

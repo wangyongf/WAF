@@ -46,6 +46,8 @@ class UserManager {
   void logout() {
     SpUtils.putUserName(null);
     SpUtils.putPassword(null);
+    SpUtils.putCookie("");
+    SpUtils.putCookieExpires("");
     userName = null;
     password = null;
     _headerMap = null;
