@@ -14,6 +14,7 @@ import 'package:daily_purify/model/project_list_model.dart';
 import 'package:daily_purify/model/wechat_subscription_list_model.dart';
 import 'package:daily_purify/net/dio_factory.dart';
 import 'package:daily_purify/util/log_utils.dart';
+import 'package:daily_purify/util/sp_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -296,7 +297,7 @@ class WanAndroidApi {
 
   Future<Dio> _getDio() async {
     Dio dio = DioFactory().getDio();
-    bool isProxy = false;
+    bool isProxy = await SpUtils.getBool('enableDioProxy') ?? false;
     String proxy = '192.168.2.163:8888';
     dio.onHttpClientCreate = (client) {
       client.badCertificateCallback =

@@ -9,6 +9,7 @@ import 'package:daily_purify/pages/more_page.dart';
 import 'package:daily_purify/pages/password_manage_page.dart';
 import 'package:daily_purify/pages/wanandroid_about_page.dart';
 import 'package:daily_purify/pages/wanandroid_collections_page.dart';
+import 'package:daily_purify/pages/wanandroid_debug_page.dart';
 import 'package:daily_purify/pages/wanandroid_feedback_page.dart';
 import 'package:daily_purify/pages/wanandroid_home_page.dart';
 import 'package:daily_purify/pages/wanandroid_knowledge_page.dart';
@@ -70,6 +71,8 @@ void main() {
           WanAndroidAboutPage(),
       Routes.WAN_ANDROID_USER_INFO_PAGE: (BuildContext context) =>
           WanAndroidUserInfoPage(),
+      Routes.WAN_ANDROID_DEBUG_PAGE: (BuildContext context) =>
+          WanAndroidDebugPage(),
     },
     home: WanAndroidMainPage(),
     theme: MyTheme.theme,

@@ -19,6 +19,8 @@ dependencies:
   url_launcher: 4.0.2
   path_provider: ^0.4.1
   package_info: ^0.3.2
+  android_intent: ^0.2.1
+  share: ^0.5.3
 
 dev_dependencies:
   flutter_test:
