@@ -23,16 +23,15 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'jz'
-            keyPassword '123456'
-            storeFile file('../building_system/jz.jks')
-            storePassword '123456'
+            keyAlias "${localProperties.getProperty("key-alias")}"
+            keyPassword "${localProperties.getProperty("key-password")}"
+            storeFile file('../building_system/MyApp.jks')
+            storePassword "${localProperties.getProperty("key-store-password")}"
         }
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.jzhu.dailypurify"
+        applicationId "com.yongf.flutter.android.wanandroid"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
@@ -42,9 +41,11 @@ android {
 
     buildTypes {
         release {
-//            minifyEnabled true
+            minifyEnabled true
+            shrinkResources true
+            useProguard true
             signingConfig signingConfigs.release
-//            proguardFile 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
             signingConfig signingConfigs.debug
