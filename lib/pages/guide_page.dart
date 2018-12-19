@@ -55,7 +55,7 @@ class _GuidePageState extends State<GuidePage> {
                 child: RaisedButton(
                   padding: const EdgeInsets.only(top: 15, bottom: 15),
                   onPressed: _gotoWancaibaoAboutPage,
-                  child: Text('关于万财宝'),
+                  child: Text('关于玩 Android'),
                 ),
               )),
               Expanded(
@@ -116,17 +116,17 @@ class _GuidePageState extends State<GuidePage> {
     );
   }
 
-  /// 进入万财宝登录页
+  /// 进入玩 Android登录页
   void _gotoWancaiLoginPage() {
     Navigator.pushNamed(context, '/wancaibao/login');
   }
 
-  /// 进入万财宝账号设置页
+  /// 进入玩 Android账号设置页
   void _gotoWancaibaoSettingPage() {
     Navigator.pushNamed(context, '/wancaibao/settings');
   }
 
-  /// 进入「关于万财宝」
+  /// 进入「关于玩 Android」
   void _gotoWancaibaoAboutPage() {
     Navigator.pushNamed(context, '/wancaibao/about');
   }

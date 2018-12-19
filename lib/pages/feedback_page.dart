@@ -29,7 +29,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             alignment: Alignment.bottomLeft,
             padding: const EdgeInsets.only(left: 15, top: 23, bottom: 10),
             child: Text(
-              '感谢您对万财宝的支持，我们期待您的宝贵意见',
+              '感谢您对玩 Android的支持，我们期待您的宝贵意见',
               style: TextStyle(
                   fontSize: 13,
                   background: Paint()..color = (const Color(0xFFF6F6F6))),

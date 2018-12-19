@@ -20,6 +20,7 @@ import 'package:daily_purify/pages/wanandroid_read_list_page.dart';
 import 'package:daily_purify/pages/wanandroid_settings_page.dart';
 import 'package:daily_purify/pages/wanandroid_tag_manager_page.dart';
 import 'package:daily_purify/pages/wanandroid_universal_login_page.dart';
+import 'package:daily_purify/pages/wanandroid_user_info_page.dart';
 import 'package:daily_purify/pages/wanandroid_webview_page.dart';
 import 'package:daily_purify/pages/wanandroid_wechat_page.dart';
 import 'package:daily_purify/pages/wancai_login_page.dart';
@@ -67,6 +68,8 @@ void main() {
           WanAndroidUniversalLoginPage(),
       Routes.WAN_ANDROID_ABOUT_PAGE: (BuildContext context) =>
           WanAndroidAboutPage(),
+      Routes.WAN_ANDROID_USER_INFO_PAGE: (BuildContext context) =>
+          WanAndroidUserInfoPage(),
     },
     home: WanAndroidMainPage(),
     theme: MyTheme.theme,

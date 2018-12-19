@@ -1,6 +1,7 @@
 import 'package:daily_purify/util/divider_helper.dart';
 import 'package:daily_purify/widget/unify_setting_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info/package_info.dart';
 
 class WanAndroidAboutPage extends StatefulWidget {
   @override
@@ -8,6 +9,28 @@ class WanAndroidAboutPage extends StatefulWidget {
 }
 
 class _WanAndroidAboutPageState extends State<WanAndroidAboutPage> {
+  String _version = "";
+
+  @override
+  void initState() {
+    super.initState();
+
+    _getAppInfo();
+  }
+
+  _getAppInfo() {
+    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+//      String appName = packageInfo.appName;
+//      String packageName = packageInfo.packageName;
+//      String buildNumber = packageInfo.buildNumber;
+      String version = packageInfo.version;
+
+      setState(() {
+        this._version = version;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +91,7 @@ class _WanAndroidAboutPageState extends State<WanAndroidAboutPage> {
       margin: EdgeInsets.only(top: 8),
       alignment: Alignment.center,
       child: Text(
-        '4.23.0',
+        _version,
         style: TextStyle(color: Colors.grey, fontSize: 12),
       ),
     );

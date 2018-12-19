@@ -296,7 +296,7 @@ class WanAndroidApi {
 
   Future<Dio> _getDio() async {
     Dio dio = DioFactory().getDio();
-    bool isProxy = true;
+    bool isProxy = false;
     String proxy = '192.168.2.163:8888';
     dio.onHttpClientCreate = (client) {
       client.badCertificateCallback =

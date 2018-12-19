@@ -57,7 +57,7 @@ class _WanAndroidMinePageState extends State<WanAndroidMinePage> {
         if (!UserManager().isLogin()) {
           Navigator.of(context).pushNamed(Routes.WAN_ANDROID_LOGIN_PAGE);
         } else {
-          ToastUtils.showToast(context, '用户信息页开发中，敬请期待~');
+          Navigator.of(context).pushNamed(Routes.WAN_ANDROID_USER_INFO_PAGE);
         }
       },
       child: Container(

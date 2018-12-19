@@ -28,4 +28,5 @@ class Routes {
   static const String WAN_ANDROID_SETTINGS_PAGE = '/wanandroid/settings';
   static const String WAN_ANDROID_LOGIN_PAGE = '/wanandroid/universal-login';
   static const String WAN_ANDROID_ABOUT_PAGE = '/wanandroid/about';
+  static const String WAN_ANDROID_USER_INFO_PAGE = '/wanandroid/user-info';
 }

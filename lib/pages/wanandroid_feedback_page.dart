@@ -29,10 +29,10 @@ class _WanAndroidFeedbackPageState extends State<WanAndroidFeedbackPage> {
             alignment: Alignment.bottomLeft,
             padding: const EdgeInsets.only(left: 15, top: 23, bottom: 10),
             child: Text(
-              '感谢您对万财宝的支持，我们期待您的宝贵意见',
+              '感谢您对我们的支持，期待您的宝贵意见',
               style: TextStyle(
-                fontSize: 13,
-                background: Paint()..color = (const Color(0xFFF6F6F6))),
+                  fontSize: 13,
+                  background: Paint()..color = (const Color(0xFFF6F6F6))),
             ),
           ),
           Divider(
@@ -45,10 +45,10 @@ class _WanAndroidFeedbackPageState extends State<WanAndroidFeedbackPage> {
             child: TextField(
               keyboardType: TextInputType.multiline,
               decoration: InputDecoration(
-                border: InputBorder.none,
-                contentPadding: const EdgeInsets.all(10),
-                hintText: '请在此输入您的意见',
-                hintStyle: TextStyle(fontSize: 14, color: Colors.grey)),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.all(10),
+                  hintText: '请在此输入您的意见',
+                  hintStyle: TextStyle(fontSize: 14, color: Colors.grey)),
               autofocus: true,
               maxLength: 500,
               maxLengthEnforced: true,
@@ -78,11 +78,11 @@ class _WanAndroidFeedbackPageState extends State<WanAndroidFeedbackPage> {
             child: TextField(
               maxLines: 1,
               decoration: InputDecoration(
-                border: InputBorder.none,
-                contentPadding: const EdgeInsets.all(10),
-                hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
-                hintText: '请输入便于联系的邮箱地址',
-                fillColor: Colors.white),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.all(10),
+                  hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
+                  hintText: '请输入便于联系的邮箱地址',
+                  fillColor: Colors.white),
             ),
           ),
           Divider(
