@@ -125,6 +125,8 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
     var item = _articlesList.data.datas[position];
     String avatarUrl = "https://www.baidu.com.png";
     return WanAndroidArticleListItem(
+      originId: item.id,
+      collect: item.collect,
       target: item.link,
       avatarUrl: avatarUrl,
       chapterName: item.chapterName,

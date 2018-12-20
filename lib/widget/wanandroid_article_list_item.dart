@@ -1,8 +1,16 @@
+import 'package:daily_purify/data/net/url_host.dart';
+import 'package:daily_purify/data/net/wanandroid_api.dart';
+import 'package:daily_purify/manager/user_manager.dart';
 import 'package:daily_purify/pages/wanandroid_webview_page.dart';
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
-class WanAndroidArticleListItem extends StatelessWidget {
+typedef OnCollectStatusChange(bool newStatus);
+typedef OnItemTap();
+
+class WanAndroidArticleListItem extends StatefulWidget {
+  final int originId;
+  final bool collect;
   final String target;
   final String avatarUrl;
   final String chapterName;
@@ -10,32 +18,44 @@ class WanAndroidArticleListItem extends StatelessWidget {
   final String title;
   final String author;
   final String publishTime;
+  final OnItemTap onItemTap;
+  final OnCollectStatusChange onCollectStatusChange;
 
   const WanAndroidArticleListItem(
       {Key key,
+      this.target,
       this.avatarUrl,
       this.chapterName,
       this.superChapterName,
       this.title,
       this.author,
       this.publishTime,
-      this.target})
+      this.collect,
+      this.originId,
+      this.onItemTap,
+      this.onCollectStatusChange})
       : assert(title != null),
         super(key: key);
 
   @override
+  _WanAndroidArticleListItemState createState() =>
+      _WanAndroidArticleListItemState();
+}
+
+class _WanAndroidArticleListItemState extends State<WanAndroidArticleListItem> {
+  bool _collect = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _collect = widget.collect ?? false;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        if (target == null || target.isEmpty) {
-          return;
-        }
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => WanAndroidWebViewPage(
-                  target: target,
-                  title: title,
-                )));
-      },
+      onTap: _onItemTap,
       child: Card(
         color: Colors.white,
         child: Container(
@@ -54,13 +74,13 @@ class WanAndroidArticleListItem extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 5),
                     child: Text(
-                      chapterName,
+                      widget.chapterName,
                       style: TextStyle(fontSize: 13, color: Colors.black),
                     ),
                   ),
                   Expanded(child: Container()),
                   Text(
-                    superChapterName,
+                    widget.superChapterName,
                     style: TextStyle(fontSize: 13, color: Colors.grey),
                   )
                 ],
@@ -69,7 +89,7 @@ class WanAndroidArticleListItem extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(top: 16),
                 child: Text(
-                  title,
+                  widget.title,
                   style: TextStyle(
                       fontSize: 15,
                       color: Color(0xA6000000),
@@ -82,13 +102,13 @@ class WanAndroidArticleListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      author,
+                      widget.author,
                       style: TextStyle(fontSize: 13, color: Colors.black87),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Text(
-                        publishTime,
+                        widget.publishTime,
                         style: TextStyle(fontSize: 13, color: Colors.grey),
                       ),
                     ),
@@ -96,16 +116,14 @@ class WanAndroidArticleListItem extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(right: 10),
                       child: InkWell(
-                        onTap: () {
-                          Fluttertoast.showToast(msg: '收藏功能开发中~');
-                        },
+                        onTap: _updateCollectStatus,
                         child: SizedBox(
                           height: 30,
                           width: 30,
                           child: Icon(
                             Icons.favorite,
                             size: 18,
-                            color: Colors.redAccent,
+                            color: _collect ? Colors.redAccent : Colors.grey,
                           ),
                         ),
                       ),
@@ -118,5 +136,50 @@ class WanAndroidArticleListItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _onItemTap() {
+    if (widget.target == null || widget.target.isEmpty) {
+      return;
+    }
+    Function action = widget.onItemTap ?? _defaultOnItemTap;
+    action();
+  }
+
+  _defaultOnItemTap() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => WanAndroidWebViewPage(
+              target: widget.target,
+              title: widget.title,
+            )));
+  }
+
+  _updateCollectStatus() async {
+    if (!UserManager().isLogin()) {
+      ToastUtils.showToast(context, '请先登录');
+      return;
+    }
+
+    bool newStatus = !_collect;
+    Function action =
+        widget.onCollectStatusChange ?? _defaultOnCollectStatusChange;
+    await action(newStatus);
+
+    setState(() {
+      _collect = newStatus;
+    });
+  }
+
+  /// 收藏 || 取消收藏
+  _defaultOnCollectStatusChange(bool newStatus) async {
+    if (newStatus) {
+      await WanAndroidApi().collectArticleInner(
+          UrlHost.WANANDROID_BASE_URL + "/lg/collect/${widget.originId}/json");
+      ToastUtils.showToast(context, '收藏成功');
+    } else {
+      await WanAndroidApi().uncollectOriginId(UrlHost.WANANDROID_BASE_URL +
+          "/lg/uncollect_originId/${widget.originId}/json");
+      ToastUtils.showToast(context, '取消收藏');
+    }
   }
 }

@@ -11,10 +11,12 @@ typedef String UrlBuilder(int page);
 class KnowledgeArticleListPage extends StatefulWidget {
   final UrlBuilder urlBuilder;
 
-  const KnowledgeArticleListPage({Key key, @required this.urlBuilder}) : super(key: key);
+  const KnowledgeArticleListPage({Key key, @required this.urlBuilder})
+      : super(key: key);
 
   @override
-  _KnowledgeArticleListPageState createState() => _KnowledgeArticleListPageState();
+  _KnowledgeArticleListPageState createState() =>
+      _KnowledgeArticleListPageState();
 }
 
 class _KnowledgeArticleListPageState extends State<KnowledgeArticleListPage> {
@@ -47,6 +49,8 @@ class _KnowledgeArticleListPageState extends State<KnowledgeArticleListPage> {
     }
     String avatarUrl = "https://www.baidu.com.png";
     return WanAndroidArticleListItem(
+      originId: item.id,
+      collect: item.collect,
       target: item.link,
       avatarUrl: avatarUrl,
       chapterName: item.chapterName,

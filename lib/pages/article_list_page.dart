@@ -53,6 +53,8 @@ class _ArticleListPageState extends State<ArticleListPage> {
     String chapterName = item.chapterName ?? "Something";
     chapterName = chapterName.trim().isEmpty ? "Something" : chapterName;
     return WanAndroidArticleListItem(
+      originId: item.id ?? -1,
+      collect: item.collect ?? false,
       target: item.link,
       avatarUrl: avatarUrl,
       chapterName: chapterName,

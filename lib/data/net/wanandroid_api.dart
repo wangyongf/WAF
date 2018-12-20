@@ -285,7 +285,7 @@ class WanAndroidApi {
   }
 
   Future<Response> register(String username, String password) async {
-    FormData formData = new FormData.from({
+    FormData formData = FormData.from({
       "username": "$username",
       "password": "$password",
       "repassword": "$password",
@@ -295,10 +295,47 @@ class WanAndroidApi {
         data: formData);
   }
 
+  /// 收藏站内文章
+  Future<Response> collectArticleInner(String url) async {
+    url =
+        url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.COLLECTION_ARTICLES_INNER;
+    Dio dio = await _getDio();
+    return await dio.post(url);
+  }
+
+  /// 收藏站外文章
+  Future<Response> collectArticleOuter(
+      String url, String title, String author, String link) async {
+    url =
+        url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.COLLECTION_ARTICLES_OUTER;
+    Dio dio = await _getDio();
+    FormData formData =
+        FormData.from({"title": title, "author": author, "link": link});
+    return await dio.post(url, data: formData);
+  }
+
+  /// 取消收藏（文章列表）
+  Future<Response> uncollectOriginId(String url) async {
+    url = url ??
+        UrlHost.WANANDROID_BASE_URL + UrlPath.UNCOLLECT_ARTICLES_ORIGINID;
+    Dio dio = await _getDio();
+    return await dio.post(url);
+  }
+
+  /// 取消收藏（我的收藏页面）
+  Future<Response> uncollect(String url, int originId) async {
+    url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.UNCOLLECT_ARTICLES;
+    Dio dio = await _getDio();
+    FormData formData = FormData.from({
+      "originId": originId,
+    });
+    return await dio.post(url, data: formData);
+  }
+
   Future<Dio> _getDio() async {
     Dio dio = DioFactory().getDio();
     bool isProxy = await SpUtils.getBool('enableDioProxy') ?? false;
-    String proxy = '192.168.2.163:8888';
+    String proxy = '172.18.107.196:8888';
     dio.onHttpClientCreate = (client) {
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) {
