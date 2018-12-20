@@ -154,6 +154,8 @@ class _WanAndroidArticleListItemState extends State<WanAndroidArticleListItem> {
         builder: (context) => WanAndroidWebViewPage(
               target: widget.target,
               title: widget.title,
+              collect: _collect,
+              originId: widget.originId,
             )));
   }
 
