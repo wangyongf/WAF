@@ -5,8 +5,8 @@ import 'package:daily_purify/pages/wanandroid_webview_page.dart';
 import 'package:daily_purify/util/toast_utils.dart';
 import 'package:flutter/material.dart';
 
-typedef OnCollectStatusChange(bool newStatus);
-typedef OnItemTap();
+typedef OnCollectStatusChange(BuildContext context, bool newStatus);
+typedef OnItemTap(BuildContext context);
 
 class WanAndroidArticleListItem extends StatefulWidget {
   final int originId;
@@ -23,6 +23,8 @@ class WanAndroidArticleListItem extends StatefulWidget {
 
   const WanAndroidArticleListItem(
       {Key key,
+      this.originId,
+      this.collect,
       this.target,
       this.avatarUrl,
       this.chapterName,
@@ -30,12 +32,9 @@ class WanAndroidArticleListItem extends StatefulWidget {
       this.title,
       this.author,
       this.publishTime,
-      this.collect,
-      this.originId,
       this.onItemTap,
       this.onCollectStatusChange})
-      : assert(title != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   _WanAndroidArticleListItemState createState() =>
@@ -43,7 +42,7 @@ class WanAndroidArticleListItem extends StatefulWidget {
 }
 
 class _WanAndroidArticleListItemState extends State<WanAndroidArticleListItem> {
-  bool _collect = false;
+  bool _collect;
 
   @override
   void initState() {
@@ -55,7 +54,9 @@ class _WanAndroidArticleListItemState extends State<WanAndroidArticleListItem> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _onItemTap,
+      onTap: () {
+        _onItemTap(context);
+      },
       child: Card(
         color: Colors.white,
         child: Container(
@@ -116,7 +117,9 @@ class _WanAndroidArticleListItemState extends State<WanAndroidArticleListItem> {
                     Container(
                       margin: EdgeInsets.only(right: 10),
                       child: InkWell(
-                        onTap: _updateCollectStatus,
+                        onTap: () {
+                          _updateCollectStatus(context);
+                        },
                         child: SizedBox(
                           height: 30,
                           width: 30,
@@ -138,15 +141,15 @@ class _WanAndroidArticleListItemState extends State<WanAndroidArticleListItem> {
     );
   }
 
-  _onItemTap() {
+  _onItemTap(BuildContext context) {
     if (widget.target == null || widget.target.isEmpty) {
       return;
     }
     Function action = widget.onItemTap ?? _defaultOnItemTap;
-    action();
+    action(context);
   }
 
-  _defaultOnItemTap() {
+  _defaultOnItemTap(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => WanAndroidWebViewPage(
               target: widget.target,
@@ -154,24 +157,23 @@ class _WanAndroidArticleListItemState extends State<WanAndroidArticleListItem> {
             )));
   }
 
-  _updateCollectStatus() async {
+  _updateCollectStatus(BuildContext context) async {
     if (!UserManager().isLogin()) {
       ToastUtils.showToast(context, '请先登录');
       return;
     }
-
     bool newStatus = !_collect;
     Function action =
         widget.onCollectStatusChange ?? _defaultOnCollectStatusChange;
-    await action(newStatus);
+    await action(context, newStatus);
 
     setState(() {
-      _collect = newStatus;
+      this._collect = newStatus;
     });
   }
 
   /// 收藏 || 取消收藏
-  _defaultOnCollectStatusChange(bool newStatus) async {
+  _defaultOnCollectStatusChange(BuildContext context, bool newStatus) async {
     if (newStatus) {
       await WanAndroidApi().collectArticleInner(
           UrlHost.WANANDROID_BASE_URL + "/lg/collect/${widget.originId}/json");

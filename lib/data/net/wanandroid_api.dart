@@ -244,7 +244,7 @@ class WanAndroidApi {
     return model;
   }
 
-  /// 获取收藏文章列表
+  /// 收藏文章的列表
   Future<ArticleCollectionsModel> getArticleCollections(String url) async {
     url = url ?? UrlHost.WANANDROID_BASE_URL + UrlPath.COLLECTION_ARTICLES;
     Dio dio = await _getDio();
@@ -274,6 +274,7 @@ class WanAndroidApi {
     return model;
   }
 
+  /// 登录接口
   Future<Response> login(String username, String password) async {
     FormData formData = new FormData.from({
       "username": "$username",
@@ -284,6 +285,7 @@ class WanAndroidApi {
         data: formData);
   }
 
+  /// 注册接口
   Future<Response> register(String username, String password) async {
     FormData formData = FormData.from({
       "username": "$username",
@@ -335,6 +337,7 @@ class WanAndroidApi {
   Future<Dio> _getDio() async {
     Dio dio = DioFactory().getDio();
     bool isProxy = await SpUtils.getBool('enableDioProxy') ?? false;
+//    String proxy = '192.168.2.163:8888';
     String proxy = '172.18.107.196:8888';
     dio.onHttpClientCreate = (client) {
       client.badCertificateCallback =

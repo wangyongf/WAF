@@ -1,4 +1,4 @@
-import 'package:daily_purify/pages/article_list_page.dart';
+import 'package:daily_purify/pages/collection_list_page.dart';
 import 'package:flutter/material.dart';
 
 class WanAndroidCollectionsPage extends StatefulWidget {
@@ -34,7 +34,7 @@ class _WanAndroidCollectionsPageState extends State<WanAndroidCollectionsPage> {
   }
 
   _buildBody() {
-    return ArticleListPage(
+    return ArticleCollectionsPage(
       startPage: 0,
       urlBuilder: (currentPage) {
         return "http://www.wanandroid.com/lg/collect/list/$currentPage/json";

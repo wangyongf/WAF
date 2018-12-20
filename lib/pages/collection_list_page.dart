@@ -1,22 +1,21 @@
+import 'package:daily_purify/data/net/url_host.dart';
 import 'package:daily_purify/data/net/wanandroid_api.dart';
-import 'package:daily_purify/model/project_detail_model.dart';
+import 'package:daily_purify/model/article_collections_model.dart';
 import 'package:daily_purify/util/toast_utils.dart';
 import 'package:daily_purify/widget/empty_holder.dart';
 import 'package:daily_purify/widget/wanandroid_article_list_item.dart';
 import 'package:flutter/material.dart';
 
 typedef String UrlBuilder(int page);
-typedef OnCollectStatusChange(bool newStatus, int originId);
-typedef OnItemTap(BuildContext context);
 
 /// ProjectArticleListPage, Dart 的泛型？
-class ArticleListPage extends StatefulWidget {
+class ArticleCollectionsPage extends StatefulWidget {
   final UrlBuilder urlBuilder;
   final int startPage;
   final OnCollectStatusChange onCollectStatusChange;
   final OnItemTap onItemTap;
 
-  const ArticleListPage(
+  const ArticleCollectionsPage(
       {Key key,
       @required this.urlBuilder,
       this.startPage = 1,
@@ -25,11 +24,11 @@ class ArticleListPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ArticleListPageState createState() => _ArticleListPageState();
+  _ArticleCollectionsPageState createState() => _ArticleCollectionsPageState();
 }
 
-class _ArticleListPageState extends State<ArticleListPage> {
-  ProjectDetailModel _detailModel;
+class _ArticleCollectionsPageState extends State<ArticleCollectionsPage> {
+  ArticleCollectionsModel _collectionsModel;
   int _currentPage = 0;
 
   @override
@@ -42,18 +41,18 @@ class _ArticleListPageState extends State<ArticleListPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (_detailModel == null) {
+    if (_collectionsModel == null) {
       return EmptyHolder();
     }
     return ListView.builder(
-        itemCount: _detailModel?.data?.datas?.length ?? 0,
+        itemCount: _collectionsModel?.data?.datas?.length ?? 0,
         itemBuilder: (BuildContext context, int position) {
           return _buildArticleItem(position);
         });
   }
 
   _buildArticleItem(int position) {
-    var item = _detailModel?.data?.datas[position] ?? null;
+    var item = _collectionsModel?.data?.datas[position] ?? null;
     if (item == null) {
       return EmptyHolder(msg: "数据错误...");
     }
@@ -62,27 +61,43 @@ class _ArticleListPageState extends State<ArticleListPage> {
     chapterName = chapterName.trim().isEmpty ? "Something" : chapterName;
     return WanAndroidArticleListItem(
       originId: item.id ?? -1,
-      collect: item.collect ?? false,
+      collect: true,
       target: item.link,
       avatarUrl: avatarUrl,
       chapterName: chapterName,
-      superChapterName: item.superChapterName ?? "Another thing",
+      superChapterName: "Another thing",
       title: item.title,
       author: item.author,
       publishTime: item.niceDate,
       onItemTap: widget.onItemTap,
+      onCollectStatusChange: (BuildContext context, bool newStatus) {
+        _onUnCollect(newStatus, item.id, item.originId);
+      },
     );
   }
 
   _fetchProjectDetail() {
     WanAndroidApi()
-        .getProjectDetail(widget.urlBuilder(_currentPage))
-        .then((ProjectDetailModel value) {
+        .getArticleCollections(widget.urlBuilder(_currentPage))
+        .then((ArticleCollectionsModel value) {
       setState(() {
-        _detailModel = value;
+        _collectionsModel = value;
       });
     }).catchError((Object error) {
-      ToastUtils.showToast(context, '项目列表数据加载失败');
+      ToastUtils.showToast(context, '收藏数据加载失败');
     }).whenComplete(() {});
+  }
+
+  _onUnCollect(bool newStatus, int id, int originId) async {
+    if (newStatus) {
+      await WanAndroidApi().collectArticleInner(
+          UrlHost.WANANDROID_BASE_URL + "/lg/collect/$originId/json");
+      ToastUtils.showToast(context, '收藏成功');
+    } else {
+      await WanAndroidApi().uncollect(
+          UrlHost.WANANDROID_BASE_URL + "/lg/uncollect/$id/json", originId);
+      ToastUtils.showToast(context, '取消收藏');
+    }
+    _fetchProjectDetail();
   }
 }
