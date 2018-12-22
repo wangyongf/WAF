@@ -11,7 +11,8 @@ class WanAndroidKnowledgePage extends StatefulWidget {
       _WanAndroidKnowledgePageState();
 }
 
-class _WanAndroidKnowledgePageState extends State<WanAndroidKnowledgePage> {
+class _WanAndroidKnowledgePageState extends State<WanAndroidKnowledgePage>
+    with AutomaticKeepAliveClientMixin {
   KnowledgeTreeListModel _knowledge;
 
   @override
@@ -78,4 +79,7 @@ class _WanAndroidKnowledgePageState extends State<WanAndroidKnowledgePage> {
       ToastUtils.showToast(context, '知识体系数据加载失败');
     }).whenComplete(() {});
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

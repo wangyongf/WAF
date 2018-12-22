@@ -28,7 +28,7 @@ class ArticleListPage extends StatefulWidget {
   _ArticleListPageState createState() => _ArticleListPageState();
 }
 
-class _ArticleListPageState extends State<ArticleListPage> {
+class _ArticleListPageState extends State<ArticleListPage> with AutomaticKeepAliveClientMixin {
   ProjectDetailModel _detailModel;
   int _currentPage = 0;
 
@@ -85,4 +85,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
       ToastUtils.showToast(context, '项目列表数据加载失败');
     }).whenComplete(() {});
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -7,7 +7,8 @@ class WanAndroidCollectionsPage extends StatefulWidget {
       _WanAndroidCollectionsPageState();
 }
 
-class _WanAndroidCollectionsPageState extends State<WanAndroidCollectionsPage> {
+class _WanAndroidCollectionsPageState extends State<WanAndroidCollectionsPage>
+    with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,4 +42,7 @@ class _WanAndroidCollectionsPageState extends State<WanAndroidCollectionsPage> {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

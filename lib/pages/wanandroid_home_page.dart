@@ -12,7 +12,8 @@ class WanAndroidHomePage extends StatefulWidget {
   _WanAndroidHomePageState createState() => _WanAndroidHomePageState();
 }
 
-class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
+class _WanAndroidHomePageState extends State<WanAndroidHomePage>
+    with AutomaticKeepAliveClientMixin {
   HomeBannerModel _bannerModel;
   ArticleListModel _articlesList;
 
@@ -154,4 +155,7 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage> {
       )
     ];
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
