@@ -1,6 +1,7 @@
 import 'package:daily_purify/data/net/wanandroid_api.dart';
 import 'package:daily_purify/model/article_list_model.dart';
 import 'package:daily_purify/model/home_banner_model.dart';
+import 'package:daily_purify/pages/wanandroid_webview_page.dart';
 import 'package:daily_purify/util/toast_utils.dart';
 import 'package:daily_purify/widget/carousel.dart';
 import 'package:daily_purify/widget/wanandroid_article_list_item.dart';
@@ -96,11 +97,22 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage>
         height: 200,
         child: Carousel(
           children: _bannerModel?.data
-                  ?.map((banner) => Image.network(
-                        banner?.imagePath,
-                        width: double.infinity,
-                        height: 200,
-                        fit: BoxFit.cover,
+                  ?.map((banner) => GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => WanAndroidWebViewPage(
+                                    target: banner.url,
+                                    title: banner.title,
+                                    collect: false,
+                                    originId: banner.id,
+                                  )));
+                        },
+                        child: Image.network(
+                          banner?.imagePath,
+                          width: double.infinity,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
                       ))
                   ?.toList() ??
               _defaultBanner(),

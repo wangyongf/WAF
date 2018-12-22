@@ -28,7 +28,8 @@ class ArticleListPage extends StatefulWidget {
   _ArticleListPageState createState() => _ArticleListPageState();
 }
 
-class _ArticleListPageState extends State<ArticleListPage> with AutomaticKeepAliveClientMixin {
+class _ArticleListPageState extends State<ArticleListPage>
+    with AutomaticKeepAliveClientMixin {
   ProjectDetailModel _detailModel;
   int _currentPage = 0;
 
