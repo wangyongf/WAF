@@ -1,73 +1,86 @@
 
-# daily_purify（知乎日报Flutter版）
+# WAF - WanAndroid Flutter
 
-感谢[知乎日报-API-分析](https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90)提供的api帮助完成这个demo
-该项目完全开源，单纯为了学习与交流，希望大家喜欢，多多提意见。
-后续会将未来学到的新知识点用到该项目，持续更新
+- WanAndroid: http://www.wanandroid.com
+- API: [玩Android 开放API](http://www.wanandroid.com/blog/show/2)
 
-若被告知需停止共享与使用，本人会及时删除整个项目。
-  
-[fir_release_Android包下载地址,蜜汁流畅的体验](https://fir.im/mrkg)
+## Announcing WAF - WanAndroid Flutter
 
-## 效果图(gif，png，mp4) 
+WAF - WanAndroid Flutter, yet another WanAndroid Client written in Flutter.
 
-[真机对比效果](https://www.jianshu.com/p/ee1539dc4e10)
+感谢[玩Android 开放API](http://www.wanandroid.com/blog/show/2) 提供的 API，
+WAF 项目完全开源，单纯为了学习 Flutter，在开发的过程中参考了大量的开源项目，希望大家喜欢。
 
-[HOME_PAGE_GIF](https://www.jianshu.com/p/6f342031c0a4)
+后续会将未来学到的 Flutter 新知识点应用到该项目，争取持续更新~
 
-[THEME_LIST_PAGE_GIF](https://www.jianshu.com/p/265fd0fa6762)
+## 页面截图
 
-[COMMENT_LIST_PAGE_GIF](https://www.jianshu.com/p/34953e28676f)
+<img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181222232327.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181222232733.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001342.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001403.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001422.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001438.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001456.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001525.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001547.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001602.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001633.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001652.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001728.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001744.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001811.png" width="200"><img src="https://raw.githubusercontent.com/wangyongf/blog-imgs/master/picgo/20181223001855.png" width="200">
 
-[LOGING_PAGE_GIF](https://www.jianshu.com/p/f7a9b8c84d26)
+## 功能列表
 
+- [x] 首页
+    - [x] 首页 Banner
+    - [x] 首页文章列表
+    - [ ] 文章列表页下拉刷新支持
+    - [ ] 文章列表数据缓存
+- [x] 项目
+    - [x] 项目列表
+    - [x] 项目文章详情
+- [x] 公众号
+    - [x] 公众号列表
+    - [x] 公众号文章详情
+- [x] 知识体系
+    - [x] 知识体系列表
+    - [x] 知识体系详情
+- [x] 个人中心
+    - [x] 用户信息
+    - [x] 我的收藏
+        - [x] 收藏文章列表
+        - [ ] 修复收藏页面取消收藏后收藏状态不正确的问题
+    - [x] 登录/注册
+        - [x] 登录/注册页
+        - [x] 退出登录
+        - [ ] 登录/注册页的小灰线修复
+        - [ ] 登录/注册页面适配
+    - [x] 意见反馈
+        - [x] UI
+        - [ ] 意见反馈页面自动新建 issue？参考 [AntD Issue Helper](https://new-issue.ant.design/)？
+    - [x] 设置
+        - [x] 关于
+            - [x] 应用市场评分
+        - [ ] 检查更新
+        - [ ] 夜间模式
+        - [ ] 主题
+            - [ ] 变色龙，参考IT之家
+- [ ] 其他
+    - [ ] 侧滑关闭当前页面
 
-<img src="https://github.com/zhujian1989/ZhihuDailyPurifyByFlutter/blob/master/screenshot/1.jpeg" width="200"><img src="https://github.com/zhujian1989/ZhihuDailyPurifyByFlutter/blob/master/screenshot/2.jpeg" width="200"><img src="https://github.com/zhujian1989/ZhihuDailyPurifyByFlutter/blob/master/screenshot/3.jpeg" width="200"><img src="https://github.com/zhujian1989/ZhihuDailyPurifyByFlutter/blob/master/screenshot/4.jpeg" width="200"><img src="https://github.com/zhujian1989/ZhihuDailyPurifyByFlutter/blob/master/screenshot/5.jpeg" width="200"><img src="https://github.com/zhujian1989/ZhihuDailyPurifyByFlutter/blob/master/screenshot/6.jpeg" width="200"><img src="https://github.com/zhujian1989/ZhihuDailyPurifyByFlutter/blob/master/screenshot/7.jpeg" width="200"><img src="https://github.com/zhujian1989/ZhihuDailyPurifyByFlutter/blob/master/screenshot/8.jpeg" width="200">  
+## How to build locally
 
-## 完成
-1.今日热点  
-2.主题分类  
-3.文章详情  
-4.抽屉列表增加缓存, 防止多次拉去数据  
-5.评论列表 (界面，动画优化)   
-6.主题列表 (界面，动画优化)  
-7.主页banner自动轮播,手指滑动是禁止轮播，放开则继续  
-8.刷新数据失败，增加重试按钮  
-9.分享UI  
-9.登录UI，联动交互（在评论界面可以点击写点评进入）
+1. Android: `flutter build apk`
+2. iOS: 暂未测试
 
+## 站在巨人的肩膀上
 
-## 待优化
-1.Flutter加载Html  
+0. [Flutter](https://flutter.io)
+1. [玩Android 开放API](http://www.wanandroid.com/blog/show/2)
+2. [daily_purify（知乎日报Flutter版）](https://github.com/izzyleung/ZhihuDailyPurify)
+3. [hurshi/wanandroid](https://github.com/hurshi/wanandroid)
+4. [samarthagarwal/FlutterScreens](https://github.com/samarthagarwal/FlutterScreens)
 
-## 由于Api有限无法完成跟用户相关的操作
-1.注册   
-2.登录
-3.发表评论  
-4.收藏  
-5.等等    
+## License
 
+Copyright 2018 wangyongf
 
-## 玩 Android - Flutter
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-站在巨人的肩膀上
+http://www.apache.org/licenses/LICENSE-2.0
 
-1. [daily_purify（知乎日报Flutter版）]()
-2. [hurshi/wanandroid]()
-3. [samarthagarwal/FlutterScreens](https://github.com/samarthagarwal/FlutterScreens)
-
-### TODO
-
-- [ ] 文章列表页下拉刷新支持
-- [ ] 文章列表数据缓存
-- [ ] 意见反馈页面自动新建 issue？参考 Vue-issue 页面？Angular-issue？
-- [ ] 实现检查更新功能
-- [ ] 夜间模式
-- [ ] 变色龙，参考IT之家
-- [ ] TabBar 的 indicator 颜色修复
-- [ ] 登录/注册页的小灰线修复
-- [ ] 侧滑关闭当前页面
-- [ ] 开发注册功能，适配登录/注册页面
-- [ ] 实现文章收藏功能
-- [ ] 添加文章列表页面缓存
-- [ ] 修复收藏页面取消收藏后收藏状态不正确的问题
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+or implied. See the License for the specific language governing
+permissions and limitations under the License.
