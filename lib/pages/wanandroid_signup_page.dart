@@ -5,28 +5,30 @@ typedef OnSignup(String username, String password);
 class WanAndroidSignupPage extends StatefulWidget {
   final OnSignup signup;
 
-  const WanAndroidSignupPage({Key key, @required this.signup})
-      : super(key: key);
+  WanAndroidSignupPage({Key key, @required this.signup}) : super(key: key);
 
   @override
   _WanAndroidSignupPageState createState() => _WanAndroidSignupPageState();
 }
 
 class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
+  TextEditingController _userController = TextEditingController();
+  TextEditingController _passController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         color: Colors.white,
         image: DecorationImage(
-          colorFilter: new ColorFilter.mode(
+          colorFilter: ColorFilter.mode(
               Colors.black.withOpacity(0.05), BlendMode.dstATop),
           image: AssetImage('assets/images/mountains.jpg'),
           fit: BoxFit.cover,
         ),
       ),
-      child: new Column(
+      child: Column(
         children: <Widget>[
           Container(
             padding: EdgeInsets.all(100.0),
@@ -38,12 +40,12 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
               ),
             ),
           ),
-          new Row(
+          Row(
             children: <Widget>[
-              new Expanded(
-                child: new Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
-                  child: new Text(
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 40.0),
+                  child: Text(
                     "用户名",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -55,9 +57,9 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
               ),
             ],
           ),
-          new Container(
+          Container(
             width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+            margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               border: Border(
@@ -67,14 +69,14 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
                     style: BorderStyle.solid),
               ),
             ),
-            padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-            child: new Row(
+            padding: EdgeInsets.only(left: 0.0, right: 10.0),
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                new Expanded(
+                Expanded(
                   child: TextField(
-                    obscureText: true,
+                    controller: _userController,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -89,12 +91,12 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
           Divider(
             height: 24.0,
           ),
-          new Row(
+          Row(
             children: <Widget>[
-              new Expanded(
-                child: new Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
-                  child: new Text(
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 40.0),
+                  child: Text(
                     "密码",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -106,9 +108,9 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
               ),
             ],
           ),
-          new Container(
+          Container(
             width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+            margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               border: Border(
@@ -118,13 +120,14 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
                     style: BorderStyle.solid),
               ),
             ),
-            padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-            child: new Row(
+            padding: EdgeInsets.only(left: 0.0, right: 10.0),
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                new Expanded(
+                Expanded(
                   child: TextField(
+                    controller: _passController,
                     obscureText: true,
                     textAlign: TextAlign.left,
                     decoration: InputDecoration(
@@ -140,12 +143,12 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
           Divider(
             height: 24.0,
           ),
-          new Row(
+          Row(
             children: <Widget>[
-              new Expanded(
-                child: new Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
-                  child: new Text(
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 40.0),
+                  child: Text(
                     "确认密码",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -157,9 +160,9 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
               ),
             ],
           ),
-          new Container(
+          Container(
             width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+            margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               border: Border(
@@ -169,12 +172,12 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
                     style: BorderStyle.solid),
               ),
             ),
-            padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-            child: new Row(
+            padding: EdgeInsets.only(left: 0.0, right: 10.0),
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                new Expanded(
+                Expanded(
                   child: TextField(
                     obscureText: true,
                     textAlign: TextAlign.left,
@@ -191,13 +194,13 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
           Divider(
             height: 24.0,
           ),
-          new Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(right: 20.0),
-                child: new FlatButton(
-                  child: new Text(
+                padding: EdgeInsets.only(right: 20.0),
+                child: FlatButton(
+                  child: Text(
                     "已有账号？立即登录！",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -211,30 +214,32 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
               ),
             ],
           ),
-          new Container(
+          Container(
             width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 50.0),
+            margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 50.0),
             alignment: Alignment.center,
-            child: new Row(
+            child: Row(
               children: <Widget>[
-                new Expanded(
-                  child: new FlatButton(
-                    shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(30.0),
+                Expanded(
+                  child: FlatButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
                     ),
                     color: Colors.redAccent,
                     onPressed: () {
-                      widget.signup('15221382253', '15221382253');
+                      String username = _userController.text;
+                      String password = _passController.text;
+                      widget.signup(username, password);
                     },
-                    child: new Container(
-                      padding: const EdgeInsets.symmetric(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
                         vertical: 20.0,
                         horizontal: 20.0,
                       ),
-                      child: new Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          new Expanded(
+                          Expanded(
                             child: Text(
                               "注  册",
                               textAlign: TextAlign.center,

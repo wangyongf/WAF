@@ -62,11 +62,11 @@ class _WanAndroidUniversalLoginPageState
         password: password,
         callback: (bool success, String msg) {
           if (success) {
-            ToastUtils.showToast(context, '登录成功');
+            ToastUtils.showToast(context, '欢迎回来~');
+            Navigator.of(context).pop();
           } else {
             ToastUtils.showToast(context, msg);
           }
-          Navigator.of(context).pop();
         });
   }
 
@@ -77,7 +77,8 @@ class _WanAndroidUniversalLoginPageState
         password: password,
         callback: (bool success, String msg) {
           if (success) {
-            ToastUtils.showToast(context, '注册成功');
+            ToastUtils.showToast(context, '好久不见，新人~');
+            Navigator.of(context).pop();
           } else {
             ToastUtils.showToast(context, msg);
           }

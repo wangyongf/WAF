@@ -1,6 +1,7 @@
 import 'package:daily_purify/common/routes_name.dart';
 import 'package:daily_purify/manager/user_manager.dart';
 import 'package:daily_purify/util/divider_helper.dart';
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:daily_purify/widget/unify_setting_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -57,24 +58,34 @@ class _WanAndroidSettingsPageState extends State<WanAndroidSettingsPage> {
 
   /// 清除缓存
   _buildClearCache() {
-    return UnifySettingWidget(
-      title: Text(
-        '清除缓存',
-        style: TextStyle(fontSize: 15),
-      ),
-      trailing: Text(
-        '22.99MB',
-        style: TextStyle(fontSize: 13, color: Colors.grey),
+    return InkWell(
+      onTap: () {
+        ToastUtils.showToast(context, '清除缓存功能开发中，敬请期待~');
+      },
+      child: UnifySettingWidget(
+        title: Text(
+          '清除缓存',
+          style: TextStyle(fontSize: 15),
+        ),
+        trailing: Text(
+          '22.99MB',
+          style: TextStyle(fontSize: 13, color: Colors.grey),
+        ),
       ),
     );
   }
 
   /// 推送消息设置
   _buildPushSetting() {
-    return UnifySettingWidget(
-      title: Text(
-        '推送消息设置',
-        style: TextStyle(fontSize: 15),
+    return InkWell(
+      onTap: () {
+        ToastUtils.showToast(context, '推送消息设置功能开发中，敬请期待~');
+      },
+      child: UnifySettingWidget(
+        title: Text(
+          '推送消息设置',
+          style: TextStyle(fontSize: 15),
+        ),
       ),
     );
   }

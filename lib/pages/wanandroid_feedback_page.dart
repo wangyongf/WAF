@@ -1,3 +1,4 @@
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:flutter/material.dart';
 
 class WanAndroidFeedbackPage extends StatefulWidget {
@@ -95,7 +96,9 @@ class _WanAndroidFeedbackPageState extends State<WanAndroidFeedbackPage> {
             child: RaisedButton(
               padding: const EdgeInsets.only(top: 15, bottom: 15),
               color: Colors.redAccent,
-              onPressed: () {},
+              onPressed: () {
+                ToastUtils.showToast(context, '意见反馈功能开发中，敬请期待~');
+              },
               child: Text(
                 '确定',
                 style: TextStyle(fontSize: 16, color: Colors.white),

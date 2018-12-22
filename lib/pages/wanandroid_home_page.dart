@@ -162,7 +162,9 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage>
             color: Colors.white,
             size: 24,
           ),
-          onPressed: () {},
+          onPressed: () {
+            ToastUtils.showToast(context, '搜索功能开发中，敬请期待~');
+          },
         ),
       )
     ];
