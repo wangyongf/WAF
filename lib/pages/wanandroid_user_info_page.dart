@@ -1,5 +1,6 @@
 import 'package:daily_purify/manager/user_manager.dart';
 import 'package:daily_purify/util/divider_helper.dart';
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:daily_purify/widget/unify_setting_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -65,39 +66,50 @@ class _WanAndroidUserInfoPageState extends State<WanAndroidUserInfoPage> {
 
   /// 邮箱
   _buildEmail() {
-    return UnifySettingWidget(
-      title: Text(
-        '邮箱',
-        style: TextStyle(fontSize: 15),
-      ),
-      content: Text(
-        '1059613472@qq.com',
-        style: TextStyle(fontSize: 13, color: Colors.grey),
+    return InkWell(
+      onTap: () {},
+      child: UnifySettingWidget(
+        title: Text(
+          '邮箱',
+          style: TextStyle(fontSize: 15),
+        ),
+        content: Text(
+          '1059613472@qq.com',
+          style: TextStyle(fontSize: 13, color: Colors.grey),
+        ),
       ),
     );
   }
 
   /// 手机号
   _buildPhone() {
-    return UnifySettingWidget(
-      title: Text(
-        '手机号',
-        style: TextStyle(fontSize: 15),
-      ),
-      content: Text(
-        '110-111-112-113',
-        style: TextStyle(fontSize: 13, color: Colors.grey),
+    return InkWell(
+      onTap: () {},
+      child: UnifySettingWidget(
+        title: Text(
+          '手机号',
+          style: TextStyle(fontSize: 15),
+        ),
+        content: Text(
+          'XXX-XXX-XXX-XXX',
+          style: TextStyle(fontSize: 13, color: Colors.grey),
+        ),
       ),
     );
   }
 
   /// 修改账户密码
   _buildModifyPassword() {
-    return UnifySettingWidget(
-        title: Text(
-      '修改账户密码',
-      style: TextStyle(fontSize: 15),
-    ));
+    return InkWell(
+      onTap: () {
+        ToastUtils.showToast(context, '修改密码功能开发中，敬请期待~');
+      },
+      child: UnifySettingWidget(
+          title: Text(
+        '修改账户密码',
+        style: TextStyle(fontSize: 15),
+      )),
+    );
   }
 
   /// 绑定新浪微博
@@ -108,7 +120,7 @@ class _WanAndroidUserInfoPageState extends State<WanAndroidUserInfoPage> {
             fontSize: 15,
           )),
       content: Text(
-        'yongf2015',
+        '小拓先森',
         style: TextStyle(fontSize: 13, color: Colors.grey),
       ),
       trailing: Switch(value: true, onChanged: (bool value) {}),
