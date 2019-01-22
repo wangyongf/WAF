@@ -15,6 +15,8 @@ class WanAndroidHomePage extends StatefulWidget {
 
 class _WanAndroidHomePageState extends State<WanAndroidHomePage>
     with AutomaticKeepAliveClientMixin {
+  var _refreshKey = GlobalKey<RefreshIndicatorState>();
+
   HomeBannerModel _bannerModel;
   ArticleListModel _articlesList;
 
@@ -26,32 +28,32 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage>
   }
 
   /// 获取 Banner 数据和文章列表数据
-  _fetchData() {
-    _fetchArticles();
-    _fetchBanners();
+  Future<Null> _fetchData() async {
+    await _fetchArticles();
+    await _fetchBanners();
+    return null;
   }
 
-  _fetchArticles() {
-    WanAndroidApi().getArticles(0).then((ArticleListModel value) {
+  _fetchArticles() async {
+    try {
+      var model = await WanAndroidApi().getArticles(0);
       setState(() {
-        _articlesList = value;
+        _articlesList = model;
       });
-    }).catchError((Object error) {
+    } catch (e) {
       ToastUtils.showToast(context, '文章列表加载出错！');
-      return true;
-    }).whenComplete(() {
-      print('加载完毕');
-    });
+    }
   }
 
-  _fetchBanners() {
-    WanAndroidApi().getHomeBanners().then((HomeBannerModel model) {
+  _fetchBanners() async {
+    try {
+      var model = await WanAndroidApi().getHomeBanners();
       setState(() {
         _bannerModel = model;
       });
-    }).catchError((Object error) {
+    } catch (e) {
       ToastUtils.showToast(context, 'Banner 加载失败');
-    }).whenComplete(() {});
+    }
   }
 
   @override
@@ -81,14 +83,18 @@ class _WanAndroidHomePageState extends State<WanAndroidHomePage>
   }
 
   _buildArticles() {
-    return ListView.builder(
-        itemCount: _articlesList?.data?.datas?.length ?? 0 + 1,
-        itemBuilder: (BuildContext context, int position) {
-          if (position == 0) {
-            return _buildBanners();
-          }
-          return _buildArticleItem(position - 1);
-        });
+    return RefreshIndicator(
+      key: _refreshKey,
+      onRefresh: _fetchData,
+      child: ListView.builder(
+          itemCount: _articlesList?.data?.datas?.length ?? 0 + 1,
+          itemBuilder: (BuildContext context, int position) {
+            if (position == 0) {
+              return _buildBanners();
+            }
+            return _buildArticleItem(position - 1);
+          }),
+    );
   }
 
   _buildBanners() {

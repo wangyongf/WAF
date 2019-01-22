@@ -13,6 +13,8 @@ class WanAndroidKnowledgePage extends StatefulWidget {
 
 class _WanAndroidKnowledgePageState extends State<WanAndroidKnowledgePage>
     with AutomaticKeepAliveClientMixin {
+  var _refreshKey = GlobalKey<RefreshIndicatorState>();
+
   KnowledgeTreeListModel _knowledge;
 
   @override
@@ -34,8 +36,12 @@ class _WanAndroidKnowledgePageState extends State<WanAndroidKnowledgePage>
   }
 
   _buildBody() {
-    return ListView(
-      children: _buildCategories(),
+    return RefreshIndicator(
+      key: _refreshKey,
+      onRefresh: _fetchData,
+      child: ListView(
+        children: _buildCategories(),
+      ),
     );
   }
 
@@ -70,14 +76,16 @@ class _WanAndroidKnowledgePageState extends State<WanAndroidKnowledgePage>
     );
   }
 
-  _fetchData() {
-    WanAndroidApi().getKnowledgeTree(null).then((KnowledgeTreeListModel value) {
+  Future<Null> _fetchData() async {
+    try {
+      var value = await WanAndroidApi().getKnowledgeTree(null);
       setState(() {
         this._knowledge = value;
       });
-    }).catchError((Object error) {
+    } catch (e) {
       ToastUtils.showToast(context, '知识体系数据加载失败');
-    }).whenComplete(() {});
+    }
+    return null;
   }
 
   @override

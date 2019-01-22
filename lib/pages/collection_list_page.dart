@@ -28,6 +28,8 @@ class ArticleCollectionsPage extends StatefulWidget {
 }
 
 class _ArticleCollectionsPageState extends State<ArticleCollectionsPage> {
+  final _refreshKey = GlobalKey<RefreshIndicatorState>();
+
   ArticleCollectionsModel _collectionsModel;
   int _currentPage = 0;
 
@@ -44,11 +46,15 @@ class _ArticleCollectionsPageState extends State<ArticleCollectionsPage> {
     if (_collectionsModel == null) {
       return EmptyHolder();
     }
-    return ListView.builder(
-        itemCount: _collectionsModel?.data?.datas?.length ?? 0,
-        itemBuilder: (BuildContext context, int position) {
-          return _buildArticleItem(position);
-        });
+    return RefreshIndicator(
+      key: _refreshKey,
+      onRefresh: _fetchProjectDetail,
+      child: ListView.builder(
+          itemCount: _collectionsModel?.data?.datas?.length ?? 0,
+          itemBuilder: (BuildContext context, int position) {
+            return _buildArticleItem(position);
+          }),
+    );
   }
 
   _buildArticleItem(int position) {
@@ -76,16 +82,17 @@ class _ArticleCollectionsPageState extends State<ArticleCollectionsPage> {
     );
   }
 
-  _fetchProjectDetail() {
-    WanAndroidApi()
-        .getArticleCollections(widget.urlBuilder(_currentPage))
-        .then((ArticleCollectionsModel value) {
+  Future<Null> _fetchProjectDetail() async {
+    try {
+      var value = await WanAndroidApi()
+          .getArticleCollections(widget.urlBuilder(_currentPage));
       setState(() {
-        _collectionsModel = value;
+        this._collectionsModel = value;
       });
-    }).catchError((Object error) {
+    } catch (e) {
       ToastUtils.showToast(context, '收藏数据加载失败');
-    }).whenComplete(() {});
+    }
+    return null;
   }
 
   _onUnCollect(bool newStatus, int id, int originId) async {

@@ -30,6 +30,8 @@ class ArticleListPage extends StatefulWidget {
 
 class _ArticleListPageState extends State<ArticleListPage>
     with AutomaticKeepAliveClientMixin {
+  var _refreshKey = GlobalKey<RefreshIndicatorState>();
+
   ProjectDetailModel _detailModel;
   int _currentPage = 0;
 
@@ -46,11 +48,15 @@ class _ArticleListPageState extends State<ArticleListPage>
     if (_detailModel == null) {
       return EmptyHolder();
     }
-    return ListView.builder(
-        itemCount: _detailModel?.data?.datas?.length ?? 0,
-        itemBuilder: (BuildContext context, int position) {
-          return _buildArticleItem(position);
-        });
+    return RefreshIndicator(
+      key: _refreshKey,
+      onRefresh: _fetchProjectDetail,
+      child: ListView.builder(
+          itemCount: _detailModel?.data?.datas?.length ?? 0,
+          itemBuilder: (BuildContext context, int position) {
+            return _buildArticleItem(position);
+          }),
+    );
   }
 
   _buildArticleItem(int position) {
@@ -75,16 +81,17 @@ class _ArticleListPageState extends State<ArticleListPage>
     );
   }
 
-  _fetchProjectDetail() {
-    WanAndroidApi()
-        .getProjectDetail(widget.urlBuilder(_currentPage))
-        .then((ProjectDetailModel value) {
+  Future<Null> _fetchProjectDetail() async {
+    try {
+      var value = await WanAndroidApi()
+          .getProjectDetail(widget.urlBuilder(_currentPage));
       setState(() {
         _detailModel = value;
       });
-    }).catchError((Object error) {
+    } catch (e) {
       ToastUtils.showToast(context, '项目列表数据加载失败');
-    }).whenComplete(() {});
+    }
+    return null;
   }
 
   @override
