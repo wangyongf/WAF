@@ -8,24 +8,24 @@ class WanAndroidLoginHomePage extends StatelessWidget {
   final OnGoSignup signup;
   final OnGoLogin login;
 
-  const WanAndroidLoginHomePage(
+  WanAndroidLoginHomePage(
       {Key key, @required this.signup, @required this.login})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return Container(
       height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         color: Colors.redAccent,
         image: DecorationImage(
-          colorFilter: new ColorFilter.mode(
+          colorFilter: ColorFilter.mode(
               Colors.black.withOpacity(0.1), BlendMode.dstATop),
           image: AssetImage('assets/images/mountains.jpg'),
           fit: BoxFit.cover,
         ),
       ),
-      child: new Column(
+      child: Column(
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(top: 250.0),
@@ -39,7 +39,7 @@ class WanAndroidLoginHomePage extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(top: 20.0),
-            child: new Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
@@ -59,79 +59,89 @@ class WanAndroidLoginHomePage extends StatelessWidget {
               ],
             ),
           ),
-          new Container(
-            width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 150.0),
-            alignment: Alignment.center,
-            child: new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: new OutlineButton(
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    color: Colors.redAccent,
-                    highlightedBorderColor: Colors.white,
-                    onPressed: signup,
-                    child: new Container(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 20.0,
-                        horizontal: 20.0,
-                      ),
-                      child: new Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          new Expanded(
-                            child: Text(
-                              "注册",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
+          _buildRegisterButton(context),
+          _buildLoginButton(context),
+        ],
+      ),
+    );
+  }
+
+  Container _buildRegisterButton(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 100.0),
+      alignment: Alignment.center,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: OutlineButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+              color: Colors.redAccent,
+              highlightedBorderColor: Colors.white,
+              onPressed: signup,
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15.0,
+                  horizontal: 20.0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        "注册",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
-          new Container(
-            width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30.0),
-            alignment: Alignment.center,
-            child: new Row(
-              children: <Widget>[
-                new Expanded(
-                  child: new FlatButton(
-                    shape: new RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(30.0)),
-                    color: Colors.white,
-                    onPressed: login,
-                    child: new Container(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 20.0,
-                        horizontal: 20.0,
-                      ),
-                      child: new Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          new Expanded(
-                            child: Text(
-                              "登录",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.redAccent,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
+        ],
+      ),
+    );
+  }
+
+  Container _buildLoginButton(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 26.0),
+      alignment: Alignment.center,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: FlatButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0)),
+              color: Colors.white,
+              onPressed: login,
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 15.0,
+                  horizontal: 20.0,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        "登录",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.redAccent,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ],
