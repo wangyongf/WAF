@@ -32,7 +32,11 @@ public class SimpleMMKVPlugin implements MethodChannel.MethodCallHandler {
         String key = methodCall.argument("key");
         if ("encodeString".equals(method)) {
             String value = methodCall.argument("value");
-            mDelegate.encode(key, value);
+            boolean success = mDelegate.encode(key, value);
+            result.success(success);
+        } else if ("decodeString".equals(method)) {
+            String value = mDelegate.decodeString(key);
+            result.success(value);
         } else if ("encodeBool".equals(method)) {
             boolean value = methodCall.argument("value");
             mDelegate.encode(key, value);

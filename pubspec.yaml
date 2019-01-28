@@ -1,5 +1,5 @@
 name: daily_purify
-description: A new Flutter application.
+description: A WanAndroid Flutter Client.
 
 dependencies:
   flutter:
@@ -12,7 +12,7 @@ dependencies:
   cached_network_image: ^0.5.0
   transparent_image: ^0.1.0
   flutter_webview_plugin: ^0.3.0+2
-#  flutter_html_view: ^0.5.10
+  #  flutter_html_view: ^0.5.10
   shared_preferences: ^0.4.2
   fluttertoast: ^2.1.1
   json_annotation: ^2.0.0
@@ -21,6 +21,7 @@ dependencies:
   package_info: ^0.3.2
   android_intent: ^0.2.1
   share: ^0.5.3
+  rxdart: ^0.20.0
 
 dev_dependencies:
   flutter_test:
@@ -42,20 +43,20 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/appbar_def_bg.jpeg
-    - images/icon_circle.png
-    - images/icon_msg.png
-    - images/icon_sina.png
-    - images/icon_wx.png
-    - images/icon_arrow_right.png
-    - images/icon_mine_fill.png
-    - images/blue.jpeg
-    - images/purple.jpeg
-    - images/yellow.jpeg
-    - images/hello_spider_man.png
-    - images/spider_man.jpeg
-    - images/text.jpeg
-    - assets/images/mountains.jpg
+  - images/appbar_def_bg.jpeg
+  - images/icon_circle.png
+  - images/icon_msg.png
+  - images/icon_sina.png
+  - images/icon_wx.png
+  - images/icon_arrow_right.png
+  - images/icon_mine_fill.png
+  - images/blue.jpeg
+  - images/purple.jpeg
+  - images/yellow.jpeg
+  - images/hello_spider_man.png
+  - images/spider_man.jpeg
+  - images/text.jpeg
+  - assets/images/mountains.jpg
 
   #  - images/a_dot_ham.jpeg
 
@@ -71,9 +72,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-        - family: icomoon
-          fonts:
-          - asset: assets/fonts/IcoMoon.ttf
+  - family: icomoon
+    fonts:
+    - asset: assets/fonts/IcoMoon.ttf
 
   # fonts:
   #   - family: Schyler

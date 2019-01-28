@@ -32,7 +32,7 @@ class _WanAndroidLoginPageState extends State<WanAndroidLoginPage> {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(120.0),
+            padding: EdgeInsets.only(top: 80.0, bottom: 50),
             child: Center(
               child: Icon(
                 Icons.android,
@@ -58,39 +58,9 @@ class _WanAndroidLoginPageState extends State<WanAndroidLoginPage> {
               ),
             ],
           ),
+          _buildUsernameInput(context),
           Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                    color: Colors.redAccent,
-                    width: 0.5,
-                    style: BorderStyle.solid),
-              ),
-            ),
-            padding: EdgeInsets.only(left: 0.0, right: 10.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: TextField(
-                    controller: _userController,
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'scottwang1996@qq.com',
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Divider(
-            height: 24.0,
+            height: 20.0,
           ),
           Row(
             children: <Widget>[
@@ -109,147 +79,202 @@ class _WanAndroidLoginPageState extends State<WanAndroidLoginPage> {
               ),
             ],
           ),
+          _buildPasswordInput(context),
           Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                    color: Colors.redAccent,
-                    width: 0.5,
-                    style: BorderStyle.solid),
-              ),
-            ),
-            padding: EdgeInsets.only(left: 0.0, right: 10.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: TextField(
-                    controller: _passController,
-                    obscureText: true,
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: '*********',
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            height: 12.0,
           ),
-          Divider(
-            height: 24.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+          _buildFindPwd(context),
+          _buildLoginButton(context),
+          _buildThirdLoginTitle(context),
+          _buildThirdLoginButton(context)
+        ],
+      ),
+    );
+  }
+
+  Container _buildThirdLoginButton(BuildContext context) {
+    return Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: FlatButton(
-                  child: Text(
-                    "找回密码",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.redAccent,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.end,
+              _buildFackbookLoginBtn(context),
+              _buildGoogleLoginBtn(context)
+            ],
+          ),
+        );
+  }
+
+  Container _buildPasswordInput(BuildContext context) {
+    return Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 6.0),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                  color: Colors.redAccent,
+                  width: 0.5,
+                  style: BorderStyle.solid),
+            ),
+          ),
+          padding: EdgeInsets.only(left: 0.0, right: 10.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  controller: _passController,
+                  obscureText: true,
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: '*********',
+                    hintStyle: TextStyle(color: Colors.grey),
                   ),
-                  onPressed: () {
-                    ToastUtils.showToast(context, '找回密码功能开发中，敬请期待~');
-                  },
                 ),
               ),
             ],
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-            alignment: Alignment.center,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: FlatButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
+        );
+  }
+
+  Container _buildUsernameInput(BuildContext context) {
+    return Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 6.0),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                  color: Colors.redAccent,
+                  width: 0.5,
+                  style: BorderStyle.solid),
+            ),
+          ),
+          padding: EdgeInsets.only(left: 0.0, right: 10.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                child: TextField(
+                  controller: _userController,
+                  textAlign: TextAlign.left,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'scottwang1996@qq.com',
+                    hintStyle: TextStyle(color: Colors.grey),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+  }
+
+  Container _buildThirdLoginTitle(BuildContext context) {
+    return Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 56.0),
+          alignment: Alignment.center,
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(border: Border.all(width: 0.25)),
+                ),
+              ),
+              Text(
+                "三方登录",
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(border: Border.all(width: 0.25)),
+                ),
+              ),
+            ],
+          ),
+        );
+  }
+
+  Container _buildLoginButton(BuildContext context) {
+    return Container(
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
+          alignment: Alignment.center,
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: FlatButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  color: Colors.redAccent,
+                  onPressed: () {
+                    String username = _userController.text;
+                    String password = _passController.text;
+                    widget.login(username, password);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 15.0,
+                      horizontal: 20.0,
                     ),
-                    color: Colors.redAccent,
-                    onPressed: () {
-                      String username = _userController.text;
-                      String password = _passController.text;
-                      widget.login(username, password);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 20.0,
-                        horizontal: 20.0,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Expanded(
-                            child: Text(
-                              "立即登录",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            "立即登录",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-            alignment: Alignment.center,
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(border: Border.all(width: 0.25)),
-                  ),
-                ),
-                Text(
-                  "三方登录",
+        );
+  }
+
+  Row _buildFindPwd(BuildContext context) {
+    return Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: FlatButton(
+                child: Text(
+                  "找回密码",
                   style: TextStyle(
-                    color: Colors.grey,
                     fontWeight: FontWeight.bold,
+                    color: Colors.redAccent,
+                    fontSize: 15.0,
                   ),
+                  textAlign: TextAlign.end,
                 ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(border: Border.all(width: 0.25)),
-                  ),
-                ),
-              ],
+                onPressed: () {
+                  ToastUtils.showToast(context, '找回密码功能开发中，敬请期待~');
+                },
+              ),
             ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                _buildFackbookLoginBtn(context),
-                _buildGoogleLoginBtn(context)
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+          ],
+        );
   }
 
   _buildFackbookLoginBtn(BuildContext context) {

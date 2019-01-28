@@ -74,7 +74,8 @@ void main() {
       Routes.WAN_ANDROID_DEBUG_PAGE: (BuildContext context) =>
           WanAndroidDebugPage(),
     },
-    home: WanAndroidMainPage(),
+    home: WanAndroidUniversalLoginPage(),
+    debugShowCheckedModeBanner: false,
     theme: MyTheme.theme,
   ));
 }

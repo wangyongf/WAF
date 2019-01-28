@@ -18,6 +18,7 @@ import 'package:daily_purify/util/sp_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 
+// TODO: 还没找到一个自认为完美的缓存解决方案？
 class WanAndroidApi {
   factory WanAndroidApi() => _getInstance();
   static WanAndroidApi _instance;
