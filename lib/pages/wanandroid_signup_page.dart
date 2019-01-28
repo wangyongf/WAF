@@ -1,19 +1,25 @@
+import 'package:daily_purify/util/toast_utils.dart';
 import 'package:flutter/material.dart';
 
 typedef OnSignup(String username, String password);
+typedef OnGoLogin();
 
 class WanAndroidSignupPage extends StatefulWidget {
   final OnSignup signup;
+  final OnGoLogin onGoLogin;
 
-  WanAndroidSignupPage({Key key, @required this.signup}) : super(key: key);
+  WanAndroidSignupPage(
+      {Key key, @required this.signup, @required this.onGoLogin})
+      : super(key: key);
 
   @override
   _WanAndroidSignupPageState createState() => _WanAndroidSignupPageState();
 }
 
 class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
-  TextEditingController _userController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
+  var _userController = TextEditingController();
+  var _passController = TextEditingController();
+  var _repassController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +109,7 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
           Container(
             height: 12.0,
           ),
-          _buildLoginTip(),
+          _buildLoginTip(context),
           _buildRegisterButton(context),
         ],
       ),
@@ -126,6 +132,15 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
               onPressed: () {
                 String username = _userController.text;
                 String password = _passController.text;
+                String repass = _repassController.text;
+                if (username.isEmpty) {
+                  ToastUtils.showSnack(context, '用户名不能为空！');
+                  return;
+                }
+                if (password != repass) {
+                  ToastUtils.showSnack(context, '两次输入的密码好像不一致哦~');
+                  return;
+                }
                 widget.signup(username, password);
               },
               child: Container(
@@ -156,7 +171,7 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
     );
   }
 
-  Row _buildLoginTip() {
+  Row _buildLoginTip(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
@@ -172,7 +187,7 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
               ),
               textAlign: TextAlign.end,
             ),
-            onPressed: () => {},
+            onPressed: widget.onGoLogin,
           ),
         ),
       ],
@@ -197,6 +212,7 @@ class _WanAndroidSignupPageState extends State<WanAndroidSignupPage> {
         children: <Widget>[
           Expanded(
             child: TextField(
+              controller: _repassController,
               obscureText: true,
               textAlign: TextAlign.left,
               decoration: InputDecoration(

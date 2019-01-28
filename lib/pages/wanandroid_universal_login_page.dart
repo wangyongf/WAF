@@ -34,25 +34,23 @@ class _WanAndroidUniversalLoginPageState
   Widget _signupPage() {
     return WanAndroidSignupPage(
       signup: _signup,
+      onGoLogin: _gotoLogin,
     );
   }
 
   _gotoLogin() {
-    //controller_0To1.forward(from: 0.0);
-    _controller.animateToPage(
-      0,
-      duration: Duration(milliseconds: 800),
-      curve: Curves.bounceOut,
-    );
+//    _controller.animateToPage(0,
+//        duration: Duration(milliseconds: 500), curve: Curves.linear);
+    _controller.jumpToPage(0);
   }
 
   _gotoSignup() {
-    //controller_minus1To0.reverse(from: 0.0);
-    _controller.animateToPage(
-      2,
-      duration: Duration(milliseconds: 800),
-      curve: Curves.bounceOut,
-    );
+//    _controller.animateToPage(
+//      2,
+//      duration: Duration(milliseconds: 800),
+//      curve: Curves.bounceOut,
+//    );
+    _controller.jumpToPage(2);
   }
 
   /// 登录
@@ -62,10 +60,10 @@ class _WanAndroidUniversalLoginPageState
         password: password,
         callback: (bool success, String msg) {
           if (success) {
-            ToastUtils.showToast(context, '欢迎回来~');
+            ToastUtils.showSnack(context, '欢迎回来~');
             Navigator.of(context).pop();
           } else {
-            ToastUtils.showToast(context, msg);
+            ToastUtils.showSnack(context, msg);
           }
         });
   }
@@ -77,10 +75,10 @@ class _WanAndroidUniversalLoginPageState
         password: password,
         callback: (bool success, String msg) {
           if (success) {
-            ToastUtils.showToast(context, '好久不见，新人~');
+            ToastUtils.showSnack(context, '好久不见，新人~');
             Navigator.of(context).pop();
           } else {
-            ToastUtils.showToast(context, msg);
+            ToastUtils.showSnack(context, msg);
           }
         });
   }

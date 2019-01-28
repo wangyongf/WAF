@@ -28,7 +28,7 @@ class WanAndroidLoginHomePage extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(top: 250.0),
+            padding: EdgeInsets.only(top: 230.0),
             child: Center(
               child: Icon(
                 Icons.android,
