@@ -60,7 +60,7 @@ class _WanAndroidUniversalLoginPageState
         password: password,
         callback: (bool success, String msg) {
           if (success) {
-            ToastUtils.showSnack(context, '欢迎回来~');
+            ToastUtils.showToast(context, '欢迎回来~');
             Navigator.of(context).pop();
           } else {
             ToastUtils.showSnack(context, msg);
@@ -75,10 +75,10 @@ class _WanAndroidUniversalLoginPageState
         password: password,
         callback: (bool success, String msg) {
           if (success) {
-            ToastUtils.showSnack(context, '好久不见，新人~');
+            ToastUtils.showToast(context, '好久不见，新人~');
             Navigator.of(context).pop();
           } else {
-            ToastUtils.showSnack(context, msg);
+            ToastUtils.showToast(context, msg);
           }
         });
   }

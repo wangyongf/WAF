@@ -40,4 +40,7 @@ class UrlPath {
   static const String WECHAT_SUBSCRIPTIONS = "/wxarticle/chapters/json";                          // 获取公众号列表
   static const String WECHAT_ARTICLES = "/wxarticle/list/405/1/json";                                 // 查看某个公众号历史数据
   static const String WECHAT_SEARCH = "/wxarticle/list/405/1/json?k=Java";                        // 在某个公众号中搜索历史文章
+
+  /// issue
+  static const String GITHUB_ISSUE = "/repos/wangyongf/WAF/issues";
 }

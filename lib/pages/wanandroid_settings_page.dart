@@ -1,5 +1,4 @@
 import 'package:daily_purify/common/routes_name.dart';
-import 'package:daily_purify/manager/user_manager.dart';
 import 'package:daily_purify/util/divider_helper.dart';
 import 'package:daily_purify/util/toast_utils.dart';
 import 'package:daily_purify/widget/unify_setting_widget.dart';
@@ -33,6 +32,8 @@ class _WanAndroidSettingsPageState extends State<WanAndroidSettingsPage> {
       child: ListView(
         children: <Widget>[
           DividerHelper.get(),
+          _buildTheming(),
+          DividerHelper.get(),
           _buildClearCache(),
           DividerHelper.get(),
           _buildPushSetting(),
@@ -53,6 +54,51 @@ class _WanAndroidSettingsPageState extends State<WanAndroidSettingsPage> {
   _buildSpace() {
     return Container(
       height: 8,
+    );
+  }
+
+  /// 主题设置
+  _buildTheming() {
+    var colorList = <Color>[
+      Colors.black,
+      Colors.blueAccent,
+      Colors.lightBlue,
+      Colors.lightBlueAccent,
+      Colors.deepPurpleAccent,
+      Colors.deepOrange,
+      Colors.deepOrangeAccent,
+      Colors.orange,
+      Colors.green,
+      Colors.yellow,
+      Colors.pink,
+      Colors.red,
+      Colors.redAccent,
+    ];
+    return ExpansionTile(
+      backgroundColor: Colors.white,
+      leading: Icon(Icons.color_lens),
+      title: Text(
+        '主题',
+        style: TextStyle(fontSize: 15),
+      ),
+      children: <Widget>[
+        Container(
+          /// TODO: 如何实现？？？
+          child: GridView.count(
+            crossAxisCount: 6,
+            children: colorList.map(_convert).toList(),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _convert(Color color) {
+    return Container(
+      padding: EdgeInsets.all(2),
+      width: 35,
+      height: 35,
+      color: color,
     );
   }
 

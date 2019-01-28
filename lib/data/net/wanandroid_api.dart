@@ -14,7 +14,6 @@ import 'package:daily_purify/model/project_list_model.dart';
 import 'package:daily_purify/model/wechat_subscription_list_model.dart';
 import 'package:daily_purify/net/dio_factory.dart';
 import 'package:daily_purify/util/log_utils.dart';
-import 'package:daily_purify/util/sp_utils.dart';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -335,11 +334,24 @@ class WanAndroidApi {
     return await dio.post(url, data: formData);
   }
 
+  Future<Response> createIssue(String title, String body) async {
+    String url = UrlHost.GITHUB_API + UrlPath.GITHUB_ISSUE;
+    Dio dio = await _getDio();
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+      "Authorization": "token a9fa7c0aba0db77a72c0c6f2be54f40296ca14af"
+    };
+    Map<String, String> jsonBody = {"title": title, "body": body};
+    return await dio.post(url,
+        data: jsonBody, options: Options(headers: headers));
+  }
+
   Future<Dio> _getDio() async {
     Dio dio = DioFactory().getDio();
-    bool isProxy = await SpUtils.getBool('enableDioProxy') ?? false;
-//    String proxy = '192.168.2.163:8888';
-    String proxy = '172.18.107.196:8888';
+//    bool isProxy = await SpUtils.getBool('enableDioProxy') ?? false;
+    bool isProxy = false;
+    String proxy = '192.168.2.163:8888';
+//    String proxy = '172.18.107.196:8888';
     dio.onHttpClientCreate = (client) {
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) {
