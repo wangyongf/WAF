@@ -147,6 +147,7 @@ class _WanAndroidFeedbackPageState extends State<WanAndroidFeedbackPage> {
           }
           await WanAndroidApi().createIssue(title, _formatBody(body, email));
           ToastUtils.showToast(context, '反馈成功，感谢~');
+          _clearText();
         },
         child: Text(
           '确定',
