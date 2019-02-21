@@ -142,7 +142,7 @@ class _WanAndroidFeedbackPageState extends State<WanAndroidFeedbackPage> {
             return;
           }
           if (title.isEmpty) {
-            ToastUtils.showToast(context, '请输入反馈标题，便于我们归类问题');
+            ToastUtils.showToast(context, '请输入反馈标题，便于我们将反馈进行归类');
             return;
           }
           await WanAndroidApi().createIssue(title, _formatBody(body, email));
